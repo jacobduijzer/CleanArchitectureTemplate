@@ -1,0 +1,8 @@
+{
+    "$schema": "http://json.schemastore.org/template",
+    "author": "Jacob Duijzer",
+    "classifications": [ "Common", "Console" ],
+    "identity": "JacobsApps.ProjectTemplate.CSharp",
+    "name": "Jacob's Clean Architecture Project Template",
+    "shortName": "cleanproject"
+}
