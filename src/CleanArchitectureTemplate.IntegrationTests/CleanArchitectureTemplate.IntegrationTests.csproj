@@ -7,9 +7,27 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="FluentAssertions" Version="5.6.0" />
+    <PackageReference Include="Microsoft.AspNetCore.CookiePolicy" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.HttpsPolicy" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.TestHost" Version="2.2.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.8.0" />
     <PackageReference Include="xunit" Version="2.3.1" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.3.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CleanArchitectureTemplate.Api\CleanArchitectureTemplate.Api.csproj" />
+    <ProjectReference Include="..\CleanArchitectureTemplate.Application\CleanArchitectureTemplate.Application.csproj" />
+    <ProjectReference Include="..\CleanArchitectureTemplate.Domain\CleanArchitectureTemplate.Domain.csproj" />
+    <ProjectReference Include="..\CleanArchitectureTemplate.Infrastructure\CleanArchitectureTemplate.Infrastructure.csproj" />
+    <ProjectReference Include="..\CleanArchitectureTemplate.Web\CleanArchitectureTemplate.Web.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Web\" />
   </ItemGroup>
 
 </Project>
