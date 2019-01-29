@@ -3,6 +3,7 @@ configuration: Release
 platform: Any CPU
 
 init:
+- ps: if(-not $env:APPVEYOR_PULL_REQUEST_NUMBER) { $env:is_not_pr = "true"; }
 - ps: $env:customnugetversion = if ($env:APPVEYOR_REPO_BRANCH  -eq "master") { "$env:APPVEYOR_BUILD_VERSION" } else { "$env:APPVEYOR_BUILD_VERSION-beta" }
 - ps: Update-AppveyorBuild -Version $env:customnugetversion
 - echo %customnugetversion%
@@ -21,6 +22,7 @@ deploy:
     provider: NuGet
     on:
       branch: master
+      is_not_pr: true
     api_key:
         secure: 5ZzlyVXW9Ch/50cNaTw5Q7I+g2uJ9THFy3c9K+XmgQWN3SPoXqxkPHSX1KIj/P4l
         skip_symbols: false
