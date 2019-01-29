@@ -1,4 +1,11 @@
 image: Visual Studio 2017
+configuration: Release
+platform: Any CPU
+
+init:
+- ps: $env:customnugetversion = if ($env:APPVEYOR_REPO_TAG -eq $True) { "$env:APPVEYOR_BUILD_VERSION" } else { "$env:APPVEYOR_BUILD_VERSION-$env:APPVEYOR_REPO_BRANCH" }
+- ps: Update-AppveyorBuild -Version $env:customnugetversion
+
 build_script:
   - sed s/1.0.0/$(appveyor_build_version)/g JacobsApps.CleanArchitectureProjectTemplate.CSharp.nuspec
   - nuget restore src/CleanArchitectureTemplate.sln
