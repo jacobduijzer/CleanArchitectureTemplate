@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using CleanArchitectureTemplate.FakeData.ToDoItems;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 
 namespace CleanArchitectureTemplate.Infrastructure.Shared
@@ -7,10 +8,15 @@ namespace CleanArchitectureTemplate.Infrastructure.Shared
     {
         public AppDbContext CreateDbContext(string[] args)
         {
-            // TODO
             var optionsBuilder = new DbContextOptionsBuilder<AppDbContext>();
-            //optionsBuilder.UseSqlServer(args[0]);
-            return new AppDbContext(optionsBuilder.Options);
+
+            // TODO: remove this and the nuget package from this project and add a real provider
+            optionsBuilder.UseInMemoryDatabase("in-mem-test-database");
+            var dbContext = new AppDbContext(optionsBuilder.Options);
+            dbContext.ToDoItems.AddRange(ToDoItemData.ToDoItems);
+            dbContext.SaveChanges();
+
+            return dbContext;
         }
     }
 }

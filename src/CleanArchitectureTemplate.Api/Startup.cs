@@ -1,15 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using CleanArchitectureTemplate.Domain.Shared;
+using CleanArchitectureTemplate.Domain.ToDoItems;
+using CleanArchitectureTemplate.Infrastructure.Shared;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
+using CleanArchitectureTemplate.Application.ToDoItems.UseCases;
+using System.Reflection;
+using MediatR;
 
 namespace CleanArchitectureTemplate.Api
 {
@@ -27,11 +26,9 @@ namespace CleanArchitectureTemplate.Api
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
-            //services.AddScoped<MyBeerAppContext>(x => new MyBeerAppContextFactory().CreateDbContext
-            //(
-            //    new string[] { Configuration.GetConnectionString("MyBeerDatabase") }
-            //));
-            //services.AddScoped<IRepository<Beer>, EfRepository<Beer>>();
+            services.AddScoped<AppDbContext>(x => new AppDbContextFactory().CreateDbContext(null));
+            services.AddScoped<IRepository<ToDoItem>, EfRepository<ToDoItem>>();
+            services.AddMediatR(cfg => cfg.AsScoped(), typeof(ToDoItemsHandler).GetTypeInfo().Assembly);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
