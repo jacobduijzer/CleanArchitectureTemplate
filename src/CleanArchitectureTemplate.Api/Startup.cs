@@ -25,7 +25,13 @@ namespace CleanArchitectureTemplate.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            //services.AddScoped<MyBeerAppContext>(x => new MyBeerAppContextFactory().CreateDbContext
+            //(
+            //    new string[] { Configuration.GetConnectionString("MyBeerDatabase") }
+            //));
+            //services.AddScoped<IRepository<Beer>, EfRepository<Beer>>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -1,4 +1,4 @@
-﻿using CleanArchitectureTemplate.Domain.ToDos;
+﻿using CleanArchitectureTemplate.Domain.ToDoItems;
 using Microsoft.EntityFrameworkCore;
 
 namespace CleanArchitectureTemplate.Infrastructure.Shared

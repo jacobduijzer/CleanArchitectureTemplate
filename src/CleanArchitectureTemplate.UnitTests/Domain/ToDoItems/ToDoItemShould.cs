@@ -1,4 +1,4 @@
-﻿using CleanArchitectureTemplate.Domain.ToDos;
+﻿using CleanArchitectureTemplate.Domain.ToDoItems;
 using FluentAssertions;
 using Xunit;
 

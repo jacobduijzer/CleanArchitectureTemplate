@@ -1,11 +1,18 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
 
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <NoWarn></NoWarn>
+    <DefineConstants></DefineConstants>
+    <DefineConstants>TRACE;DEBUG;NETCOREAPP;NETCOREAPP2_1</DefineConstants>
+    <NoWarn>1701;1702</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' " />
   <ItemGroup>
     <PackageReference Include="FluentAssertions" Version="5.6.0" />
     <PackageReference Include="Microsoft.AspNetCore.CookiePolicy" Version="2.2.0" />
