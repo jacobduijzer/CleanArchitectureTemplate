@@ -10,6 +10,8 @@ init:
 build_script:
   - sed s/1.0.0/%customnugetversion%/g JacobsApps.CleanArchitectureProjectTemplate.CSharp.nuspec
   - nuget restore src/CleanArchitectureTemplate.sln
+  - dotnet build src/CleanArchitectureTemplate.sln
+  - dotnet test src/CleanArchitectureTemplate.sln
   - nuget pack JacobsApps.CleanArchitectureProjectTemplate.CSharp.nuspec -version %customnugetversion%
  
 artifacts:
