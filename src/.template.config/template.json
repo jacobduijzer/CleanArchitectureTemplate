@@ -1,8 +1,8 @@
 {
     "$schema": "http://json.schemastore.org/template",
     "author": "Jacob Duijzer",
-    "classifications": [ "Common", "Console" ],
-    "identity": "JacobsApps.ProjectTemplate.CSharp",
+    "classifications": [ "Common", "Web" ],
+    "identity": "JacobsApps.CleanArchitectureProjectTemplate.CSharp",
     "name": "Clean Architecture Project Template",
     "tags": {
         "language": "C#"
