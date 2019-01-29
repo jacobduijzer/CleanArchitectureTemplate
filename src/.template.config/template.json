@@ -1,7 +1,7 @@
 {
     "$schema": "http://json.schemastore.org/template",
     "author": "Jacob Duijzer",
-    "classifications": [ "Common", "Web" ],
+    "classifications": [ "Common", "Clean Architecture Solution" ],
     "identity": "JacobsApps.CleanArchitectureProjectTemplate.CSharp",
     "name": "Clean Architecture Project Template",
     "tags": {
