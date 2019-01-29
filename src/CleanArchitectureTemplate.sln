@@ -19,8 +19,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CleanArchitectureTemplate.W
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{63ABEAD0-4F67-42F9-8A4E-0F9841D68282}"
 	ProjectSection(SolutionItems) = preProject
-		..\appveyor.yml = ..\appveyor.yml
-		..\JacobsApps.CleanArchitectureProjectTemplate.CSharp.nuspec = ..\JacobsApps.CleanArchitectureProjectTemplate.CSharp.nuspec
 		..\README.md = ..\README.md
 	EndProjectSection
 EndProject
