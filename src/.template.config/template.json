@@ -3,6 +3,11 @@
     "author": "Jacob Duijzer",
     "classifications": [ "Common", "Console" ],
     "identity": "JacobsApps.ProjectTemplate.CSharp",
-    "name": "Jacob's Clean Architecture Project Template",
-    "shortName": "cleanproject"
+    "name": "Clean Architecture Project Template",
+    "tags": {
+        "language": "C#"
+    },
+    "shortName": "cleanarchitectureproject",
+    "sourceName": "CleanArchitectureTemplate",
+    "preferNameDirectory" : true
 }
