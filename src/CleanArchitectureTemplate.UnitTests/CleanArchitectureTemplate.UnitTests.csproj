@@ -21,4 +21,8 @@
     <ProjectReference Include="..\CleanArchitectureTemplate.Web\CleanArchitectureTemplate.Web.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Domain\" />
+    <Folder Include="Domain\ToDoItems\" />
+  </ItemGroup>
 </Project>

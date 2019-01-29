@@ -7,8 +7,6 @@ My interpretation of a clean architecture project setup for asp.net an MVC & API
 ## TODO: 
 
 * Add EF Core
-* Add unit tests
-* Add custom collection fixtures for integration tests
 
 # Usage
 
