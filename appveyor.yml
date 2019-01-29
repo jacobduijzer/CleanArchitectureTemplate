@@ -10,5 +10,5 @@ init:
 build_script:
   - sed s/1.0.0/%customnugetversion%/g JacobsApps.CleanArchitectureProjectTemplate.CSharp.nuspec
   - nuget restore src/CleanArchitectureTemplate.sln
-  - nuget pack JacobsApps.CleanArchitectureProjectTemplate.CSharp.nuspec
+  - nuget pack JacobsApps.CleanArchitectureProjectTemplate.CSharp.nuspec -version %customnugetversion%
   
