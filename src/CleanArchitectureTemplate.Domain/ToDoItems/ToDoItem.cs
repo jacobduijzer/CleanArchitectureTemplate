@@ -1,7 +1,7 @@
 ﻿using System;
 using CleanArchitectureTemplate.Domain.Shared;
 
-namespace CleanArchitectureTemplate.Domain.ToDos
+namespace CleanArchitectureTemplate.Domain.ToDoItems
 {
     public class ToDoItem : BaseEntity
     {
