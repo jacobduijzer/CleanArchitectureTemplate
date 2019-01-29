@@ -21,6 +21,10 @@ To create a new project:
 dotnet new  cleanarchitectureproject -n SomeFancyNamespace
 ```
 
+# The cool stuf
+
+## Integration tests, test fixtures & collections
+
 # Links
 
 https://blogs.msdn.microsoft.com/dotnet/2017/04/02/how-to-create-your-own-templates-for-dotnet-new/
