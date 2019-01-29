@@ -12,7 +12,7 @@
     </packageTypes>
   </metadata>
   <files>
-    <file src=".\src\**" target="content" exclude="**\bin\**;**\obj\**;**\.vs\**;**\*.user;"/>
+    <file src=".\src\**" target="content" exclude="appveyor.yml;*.nuspec;**\bin\**;**\obj\**;**\.vs\**;**\*.user;"/>
     <file src=".\src\.template.config\template.json" target="content\.template.config\template.json"/>
   </files>
 </package>
