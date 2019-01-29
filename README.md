@@ -2,4 +2,27 @@
 
 # Clean Architecture Template
 
+My interpretation of a clean architecture project setup for asp.net an MVC & API project. 
+
+## TODO: 
+
+* Add EF Core
+* Add unit tests
+* Add custom collection fixtures for integration tests
+
+# Usage
+
+To install the template so you can use it with `dotnet new`:
+
+```
+dotnet new --install JacobsApps.CleanArchitectureProjectTemplate.CSharp 
+```
+
+To create a new project:
+```
+dotnet new  cleanarchitectureproject -n SomeFancyNamespace
+```
+
+# Links
+
 https://blogs.msdn.microsoft.com/dotnet/2017/04/02/how-to-create-your-own-templates-for-dotnet-new/
