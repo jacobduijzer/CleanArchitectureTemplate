@@ -11,4 +11,13 @@ build_script:
   - sed s/1.0.0/%customnugetversion%/g JacobsApps.CleanArchitectureProjectTemplate.CSharp.nuspec
   - nuget restore src/CleanArchitectureTemplate.sln
   - nuget pack JacobsApps.CleanArchitectureProjectTemplate.CSharp.nuspec -version %customnugetversion%
+ 
+artifacts:
+    - path: '**\*.nupkg'
+
+deploy:
+    - provider: NuGet
+        api_key:
+            secure: 5ZzlyVXW9Ch/50cNaTw5Q7I+g2uJ9THFy3c9K+XmgQWN3SPoXqxkPHSX1KIj/P4l
+        skip_symbols: false
   
