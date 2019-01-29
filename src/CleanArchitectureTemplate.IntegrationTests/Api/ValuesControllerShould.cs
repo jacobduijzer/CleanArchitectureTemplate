@@ -1,14 +1,12 @@
-﻿using CleanArchitectureTemplate.IntegrationTests.Helpers;
-using FluentAssertions;
-using System;
-using System.Collections.Generic;
-using System.Net;
-using System.Text;
+﻿using System.Net;
 using System.Threading.Tasks;
+using CleanArchitectureTemplate.IntegrationTests.Helpers;
+using FluentAssertions;
 using Xunit;
 
 namespace CleanArchitectureTemplate.IntegrationTests.Api
 {
+    [Collection(Constants.API_TEST_FIXTURE_COLLECTION)]
     public class ValuesControllerShould : IClassFixture<ApiTestFixture>
     {
         private readonly ApiTestFixture _fixture;
