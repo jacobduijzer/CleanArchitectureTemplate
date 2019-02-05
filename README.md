@@ -21,7 +21,7 @@ To create a new project:
 dotnet new  cleanarchitectureproject -n SomeFancyNamespace
 ```
 
-# The cool stuf
+# The cool stuff
 
 ## Integration tests, test fixtures & collections
 
