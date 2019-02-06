@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28516.95
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanArchitectureTemplate.Domain", "CleanArchitectureTemplate.Domain\CleanArchitectureTemplate.Domain.csproj", "{E258E19D-33CB-4F01-BC99-71E139EDDC55}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CleanArchitectureTemplate.Domain", "CleanArchitectureTemplate.Domain\CleanArchitectureTemplate.Domain.csproj", "{E258E19D-33CB-4F01-BC99-71E139EDDC55}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CleanArchitectureTemplate.Application", "CleanArchitectureTemplate.Application\CleanArchitectureTemplate.Application.csproj", "{F21CA8DB-1A03-4714-B1CC-294FEA3B6C58}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanArchitectureTemplate.Infrastructure", "CleanArchitectureTemplate.Infrastructure\CleanArchitectureTemplate.Infrastructure.csproj", "{667883FE-7696-429E-9777-C3255F47315B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CleanArchitectureTemplate.Infrastructure", "CleanArchitectureTemplate.Infrastructure\CleanArchitectureTemplate.Infrastructure.csproj", "{667883FE-7696-429E-9777-C3255F47315B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanArchitectureTemplate.UnitTests", "CleanArchitectureTemplate.UnitTests\CleanArchitectureTemplate.UnitTests.csproj", "{3BA4652B-20F8-4E18-841D-29A76AD24CC5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CleanArchitectureTemplate.UnitTests", "CleanArchitectureTemplate.UnitTests\CleanArchitectureTemplate.UnitTests.csproj", "{3BA4652B-20F8-4E18-841D-29A76AD24CC5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanArchitectureTemplate.IntegrationTests", "CleanArchitectureTemplate.IntegrationTests\CleanArchitectureTemplate.IntegrationTests.csproj", "{6399EBA6-BDC5-40B6-8E59-50A0DA1E473F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CleanArchitectureTemplate.IntegrationTests", "CleanArchitectureTemplate.IntegrationTests\CleanArchitectureTemplate.IntegrationTests.csproj", "{6399EBA6-BDC5-40B6-8E59-50A0DA1E473F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CleanArchitectureTemplate.Api", "CleanArchitectureTemplate.Api\CleanArchitectureTemplate.Api.csproj", "{ADC74FDB-BCFD-472C-A73B-8DDF9029FCA6}"
 EndProject
@@ -22,7 +22,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		..\README.md = ..\README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanArchitectureTemplate.FakeData", "CleanArchitectureTemplate.FakeData\CleanArchitectureTemplate.FakeData.csproj", "{7E999268-0002-4B69-BA67-5AD0200444E3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CleanArchitectureTemplate.FakeData", "CleanArchitectureTemplate.FakeData\CleanArchitectureTemplate.FakeData.csproj", "{7E999268-0002-4B69-BA67-5AD0200444E3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

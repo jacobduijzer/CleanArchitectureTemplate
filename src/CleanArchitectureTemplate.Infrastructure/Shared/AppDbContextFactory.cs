@@ -1,6 +1,7 @@
 ﻿using CleanArchitectureTemplate.FakeData.ToDoItems;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
+using System.Linq;
 
 namespace CleanArchitectureTemplate.Infrastructure.Shared
 {
@@ -13,8 +14,12 @@ namespace CleanArchitectureTemplate.Infrastructure.Shared
             // TODO: remove this and the nuget package from this project and add a real provider
             optionsBuilder.UseInMemoryDatabase("in-mem-test-database");
             var dbContext = new AppDbContext(optionsBuilder.Options);
-            dbContext.ToDoItems.AddRange(ToDoItemData.ToDoItems);
-            dbContext.SaveChanges();
+
+            if (!dbContext.ToDoItems.Any())
+            {
+                dbContext.ToDoItems.AddRange(ToDoItemData.ToDoItems);
+                dbContext.SaveChanges();
+            }
 
             return dbContext;
         }
