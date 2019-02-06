@@ -6,7 +6,7 @@ My interpretation of a clean architecture project setup for asp.net an MVC & API
 
 ## TODO: 
 
-* Add EF Core
+* Add documentation
 
 # Usage
 
@@ -20,6 +20,14 @@ To create a new project:
 ```
 dotnet new  cleanarchitectureproject -n SomeFancyNamespace
 ```
+
+# Release Notes
+
+> ## v1.2.0 (02/06/2019)
+> - Added repository + mediator to Web project
+> - Added ToDo page to Web project
+> - Added Due date to fake data
+
 
 # The cool stuff
 

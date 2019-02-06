@@ -1,0 +1,24 @@
+﻿@page
+@model CleanArchitectureTemplate.Web.Pages.ToDoModel
+@{
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Description</th>
+            <th>Due date</th>
+            <th>Is done</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.ToDoItems)
+        {
+            <tr>
+                <td>@item.Description</td>
+                <td>@item.DueDate</td>
+                <td>@item.IsDone</td>
+            </tr>
+        }
+    </tbody>
+</table>
