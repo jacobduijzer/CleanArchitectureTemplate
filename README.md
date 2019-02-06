@@ -7,6 +7,8 @@ My interpretation of a clean architecture project setup for asp.net an MVC & API
 ## TODO: 
 
 * Add documentation
+* Extend ToDo sample with full CRUD
+* Change Mvc site to show ToDo samples only
 
 # Usage
 
@@ -29,12 +31,37 @@ dotnet new  cleanarchitectureproject -n SomeFancyNamespace
 > - Added Due date to fake data
 
 
+
 # The cool stuff
 
-## Integration tests, test fixtures & collections
+### Mediator pattern
 
+### Specification pattern
 
+### Integration tests, test fixtures & collections
 
 # Links
 
-https://blogs.msdn.microsoft.com/dotnet/2017/04/02/how-to-create-your-own-templates-for-dotnet-new/
+## Clean Architecture
+
+- [Clean Architecture explained by Uncle Bob](http://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)
+
+- [Clean Architecture Cheat Sheet (PDF)](https://www.planetgeek.ch/wp-content/uploads/2016/03/Clean-Architecture-V1.0.pdf)
+
+- [A starting point for Clean Architecture with ASP.NET Core](https://github.com/ardalis/CleanArchitecture)
+
+- [Clean Architecture: Patterns, Practices, and Principles (Pluralsight)](https://www.pluralsight.com/courses/clean-architecture-patterns-practices-principles)
+
+## Used packages
+
+- [Mediatr - Simple mediator implementation in .NET](https://github.com/jbogard/MediatR)
+  
+- [LinqBuilder - LinqBuilder is based on the specification pattern](https://github.com/Baune8D/linqbuilder)
+
+## Others
+
+- [How to create dotnet new templates](https://blogs.msdn.microsoft.com/dotnet/2017/04/02/how-to-create-your-own-templates-for-dotnet-new/)
+
+# Books
+
+- [Clean Architecture: A Craftsman's Guide to Software Structure and Design (Robert C. Martin Series)](https://www.amazon.com/Clean-Architecture-Craftsmans-Software-Structure/dp/0134494164)
