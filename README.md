@@ -25,6 +25,13 @@ dotnet new  cleanarchitectureproject -n SomeFancyNamespace
 
 # Release Notes
 
+> ## v1.3.0 (02/06/2019)
+> - Updated README with links
+> - Removed ValuesController
+> - Added integration tests and unit tests
+> - Updated test fixtures to use fake data with integration tests
+> - Added Refit for Api integration tests
+
 > ## v1.2.0 (02/06/2019)
 > - Added repository + mediator to Web project
 > - Added ToDo page to Web project

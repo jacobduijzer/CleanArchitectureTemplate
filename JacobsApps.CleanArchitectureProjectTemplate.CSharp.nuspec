@@ -2,15 +2,18 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
     <id>JacobsApps.CleanArchitectureProjectTemplate.CSharp</id>
-    <version>1.2.0</version>
+    <version>1.3.0</version>
     <description>
       Creates a "clean architecture" project setup for a MVC / WebApi project.
     </description>
+    <releaseNotes>Added sample integration tests with test data. Also added Refit to the integration test project to test api calles. Code improvements and cleanup.</releaseNotes>
     <authors>Jacob Duijzer</authors>
     <projectUrl>https://github.com/jacobduijzer/CleanArchitectureTemplate</projectUrl>
+    <licenseUrl>https://github.com/jacobduijzer/CleanArchitectureTemplate/blob/master/LICENSE</licenseUrl>
     <packageTypes>
       <packageType name="Template" />
     </packageTypes>
+    <tags>csharp cleanarchitecture template project</tags>
   </metadata>
   <files>
     <file src=".\src\**" target="content" exclude="appveyor.yml;*.nuspec;**\bin\**;**\obj\**;**\.vs\**;**\*.user;"/>
