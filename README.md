@@ -1,4 +1,4 @@
-[![Build status](https://ci.appveyor.com/api/projects/status/dt69j3lkp6p9lxek/branch/master?svg=true)](https://ci.appveyor.com/project/jacobduijzer/cleanarchitecturetemplate/branch/master) [![Nuget status](https://buildstats.info/nuget/JacobsApps.CleanArchitectureProjectTemplate.CSharp?includePreReleases=false)](https://www.nuget.org/packages/JacobsApps.CleanArchitectureProjectTemplate.CSharp/) 
+[![Build status](https://ci.appveyor.com/api/projects/status/utcs7j2r5xsli0in/branch/master?svg=true)](https://ci.appveyor.com/project/jacobduijzer/cleanarchitecturetemplate-wxbn3/branch/master) [![Nuget status](https://buildstats.info/nuget/JacobsApps.CleanArchitectureProjectTemplate.CSharp?includePreReleases=false)](https://www.nuget.org/packages/JacobsApps.CleanArchitectureProjectTemplate.CSharp/) 
 
 # Clean Architecture Template
 
