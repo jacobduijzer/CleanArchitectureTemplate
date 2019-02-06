@@ -1,11 +1,8 @@
-﻿using System;
-using System.Linq;
+﻿using CleanArchitectureTemplate.Domain.Shared;
+using CleanArchitectureTemplate.Domain.ToDoItems;
+using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
-using CleanArchitectureTemplate.Domain.Shared;
-using CleanArchitectureTemplate.Domain.ToDoItems;
-using LinqBuilder;
-using MediatR;
 
 namespace CleanArchitectureTemplate.Application.ToDoItems.UseCases
 {
@@ -16,13 +13,13 @@ namespace CleanArchitectureTemplate.Application.ToDoItems.UseCases
         public ToDoItemsHandler(IRepository<ToDoItem> repository) =>
             _repository = repository;
 
-        public async Task<ToDoItemsResponse> Handle(ToDoItemsRequest request, CancellationToken cancellationToken) 
+        public async Task<ToDoItemsResponse> Handle(ToDoItemsRequest request, CancellationToken cancellationToken)
         {
             var response = await _repository.GetItemsAsync(request.Specification).ConfigureAwait(false);
-            if (response != null && response.Any())
+            if (response != null)
                 return new ToDoItemsResponse(response);
 
-            throw new InvalidOperationException("TODO good handling");
+            return new ToDoItemsResponse(false);
         }
     }
 }

@@ -12,7 +12,7 @@ namespace CleanArchitectureTemplate.Infrastructure.Shared
             var optionsBuilder = new DbContextOptionsBuilder<AppDbContext>();
 
             // TODO: remove this and the nuget package from this project and add a real provider
-            optionsBuilder.UseInMemoryDatabase("in-mem-test-database");
+            optionsBuilder.UseInMemoryDatabase("in-mem-prod-database");
             var dbContext = new AppDbContext(optionsBuilder.Options);
 
             if (!dbContext.ToDoItems.Any())

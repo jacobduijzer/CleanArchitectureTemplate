@@ -15,6 +15,7 @@ namespace CleanArchitectureTemplate.Api.Controllers
     public class ToDoController
     {
         private readonly IMediator _mediator;
+
         public ToDoController(IMediator mediator) =>
             _mediator = mediator;
 
@@ -23,10 +24,9 @@ namespace CleanArchitectureTemplate.Api.Controllers
         {
             var result = await _mediator.Send(new ToDoItemsRequest(new AllToDoItems())).ConfigureAwait(false);
 
-            if (result != null && result.ToDoItems.Any())
+            if (result != null && result.IsSuccessful)
                 return result.ToDoItems.ToList();
 
-            // TODO
             throw new InvalidOperationException("TODO: error handling");
         }
     }
