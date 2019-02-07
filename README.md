@@ -4,9 +4,10 @@
 
 My interpretation of a clean architecture project setup for asp.net an MVC & API project. 
 
+Please read the [Wiki](https://github.com/jacobduijzer/CleanArchitectureTemplate/wiki) to learn more about Clean Architecture and the project setup of this package.
+
 ## TODO: 
 
-* Add documentation
 * Extend ToDo sample with full CRUD
 * Change Mvc site to show ToDo samples only
 
@@ -25,6 +26,11 @@ dotnet new  cleanarchitectureproject -n SomeFancyNamespace
 
 # Release Notes
 
+> ## v1.3.1 (02/07/2019)
+> - Added link to the wiki
+> - Added a unit test for a view model
+> - code cleanup
+
 > ## v1.3.0 (02/06/2019)
 > - Updated README with links
 > - Removed ValuesController
@@ -36,16 +42,6 @@ dotnet new  cleanarchitectureproject -n SomeFancyNamespace
 > - Added repository + mediator to Web project
 > - Added ToDo page to Web project
 > - Added Due date to fake data
-
-
-
-# The cool stuff
-
-### Mediator pattern
-
-### Specification pattern
-
-### Integration tests, test fixtures & collections
 
 # Links
 

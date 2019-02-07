@@ -14,15 +14,29 @@ namespace CleanArchitectureTemplate.Api.Controllers
     [ApiController]
     public class ToDoController
     {
-        private readonly IMediator _mediator;
+        private readonly IMediator mediator;
 
         public ToDoController(IMediator mediator) =>
-            _mediator = mediator;
+            this.mediator = mediator;
 
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ToDoItem>>> Get()
         {
-            var result = await _mediator.Send(new ToDoItemsRequest(new AllToDoItems())).ConfigureAwait(false);
+            var result = await mediator.Send(new ToDoItemsRequest(new AllToDoItems())).ConfigureAwait(false);
+
+            if (result != null && result.IsSuccessful)
+                return result.ToDoItems.ToList();
+
+            throw new InvalidOperationException("TODO: error handling");
+        }
+
+        [HttpGet]
+        [Route("{status:bool}")]
+        public async Task<ActionResult<IEnumerable<ToDoItem>>> GetByStatus(bool status)
+        {
+            var result = await mediator
+                .Send(new ToDoItemsRequest(new ToDoItemsByStatus(status)))
+                .ConfigureAwait(false);
 
             if (result != null && result.IsSuccessful)
                 return result.ToDoItems.ToList();
