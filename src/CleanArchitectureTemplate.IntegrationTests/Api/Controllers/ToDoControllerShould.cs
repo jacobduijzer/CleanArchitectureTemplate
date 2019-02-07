@@ -12,15 +12,15 @@ namespace CleanArchitectureTemplate.IntegrationTests.Api.Controllers
     [Collection(Constants.API_TEST_FIXTURE_COLLECTION)]
     public class ToDoControllerShould
     {
-        private readonly ApiTestFixture _fixture;
+        private readonly ApiTestFixture fixture;
 
         public ToDoControllerShould(ApiTestFixture fixture) =>
-            _fixture = fixture;
+            this.fixture = fixture;
 
         [Fact]
         public async Task ReturnOk()
         {
-            var result = await _fixture.HttpClient.GetAsync("/api/todo").ConfigureAwait(false);
+            var result = await fixture.HttpClient.GetAsync("/api/todo").ConfigureAwait(false);
             result.Should().NotBeNull();
             result.StatusCode.Should().Be(HttpStatusCode.OK);
         }
@@ -28,7 +28,7 @@ namespace CleanArchitectureTemplate.IntegrationTests.Api.Controllers
         [Fact]
         public async Task ReturnItems()
         {
-            var result = await _fixture.Api.GetAllToDoItems().ConfigureAwait(false);
+            var result = await fixture.Api.GetAllToDoItems().ConfigureAwait(false);
             result.Should().NotBeNullOrEmpty().And.HaveCount(6);
         }
     }

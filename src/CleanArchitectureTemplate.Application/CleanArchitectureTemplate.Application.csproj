@@ -12,8 +12,6 @@
     <PackageReference Include="MediatR" Version="6.0.0" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="ToDoItems\" />
     <Folder Include="ToDoItems\UseCases\" />
-    <Folder Include="ToDoItems\Specifications\" />
   </ItemGroup>
 </Project>

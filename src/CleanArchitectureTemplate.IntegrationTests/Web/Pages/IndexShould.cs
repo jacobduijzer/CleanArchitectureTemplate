@@ -9,15 +9,15 @@ namespace CleanArchitectureTemplate.IntegrationTests.Web.Pages
     [Collection(Constants.WEB_TEST_FIXTURE_COLLECTION)]
     public class IndexShould
     {
-        private readonly WebTestFixture _fixture;
+        private readonly WebTestFixture fixture;
 
         public IndexShould(WebTestFixture fixture) =>
-            _fixture = fixture;
+            this.fixture = fixture;
 
         [Fact]
         public async Task ReturnOk()
         {
-            var response = await _fixture.HttpClient.GetAsync("/").ConfigureAwait(false);
+            var response = await fixture.HttpClient.GetAsync("/").ConfigureAwait(false);
             response.Should().NotBeNull();
             response.StatusCode.Should().Be(HttpStatusCode.OK);
         }
