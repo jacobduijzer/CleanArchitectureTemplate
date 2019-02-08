@@ -35,7 +35,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Application\" />
     <Folder Include="Domain\" />
     <Folder Include="Domain\ToDoItems\" />
     <Folder Include="Infrastructure\" />
