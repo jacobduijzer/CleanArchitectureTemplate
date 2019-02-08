@@ -2,11 +2,11 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
     <id>JacobsApps.CleanArchitectureProjectTemplate.CSharp</id>
-    <version>1.3.1</version>
+    <version>1.3.2</version>
     <description>
       Creates a "clean architecture" project setup for a MVC / WebApi project.
     </description>
-    <releaseNotes>Added a wiki with documentation, added a unit test for a view model and cleaned up some code.</releaseNotes>
+    <releaseNotes>Added more unit tests to sample project.</releaseNotes>
     <authors>Jacob Duijzer</authors>
     <projectUrl>https://github.com/jacobduijzer/CleanArchitectureTemplate</projectUrl>
     <licenseUrl>https://github.com/jacobduijzer/CleanArchitectureTemplate/blob/master/LICENSE</licenseUrl>

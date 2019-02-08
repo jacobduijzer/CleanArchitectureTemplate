@@ -1,4 +1,10 @@
-[![Build status](https://ci.appveyor.com/api/projects/status/utcs7j2r5xsli0in/branch/master?svg=true)](https://ci.appveyor.com/project/jacobduijzer/cleanarchitecturetemplate-wxbn3/branch/master) [![Nuget status](https://buildstats.info/nuget/JacobsApps.CleanArchitectureProjectTemplate.CSharp?includePreReleases=false)](https://www.nuget.org/packages/JacobsApps.CleanArchitectureProjectTemplate.CSharp/) 
+| master | develop |
+| --- | --- |
+| [![Build status](https://ci.appveyor.com/api/projects/status/utcs7j2r5xsli0in/branch/master?svg=true)](https://ci.appveyor.com/project/jacobduijzer/cleanarchitecturetemplate-wxbn3/branch/master) | [![Build status](https://ci.appveyor.com/api/projects/status/utcs7j2r5xsli0in/branch/develop?svg=true)](https://ci.appveyor.com/project/jacobduijzer/cleanarchitecturetemplate-wxbn3/branch/develop) |
+| [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?branch=master&project=CleanArchitectureTemplate&metric=alert_status)](https://sonarcloud.io/dashboard?id=CleanArchitectureTemplate&branch=master) | [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?branch=develop&project=CleanArchitectureTemplate&metric=alert_status)](https://sonarcloud.io/dashboard?id=CleanArchitectureTemplate&branch=develop) |
+| [![Coverage](https://sonarcloud.io/api/project_badges/measure?branch=master&project=CleanArchitectureTemplate&metric=coverage)](https://sonarcloud.io/dashboard?id=CleanArchitectureTemplate&branch=master) | [![Coverage](https://sonarcloud.io/api/project_badges/measure?branch=develop&project=CleanArchitectureTemplate&metric=coverage)](https://sonarcloud.io/dashboard?id=CleanArchitectureTemplate&branch=develop) |
+|   [![Nuget status](https://buildstats.info/nuget/JacobsApps.CleanArchitectureProjectTemplate.CSharp?includePreReleases=false)](https://www.nuget.org/packages/JacobsApps.CleanArchitectureProjectTemplate.CSharp/) | |
+
 
 # Clean Architecture Template
 
@@ -25,6 +31,10 @@ dotnet new  cleanarchitectureproject -n SomeFancyNamespace
 ```
 
 # Release Notes
+
+> ## v1.3.2 (02/08/2019)
+> - Added more unit tests 
+> - Added sonar cloud code analysis
 
 > ## v1.3.1 (02/07/2019)
 > - Added link to the wiki

@@ -1,6 +1,7 @@
 ﻿using CleanArchitectureTemplate.Domain.Shared;
 using CleanArchitectureTemplate.Domain.ToDoItems;
 using MediatR;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -15,11 +16,17 @@ namespace CleanArchitectureTemplate.Application.ToDoItems.UseCases
 
         public async Task<ToDoItemsResponse> Handle(ToDoItemsRequest request, CancellationToken cancellationToken)
         {
-            var response = await repository.GetItemsAsync(request.Specification).ConfigureAwait(false);
-            if (response != null)
+            try
+            {
+                var response = await repository.GetItemsAsync(request.Specification).ConfigureAwait(false);
                 return new ToDoItemsResponse(response);
+            }
+            catch (Exception ex)
+            {
+                // Add error logging here
 
-            return new ToDoItemsResponse(false);
+                return new ToDoItemsResponse(false, ex.Message);
+            }
         }
     }
 }

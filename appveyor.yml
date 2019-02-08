@@ -2,14 +2,20 @@ image: Visual Studio 2017
 configuration: Release
 platform: Any CPU
 
+before_build:
+  - choco install msbuild-sonarqube-runner
+  - echo %APPVEYOR_REPO_BRANCH%
+
 build_script:  
+  - SonarScanner.MSBuild.exe begin /k:"CleanArchitectureTemplate" /d:sonar.cs.opencover.reportsPaths="src/**/coverage.opencover.xml" /d:sonar.organization="jacobduijzer-github" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.login="%SONARTOKEN%" /d:sonar.branch.name=%APPVEYOR_REPO_BRANCH%
   - nuget restore src/CleanArchitectureTemplate.sln
   - dotnet build src/CleanArchitectureTemplate.sln
-  - dotnet test src/CleanArchitectureTemplate.sln
+  - dotnet test src/CleanArchitectureTemplate.sln /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
   - nuget pack JacobsApps.CleanArchitectureProjectTemplate.CSharp.nuspec
+  - SonarScanner.MSBuild.exe end /d:sonar.login="%SONARTOKEN%"
  
 artifacts:
-- path: '**\*.nupkg'
+- path: '**\*.nupkg'  
 
 deploy:
     provider: NuGet
@@ -18,4 +24,8 @@ deploy:
     api_key:
         secure: 5ZzlyVXW9Ch/50cNaTw5Q7I+g2uJ9THFy3c9K+XmgQWN3SPoXqxkPHSX1KIj/P4l
         skip_symbols: false
+
+environment:
+  SONARTOKEN:
+    secure: aedz7+yaRe8ed6AejBjaZ16hib/NuHHUo+JQ8UjW+H93wvkxsHQlPhpLlW6j2B41        
   
