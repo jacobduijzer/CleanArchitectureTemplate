@@ -4,6 +4,7 @@ platform: Any CPU
 
 before_build:
   - choco install msbuild-sonarqube-runner
+  - echo %APPVEYOR_REPO_BRANCH%
 
 build_script:  
   - SonarScanner.MSBuild.exe begin /k:"CleanArchitectureTemplate" /d:sonar.cs.opencover.reportsPaths="src/**/coverage.opencover.xml" /d:sonar.organization="jacobduijzer-github" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.login="%SONARTOKEN%" /d:sonar.branch.name="$($env:APPVEYOR_REPO_BRANCH)"
