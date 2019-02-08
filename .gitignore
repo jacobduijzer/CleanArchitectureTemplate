@@ -328,3 +328,5 @@ ASALocalRun/
 
 # MFractors (Xamarin productivity tool) working folder 
 .mfractor/
+src/CleanArchitectureTemplate.IntegrationTests/coverage.opencover.xml
+src/CleanArchitectureTemplate.UnitTests/coverage.opencover.xml
