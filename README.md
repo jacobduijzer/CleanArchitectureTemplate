@@ -31,6 +31,10 @@ dotnet new  cleanarchitectureproject -n SomeFancyNamespace
 
 # Release Notes
 
+> ## v1.3.2 (02/08/2019)
+> - Added more unit tests 
+> - Added sonar cloud code analysis
+
 > ## v1.3.1 (02/07/2019)
 > - Added link to the wiki
 > - Added a unit test for a view model
