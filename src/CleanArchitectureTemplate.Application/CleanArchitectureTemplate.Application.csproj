@@ -10,9 +10,8 @@
 
   <ItemGroup>
     <PackageReference Include="Ardalis.GuardClauses" Version="1.2.7" />
+    <PackageReference Include="LinqBuilder" Version="0.15.0" />
+    <PackageReference Include="LinqBuilder.OrderBy" Version="0.15.0" />
     <PackageReference Include="MediatR" Version="6.0.0" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ToDoItems\UseCases\" />
   </ItemGroup>
 </Project>

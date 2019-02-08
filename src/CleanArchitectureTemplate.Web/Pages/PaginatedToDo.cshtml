@@ -1,0 +1,30 @@
+﻿@page "{PageNumber?}"
+@model CleanArchitectureTemplate.Web.Pages.PaginatedToDoModel
+@{
+    ViewData["Title"] = "PaginatedToDo";
+}
+
+<h2>@ViewData["Title"] (@Model.ToDoItems.Count)</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Description</th>
+            <th>Due date</th>
+            <th>Is done</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.ToDoItems)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Description</td>
+                <td>@item.DueDate</td>
+                <td>@item.IsDone</td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a href="/PaginatedToDo/@Model.PreviousPageNumber"><</a>&nbsp;<a href="/PaginatedToDo/@Model.NextPageNumber">></a>
