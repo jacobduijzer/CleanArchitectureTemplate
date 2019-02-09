@@ -26,7 +26,27 @@ namespace CleanArchitectureTemplate.Application.ToDoItems.UseCases
                     request.Specification.Paginate(request.PageNumber, request.PageSize)
                 ).ConfigureAwait(false);
 
-                return new PaginatedToDoItemsResponse(response, request.PageNumber);
+                // TODO: think about moving to BasePaginatedHandler?
+                // has records before current result?
+                int previousRecordCount = 0;
+                if (request.PageNumber != 1)
+                {
+                    previousRecordCount = await _repository.GetItemCountAsync(
+                        request.Specification.Paginate(request.PageNumber - 1, request.PageSize)
+                    ).ConfigureAwait(false);
+                }
+
+                // TODO: think about moving to BasePaginatedHandler?
+                // has records after current result?
+                var nextRecordCount = await _repository.GetItemCountAsync(
+                    request.Specification.Paginate(request.PageNumber + 1, request.PageSize)
+                ).ConfigureAwait(true);
+
+                return new PaginatedToDoItemsResponse(
+                    response, 
+                    previousRecordCount > 0,
+                    nextRecordCount > 0,
+                    request.PageNumber);
             }
             catch (Exception ex)
             {

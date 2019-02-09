@@ -9,6 +9,8 @@ namespace CleanArchitectureTemplate.Domain.Shared
     {
         Task<IEnumerable<TEntity>> GetItemsAsync(ISpecification<TEntity> specification);
 
+        Task<int> GetItemCountAsync(ISpecification<TEntity> specification);
+
         Task<TEntity> GetSingleItemAsync(ISpecification<TEntity> specification);
 
         Task<TEntity> GetFirstItemAsync(ISpecification<TEntity> specification);

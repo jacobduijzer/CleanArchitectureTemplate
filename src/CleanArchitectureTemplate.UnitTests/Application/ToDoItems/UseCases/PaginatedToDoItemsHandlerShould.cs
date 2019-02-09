@@ -5,6 +5,7 @@ using CleanArchitectureTemplate.Domain.ToDoItems;
 using FluentAssertions;
 using LinqBuilder.Core;
 using Moq;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
@@ -14,14 +15,16 @@ namespace CleanArchitectureTemplate.UnitTests.Application.ToDoItems.UseCases
     public class PaginatedToDoItemsHandlerShould
     {
         private readonly Mock<IRepository<ToDoItem>> mockToDoItemRepo;
+        private readonly List<ToDoItem> fakeData;
 
         public PaginatedToDoItemsHandlerShould()
         {
+            fakeData = FakeData.ToDoItems.ToDoItemData.GenerateTestData(100);
+
             mockToDoItemRepo = new Mock<IRepository<ToDoItem>>();
             mockToDoItemRepo
                 .Setup(x => x.GetItemsAsync(It.IsAny<ISpecification<ToDoItem>>()))
-                .ReturnsAsync(FakeData.ToDoItems.ToDoItemData.GenerateTestData(100))
-                .Verifiable();
+                .ReturnsAsync(fakeData.GetRange(0, 10));
         }
 
         [Fact]
@@ -30,18 +33,61 @@ namespace CleanArchitectureTemplate.UnitTests.Application.ToDoItems.UseCases
                 .Should().BeOfType<PaginatedToDoItemsHandler>();
 
         [Fact]
-        public async Task ReturnData()
+        public async Task HandleFirstPageResult()
         {
-            // Mock always returns 100 items. Use a in-mem database?
-            //var handler = new PaginatedToDoItemsHandler(mockToDoItemRepo.Object);
-            //var result = await handler
-            //    .Handle(new PaginatedToDoItemsRequest(new AllToDoItems(), 1, 10), new CancellationToken())
-            //    .ConfigureAwait(false);
+            mockToDoItemRepo
+                .Setup(x => x.GetItemCountAsync(It.IsAny<ISpecification<ToDoItem>>()))
+                .ReturnsAsync(10);
 
-            //result.Should().NotBeNull();
-            //result.IsSuccessful.Should().BeTrue();
-            //result.ToDoItems.Should().NotBeNullOrEmpty()
-            //    .And.HaveCount(10);
+            var handler = new PaginatedToDoItemsHandler(mockToDoItemRepo.Object);
+            var result = await handler
+                .Handle(new PaginatedToDoItemsRequest(new AllToDoItems(), 1, 10), new CancellationToken())
+                .ConfigureAwait(false);
+
+            result.Should().NotBeNull();
+            result.IsSuccessful.Should().BeTrue();
+            result.ToDoItems.Should().NotBeNullOrEmpty();
+            result.HasPreviousPage.Should().BeFalse();
+            result.HasNextPage.Should().BeTrue();
+        }
+
+        [Fact]
+        public async Task HandleMiddlePageResult()
+        {
+            mockToDoItemRepo
+                .Setup(x => x.GetItemCountAsync(It.IsAny<ISpecification<ToDoItem>>()))
+                .ReturnsAsync(10);
+
+            var handler = new PaginatedToDoItemsHandler(mockToDoItemRepo.Object);
+            var result = await handler
+                .Handle(new PaginatedToDoItemsRequest(new AllToDoItems(), 3, 10), new CancellationToken())
+                .ConfigureAwait(false);
+
+            result.Should().NotBeNull();
+            result.IsSuccessful.Should().BeTrue();
+            result.ToDoItems.Should().NotBeNullOrEmpty();
+            result.HasPreviousPage.Should().BeTrue();
+            result.HasNextPage.Should().BeTrue();
+        }
+
+        [Fact]
+        public async Task HandleLastPageResult()
+        {
+            mockToDoItemRepo
+                .SetupSequence(x => x.GetItemCountAsync(It.IsAny<ISpecification<ToDoItem>>()))
+                .ReturnsAsync(10)
+                .ReturnsAsync(0);
+
+            var handler = new PaginatedToDoItemsHandler(mockToDoItemRepo.Object);
+            var result = await handler
+                .Handle(new PaginatedToDoItemsRequest(new AllToDoItems(), 9, 10), new CancellationToken())
+                .ConfigureAwait(false);
+
+            result.Should().NotBeNull();
+            result.IsSuccessful.Should().BeTrue();
+            result.ToDoItems.Should().NotBeNullOrEmpty();
+            result.HasPreviousPage.Should().BeTrue();
+            result.HasNextPage.Should().BeFalse();
         }
     }
 }

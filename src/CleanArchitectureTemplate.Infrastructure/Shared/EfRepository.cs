@@ -21,6 +21,13 @@ namespace CleanArchitectureTemplate.Infrastructure.Shared
             .ToListAsync()
             .ConfigureAwait(false);
 
+        public async Task<int> GetItemCountAsync(ISpecification<TEntity> specification) =>
+            await dbContext
+            .Set<TEntity>()
+            .ExeSpec(specification)
+            .CountAsync()
+            .ConfigureAwait(false);
+
         public async Task<TEntity> GetSingleItemAsync(ISpecification<TEntity> specification) =>
             await dbContext
             .Set<TEntity>()

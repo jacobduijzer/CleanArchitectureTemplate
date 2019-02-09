@@ -11,5 +11,6 @@
 
   <ItemGroup>
     <PackageReference Include="LinqBuilder" Version="0.15.0" />
+    <PackageReference Include="LinqBuilder.OrderBy" Version="0.15.0" />
   </ItemGroup>
 </Project>

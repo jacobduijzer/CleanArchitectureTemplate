@@ -1,15 +1,20 @@
-﻿using CleanArchitectureTemplate.Domain.ToDoItems;
+﻿using CleanArchitectureTemplate.Application.Shared;
+using CleanArchitectureTemplate.Domain.ToDoItems;
 using System.Collections.Generic;
 
 namespace CleanArchitectureTemplate.Application.ToDoItems.UseCases
 {
-    public class PaginatedToDoItemsResponse : ToDoItemsResponse
+    public class PaginatedToDoItemsResponse : BasePagedResponse
     {
-        public readonly int PageNumber;
+        public readonly IEnumerable<ToDoItem> ToDoItems;
 
-        public PaginatedToDoItemsResponse(IEnumerable<ToDoItem> books, int pageNumber)
-            : base(books) =>
-                PageNumber = pageNumber;
+        public PaginatedToDoItemsResponse(
+            IEnumerable<ToDoItem> toDoItems,
+            bool hasPreviousPage,
+            bool hasNextPage,
+            int currentPageNumber)
+            : base(hasPreviousPage, hasNextPage, currentPageNumber) =>
+                ToDoItems = toDoItems;
 
         public PaginatedToDoItemsResponse(bool isSucess)
             : base(false)

@@ -4,7 +4,7 @@
     ViewData["Title"] = "PaginatedToDo";
 }
 
-<h2>@ViewData["Title"] (@Model.ToDoItems.Count)</h2>
+<h2>@ViewData["Title"] (@Model.Result.ToDoItems.Count())</h2>
 
 <table class="table">
     <thead>
@@ -16,7 +16,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model.ToDoItems)
+        @foreach (var item in Model.Result.ToDoItems)
         {
             <tr>
                 <td>@item.Id</td>
@@ -27,4 +27,11 @@
         }
     </tbody>
 </table>
-<a href="/PaginatedToDo/@Model.PreviousPageNumber"><</a>&nbsp;<a href="/PaginatedToDo/@Model.NextPageNumber">></a>
+@if (Model.Result.HasPreviousPage)
+{
+    <a href="/PaginatedToDo/@Model.PreviousPageNumber"><</a>
+}
+@if(Model.Result.HasNextPage)
+{
+<a href="/PaginatedToDo/@Model.NextPageNumber" >></a>
+}
