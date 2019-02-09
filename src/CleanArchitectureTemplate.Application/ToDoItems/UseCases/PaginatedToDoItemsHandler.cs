@@ -1,4 +1,5 @@
-﻿using CleanArchitectureTemplate.Domain.Shared;
+﻿using CleanArchitectureTemplate.Application.Shared;
+using CleanArchitectureTemplate.Domain.Shared;
 using CleanArchitectureTemplate.Domain.ToDoItems;
 using LinqBuilder.OrderBy;
 using MediatR;
@@ -9,12 +10,13 @@ using System.Threading.Tasks;
 namespace CleanArchitectureTemplate.Application.ToDoItems.UseCases
 {
     public class PaginatedToDoItemsHandler 
-        : IRequestHandler<PaginatedToDoItemsRequest, PaginatedToDoItemsResponse>
+        : BasePagedHandler<ToDoItem>, IRequestHandler<PaginatedToDoItemsRequest, PaginatedToDoItemsResponse>
     {
-        private readonly IRepository<ToDoItem> _repository;
+        private readonly IRepository<ToDoItem> repository;
 
-        public PaginatedToDoItemsHandler(IRepository<ToDoItem> repository) =>
-            _repository = repository;
+        public PaginatedToDoItemsHandler(IRepository<ToDoItem> repository) 
+            : base(repository) =>
+                this.repository = repository;
 
         public async Task<PaginatedToDoItemsResponse> Handle(
             PaginatedToDoItemsRequest request, 
@@ -22,30 +24,24 @@ namespace CleanArchitectureTemplate.Application.ToDoItems.UseCases
         {
             try
             {
-                var response = await _repository.GetItemsAsync(
+                var response = await repository.GetItemsAsync(
                     request.Specification.Paginate(request.PageNumber, request.PageSize)
                 ).ConfigureAwait(false);
 
-                // TODO: think about moving to BasePaginatedHandler?
-                // has records before current result?
-                int previousRecordCount = 0;
-                if (request.PageNumber != 1)
-                {
-                    previousRecordCount = await _repository.GetItemCountAsync(
-                        request.Specification.Paginate(request.PageNumber - 1, request.PageSize)
-                    ).ConfigureAwait(false);
-                }
+                var hasPreviousRecords = await base.HasPreviousPage(
+                        request.Specification,
+                        request.PageNumber,
+                        request.PageSize).ConfigureAwait(false);
 
-                // TODO: think about moving to BasePaginatedHandler?
-                // has records after current result?
-                var nextRecordCount = await _repository.GetItemCountAsync(
-                    request.Specification.Paginate(request.PageNumber + 1, request.PageSize)
-                ).ConfigureAwait(true);
+                var hasNextRecords = await base.HasNextPage(
+                    request.Specification,
+                    request.PageNumber,
+                    request.PageSize).ConfigureAwait(false);
 
                 return new PaginatedToDoItemsResponse(
-                    response, 
-                    previousRecordCount > 0,
-                    nextRecordCount > 0,
+                    response,
+                    hasPreviousRecords,
+                    hasNextRecords,
                     request.PageNumber);
             }
             catch (Exception ex)
