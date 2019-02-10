@@ -1,39 +1,60 @@
 ﻿using CleanArchitectureTemplate.Domain.Shared;
 using LinqBuilder.Core;
 using LinqBuilder.OrderBy;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace CleanArchitectureTemplate.Application.Shared
 {
     public class BasePagedHandler<TEntity> where TEntity : BaseEntity
     {
-        private readonly IRepository<TEntity> repository;
+        protected readonly IReadOnlyRepository<TEntity> Repository;
 
-        public BasePagedHandler(IRepository<TEntity> repository) =>
-            this.repository = repository;
+        public BasePagedHandler(IReadOnlyRepository<TEntity> repository) =>
+            Repository = repository;
+
+        public async Task<IEnumerable<TEntity>> GetItemsAsync(
+            ICacheableDataSpecification<TEntity> specification,
+            int pageNumber,
+            int pageSize
+            )
+        {
+            specification.AddStringToCacheKey($"{pageNumber}-{pageSize}");
+            specification.Specification = specification.Specification.Paginate(pageNumber, pageSize);
+
+            return await Repository
+                .GetItemsAsync(specification)
+                .ConfigureAwait(false);
+        }
 
         public async Task<bool> HasPreviousPage(
-            ISpecification<TEntity> specification, 
+            ICacheableDataSpecification<TEntity> specification, 
             int pageNumber, 
             int pageSize)
         {
             if (pageNumber == 1)
                 return false;
 
-            var count = await repository
-                .GetItemCountAsync(specification.Paginate(pageNumber - 1, pageSize))
+            specification.AddStringToCacheKey($"{pageNumber}-{pageSize}");
+            specification.Specification = specification.Specification.Paginate(pageNumber - 1, pageSize);
+
+            var count = await Repository
+                .GetItemCountAsync(specification)
                 .ConfigureAwait(false);
 
             return count > 0;
         }
 
         public async Task<bool> HasNextPage(
-            ISpecification<TEntity> specification,
+            ICacheableDataSpecification<TEntity> specification,
             int pageNumber,
             int pageSize)
         {
-            var count = await repository
-                .GetItemCountAsync(specification.Paginate(pageNumber + 1, pageSize))
+            specification.AddStringToCacheKey($"{pageNumber}-{pageSize}");
+            specification.Specification = specification.Specification.Paginate(pageNumber + 1, pageSize);
+
+            var count = await Repository
+                .GetItemCountAsync(specification)
                 .ConfigureAwait(false);
 
             return count > 0;

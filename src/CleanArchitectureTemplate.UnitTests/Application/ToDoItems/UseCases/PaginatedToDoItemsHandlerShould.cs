@@ -23,7 +23,7 @@ namespace CleanArchitectureTemplate.UnitTests.Application.ToDoItems.UseCases
 
             mockToDoItemRepo = new Mock<IRepository<ToDoItem>>();
             mockToDoItemRepo
-                .Setup(x => x.GetItemsAsync(It.IsAny<ISpecification<ToDoItem>>()))
+                .Setup(x => x.GetItemsAsync(It.IsAny<ICacheableDataSpecification<ToDoItem>>()))
                 .ReturnsAsync(fakeData.GetRange(0, 10));
         }
 
@@ -36,7 +36,7 @@ namespace CleanArchitectureTemplate.UnitTests.Application.ToDoItems.UseCases
         public async Task HandleFirstPageResult()
         {
             mockToDoItemRepo
-                .Setup(x => x.GetItemCountAsync(It.IsAny<ISpecification<ToDoItem>>()))
+                .Setup(x => x.GetItemCountAsync(It.IsAny<ICacheableDataSpecification<ToDoItem>>()))
                 .ReturnsAsync(10);
 
             var handler = new PaginatedToDoItemsHandler(mockToDoItemRepo.Object);
@@ -55,7 +55,7 @@ namespace CleanArchitectureTemplate.UnitTests.Application.ToDoItems.UseCases
         public async Task HandleMiddlePageResult()
         {
             mockToDoItemRepo
-                .Setup(x => x.GetItemCountAsync(It.IsAny<ISpecification<ToDoItem>>()))
+                .Setup(x => x.GetItemCountAsync(It.IsAny<ICacheableDataSpecification<ToDoItem>>()))
                 .ReturnsAsync(10);
 
             var handler = new PaginatedToDoItemsHandler(mockToDoItemRepo.Object);
@@ -74,7 +74,7 @@ namespace CleanArchitectureTemplate.UnitTests.Application.ToDoItems.UseCases
         public async Task HandleLastPageResult()
         {
             mockToDoItemRepo
-                .SetupSequence(x => x.GetItemCountAsync(It.IsAny<ISpecification<ToDoItem>>()))
+                .SetupSequence(x => x.GetItemCountAsync(It.IsAny<ICacheableDataSpecification<ToDoItem>>()))
                 .ReturnsAsync(10)
                 .ReturnsAsync(0);
 

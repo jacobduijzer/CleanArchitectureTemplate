@@ -1,7 +1,6 @@
 ﻿using CleanArchitectureTemplate.Application.Shared;
 using CleanArchitectureTemplate.Domain.Shared;
 using CleanArchitectureTemplate.Domain.ToDoItems;
-using LinqBuilder.OrderBy;
 using MediatR;
 using System;
 using System.Threading;
@@ -12,11 +11,9 @@ namespace CleanArchitectureTemplate.Application.ToDoItems.UseCases
     public class PaginatedToDoItemsHandler 
         : BasePagedHandler<ToDoItem>, IRequestHandler<PaginatedToDoItemsRequest, PaginatedToDoItemsResponse>
     {
-        private readonly IRepository<ToDoItem> repository;
-
-        public PaginatedToDoItemsHandler(IRepository<ToDoItem> repository) 
-            : base(repository) =>
-                this.repository = repository;
+        public PaginatedToDoItemsHandler(IReadOnlyRepository<ToDoItem> repository) 
+            : base(repository)
+        { }
 
         public async Task<PaginatedToDoItemsResponse> Handle(
             PaginatedToDoItemsRequest request, 
@@ -24,9 +21,10 @@ namespace CleanArchitectureTemplate.Application.ToDoItems.UseCases
         {
             try
             {
-                var response = await repository.GetItemsAsync(
-                    request.Specification.Paginate(request.PageNumber, request.PageSize)
-                ).ConfigureAwait(false);
+                var data = await base.GetItemsAsync(
+                    request.Specification,
+                    request.PageNumber,
+                    request.PageSize).ConfigureAwait(false);
 
                 var hasPreviousRecords = await base.HasPreviousPage(
                         request.Specification,
@@ -39,7 +37,7 @@ namespace CleanArchitectureTemplate.Application.ToDoItems.UseCases
                     request.PageSize).ConfigureAwait(false);
 
                 return new PaginatedToDoItemsResponse(
-                    response,
+                    data,
                     hasPreviousRecords,
                     hasNextRecords,
                     request.PageNumber);

@@ -19,7 +19,7 @@ namespace CleanArchitectureTemplate.UnitTests.Application.ToDoItems.UseCases
         {
             mockToDoRepository = new Mock<IRepository<ToDoItem>>();
             mockToDoRepository
-                .Setup(x => x.GetItemsAsync(It.IsAny<ISpecification<ToDoItem>>()))
+                .Setup(x => x.GetItemsAsync(It.IsAny<ICacheableDataSpecification<ToDoItem>>()))
                 .ReturnsAsync(ToDoItemData.ToDoItemsForTesting)
                 .Verifiable();
         }
@@ -36,7 +36,7 @@ namespace CleanArchitectureTemplate.UnitTests.Application.ToDoItems.UseCases
                 .Handle(new ToDoItemsRequest(new AllToDoItems()), new System.Threading.CancellationToken())
                 .ConfigureAwait(false);
 
-            mockToDoRepository.Verify(x => x.GetItemsAsync(It.IsAny<ISpecification<ToDoItem>>()), Times.Once);
+            mockToDoRepository.Verify(x => x.GetItemsAsync(It.IsAny<ICacheableDataSpecification<ToDoItem>>()), Times.Once);
         }
 
         [Fact]
@@ -44,7 +44,7 @@ namespace CleanArchitectureTemplate.UnitTests.Application.ToDoItems.UseCases
         {
             var mockRepo = new Mock<IRepository<ToDoItem>>();
             mockRepo
-                .Setup(x => x.GetItemsAsync(It.IsAny<ISpecification<ToDoItem>>()))
+                .Setup(x => x.GetItemsAsync(It.IsAny<ICacheableDataSpecification<ToDoItem>>()))
                 .ThrowsAsync(new System.Exception("Error"))
                 .Verifiable();
 
@@ -53,7 +53,7 @@ namespace CleanArchitectureTemplate.UnitTests.Application.ToDoItems.UseCases
                 .Handle(new ToDoItemsRequest(new AllToDoItems()), new System.Threading.CancellationToken())
                 .ConfigureAwait(false);
 
-            mockRepo.Verify(x => x.GetItemsAsync(It.IsAny<ISpecification<ToDoItem>>()), Times.Once);
+            mockRepo.Verify(x => x.GetItemsAsync(It.IsAny<ICacheableDataSpecification<ToDoItem>>()), Times.Once);
             result.IsSuccessful.Should().BeFalse();
         }
 

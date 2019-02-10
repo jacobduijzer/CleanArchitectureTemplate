@@ -33,7 +33,7 @@ dotnet new  cleanarchitectureproject -n SomeFancyNamespace
 # Release Notes
 
 > ## v1.3.3 ()
-> - Added pagination example with unit tests
+> - Added reusable paged data handler for pagination with sample
 
 > ## v1.3.2 (02/08/2019)
 > - Added more unit tests 

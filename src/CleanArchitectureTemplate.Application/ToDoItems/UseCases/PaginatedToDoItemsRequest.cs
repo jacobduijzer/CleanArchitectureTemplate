@@ -1,19 +1,19 @@
-﻿using CleanArchitectureTemplate.Domain.ToDoItems;
-using LinqBuilder.Core;
+﻿using CleanArchitectureTemplate.Domain.Shared;
+using CleanArchitectureTemplate.Domain.ToDoItems;
 using MediatR;
 
 namespace CleanArchitectureTemplate.Application.ToDoItems.UseCases
 {
     public class PaginatedToDoItemsRequest : IRequest<PaginatedToDoItemsResponse>
     {
-        public readonly ISpecification<ToDoItem> Specification;
+        public readonly ICacheableDataSpecification<ToDoItem> Specification;
 
         public readonly int PageNumber;
 
         public readonly int PageSize;
 
         public PaginatedToDoItemsRequest(
-            ISpecification<ToDoItem> specification, 
+            ICacheableDataSpecification<ToDoItem> specification, 
             int pageNumber, 
             int pageSize)
         {
