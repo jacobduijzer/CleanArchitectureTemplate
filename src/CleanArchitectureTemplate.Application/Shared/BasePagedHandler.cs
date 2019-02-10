@@ -19,11 +19,15 @@ namespace CleanArchitectureTemplate.Application.Shared
             int pageSize
             )
         {
-            specification.AddStringToCacheKey($"{pageNumber}-{pageSize}");
-            specification.Specification = specification.Specification.Paginate(pageNumber, pageSize);
+            //specification.AddStringToCacheKey($"{pageNumber}-{pageSize}");
+            //specification.Specification = specification.Specification.Paginate(pageNumber, pageSize);
+
+            var spec1 = new TestSpecification<TEntity>(
+                specification.Specification.Paginate(pageNumber, pageSize),
+                specification.CacheKey + $"-{pageNumber}-{pageSize}");
 
             return await Repository
-                .GetItemsAsync(specification)
+                .GetItemsAsync(spec1)
                 .ConfigureAwait(false);
         }
 
@@ -35,11 +39,12 @@ namespace CleanArchitectureTemplate.Application.Shared
             if (pageNumber == 1)
                 return false;
 
-            specification.AddStringToCacheKey($"{pageNumber}-{pageSize}");
-            specification.Specification = specification.Specification.Paginate(pageNumber - 1, pageSize);
+            var spec2 = new TestSpecification<TEntity>(
+                specification.Specification.Paginate(pageNumber - 1, pageSize),
+                specification.CacheKey + $"-{pageNumber-1}-{pageSize}");
 
             var count = await Repository
-                .GetItemCountAsync(specification)
+                .GetItemCountAsync(spec2)
                 .ConfigureAwait(false);
 
             return count > 0;
@@ -50,11 +55,12 @@ namespace CleanArchitectureTemplate.Application.Shared
             int pageNumber,
             int pageSize)
         {
-            specification.AddStringToCacheKey($"{pageNumber}-{pageSize}");
-            specification.Specification = specification.Specification.Paginate(pageNumber + 1, pageSize);
+            var spec3 = new TestSpecification<TEntity>(
+                specification.Specification.Paginate(pageNumber + 1, pageSize),
+                specification.CacheKey + $"-{pageNumber+1}-{pageSize}");
 
             var count = await Repository
-                .GetItemCountAsync(specification)
+                .GetItemCountAsync(spec3)
                 .ConfigureAwait(false);
 
             return count > 0;

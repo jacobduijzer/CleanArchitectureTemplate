@@ -7,8 +7,6 @@ namespace CleanArchitectureTemplate.Domain.Shared
     { 
         string CacheKey { get; }
 
-        ISpecification<TEntity> Specification { get; set; }
-
-        void AddStringToCacheKey(string addition);
+        ISpecification<TEntity> Specification { get; }
     }
 }

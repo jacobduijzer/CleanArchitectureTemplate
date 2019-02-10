@@ -17,7 +17,7 @@ namespace CleanArchitectureTemplate.Infrastructure.ToDoItems
         private const string MyModelCacheKey = "ToDoItems";
 
         // TODO: move to settings
-        private const int DefaultCacheSeconds = 5;
+        private const int DefaultCacheSeconds = 15;
 
         public CachedToDoItemRepositoryDecorator(
             IRepository<ToDoItem> repository,
@@ -50,11 +50,16 @@ namespace CleanArchitectureTemplate.Infrastructure.ToDoItems
 
         public async Task<IEnumerable<ToDoItem>> GetItemsAsync(ICacheableDataSpecification<ToDoItem> specification)
         {
-             return await cache.GetOrCreateAsync(specification.CacheKey, async cacheEntry =>
-             {
-                 cacheEntry.SetOptions(cacheOptions);
-                 return await repository.GetItemsAsync(specification).ConfigureAwait(false);
-             }).ConfigureAwait(false);
+            //Func<IEnumerable<ToDoItem>> createValue = () => repository.GetItemsAsync(specification);
+            Func<ICacheEntry, Task<IEnumerable<ToDoItem>>> taskFunc = entry => repository.GetItemsAsync(specification);
+            var data1 = await cache.GetOrCreateAsync(specification.CacheKey, taskFunc);
+            //var data1 = await cache.GetOrCreateAsync(specification.CacheKey, async cacheEntry =>
+            // {
+            //     cacheEntry.SetOptions(cacheOptions);
+            //     var data2 = await repository.GetItemsAsync(specification).ConfigureAwait(false);
+            //     return data2;
+            // }).ConfigureAwait(false);
+            return data1;
         }
 
         public async Task<ToDoItem> GetSingleItemAsync(ICacheableDataSpecification<ToDoItem> specification)
