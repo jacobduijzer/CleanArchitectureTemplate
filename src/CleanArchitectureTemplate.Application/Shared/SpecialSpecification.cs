@@ -4,11 +4,11 @@ using LinqBuilder.Core;
 
 namespace CleanArchitectureTemplate.Application.Shared
 {
-    public class TestSpecification<TEntity>
+    internal class SpecialSpecification<TEntity>
         : ICacheableDataSpecification<TEntity>
             where TEntity : BaseEntity
     {
-        public TestSpecification(ISpecification<TEntity> specification, string cacheKey)
+        internal SpecialSpecification(ISpecification<TEntity> specification, string cacheKey)
         {
             Guard.Against.Null(specification, "Specification");
             Guard.Against.NullOrEmpty(cacheKey, "CacheKey");

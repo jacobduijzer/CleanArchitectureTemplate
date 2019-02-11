@@ -1,5 +1,4 @@
 ﻿using CleanArchitectureTemplate.Domain.Shared;
-using LinqBuilder.Core;
 using LinqBuilder.OrderBy;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -19,10 +18,7 @@ namespace CleanArchitectureTemplate.Application.Shared
             int pageSize
             )
         {
-            //specification.AddStringToCacheKey($"{pageNumber}-{pageSize}");
-            //specification.Specification = specification.Specification.Paginate(pageNumber, pageSize);
-
-            var spec1 = new TestSpecification<TEntity>(
+            var spec1 = new SpecialSpecification<TEntity>(
                 specification.Specification.Paginate(pageNumber, pageSize),
                 specification.CacheKey + $"-{pageNumber}-{pageSize}");
 
@@ -39,7 +35,7 @@ namespace CleanArchitectureTemplate.Application.Shared
             if (pageNumber == 1)
                 return false;
 
-            var spec2 = new TestSpecification<TEntity>(
+            var spec2 = new SpecialSpecification<TEntity>(
                 specification.Specification.Paginate(pageNumber - 1, pageSize),
                 specification.CacheKey + $"-{pageNumber - 1}-{pageSize}-HasPreviousPage");
 
@@ -55,7 +51,7 @@ namespace CleanArchitectureTemplate.Application.Shared
             int pageNumber,
             int pageSize)
         {
-            var spec3 = new TestSpecification<TEntity>(
+            var spec3 = new SpecialSpecification<TEntity>(
                 specification.Specification.Paginate(pageNumber + 1, pageSize),
                 specification.CacheKey + $"-{pageNumber + 1}-{pageSize}-HasNextPage");
 
