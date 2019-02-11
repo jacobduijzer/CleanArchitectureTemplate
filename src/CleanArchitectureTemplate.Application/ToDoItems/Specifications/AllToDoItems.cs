@@ -1,13 +1,17 @@
-﻿using System;
-using System.Linq.Expressions;
+﻿using CleanArchitectureTemplate.Domain.Shared;
 using CleanArchitectureTemplate.Domain.ToDoItems;
 using LinqBuilder;
+using LinqBuilder.Core;
 
 namespace CleanArchitectureTemplate.Application.ToDoItems.Specifications
 {
-    public class AllToDoItems : Specification<ToDoItem>
+    public class AllToDoItems 
+        : ICacheableDataSpecification<ToDoItem>
     {
-        public override Expression<Func<ToDoItem, bool>> AsExpression() =>
-            item => true;
+        public string CacheKey => 
+            $"{nameof(AllToDoItems)}-item-true"; 
+                    
+        public ISpecification<ToDoItem> Specification => 
+            Spec<ToDoItem>.New(item => true);
     }
 }

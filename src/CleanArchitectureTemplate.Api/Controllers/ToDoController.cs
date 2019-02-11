@@ -14,6 +14,8 @@ namespace CleanArchitectureTemplate.Api.Controllers
     [ApiController]
     public class ToDoController
     {
+        private const int ItemsPerPage = 10;
+
         private readonly IMediator mediator;
 
         public ToDoController(IMediator mediator) =>
@@ -23,6 +25,20 @@ namespace CleanArchitectureTemplate.Api.Controllers
         public async Task<ActionResult<IEnumerable<ToDoItem>>> Get()
         {
             var result = await mediator.Send(new ToDoItemsRequest(new AllToDoItems())).ConfigureAwait(false);
+
+            if (result != null && result.IsSuccessful)
+                return result.ToDoItems.ToList();
+
+            throw new InvalidOperationException("TODO: error handling");
+        }
+
+        [HttpGet]
+        [Route("{pageNumber:int}")]
+        public async Task<ActionResult<IEnumerable<ToDoItem>>> GetPaged(int pageNumber)
+        {
+            var result = await mediator
+                .Send(new PaginatedToDoItemsRequest(new AllToDoItems(), pageNumber, ItemsPerPage))
+                .ConfigureAwait(false);
 
             if (result != null && result.IsSuccessful)
                 return result.ToDoItems.ToList();

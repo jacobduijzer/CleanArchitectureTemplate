@@ -12,6 +12,10 @@ namespace CleanArchitectureTemplate.Application.ToDoItems.UseCases
             : base(isSuccessful: true) =>
                 ToDoItems = todoItems;
 
+        public ToDoItemsResponse(bool isSuccessful)
+            : base(isSuccessful)
+        { }
+
         public ToDoItemsResponse(bool isSuccessful, string message)
             : base(isSuccessful, message)
         { }

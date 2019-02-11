@@ -10,5 +10,10 @@ namespace CleanArchitectureTemplate.UnitTests.Application.ToDoItems.Specificatio
         public void Construct() =>
             new AllToDoItems()
                 .Should().BeOfType<AllToDoItems>();
+
+        [Fact]
+        public void HaveCacheKey() =>
+            new AllToDoItems().CacheKey
+                .Should().Be("AllToDoItems-item-true");
     }
 }

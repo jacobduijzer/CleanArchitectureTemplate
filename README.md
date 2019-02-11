@@ -32,6 +32,10 @@ dotnet new  cleanarchitectureproject -n SomeFancyNamespace
 
 # Release Notes
 
+> ## v1.3.3 (02/11/2019)
+> - Added reusable paged data handler for pagination with sample
+> - Added a generic CachedRepositoryDecorator to create cached repositories.
+
 > ## v1.3.2 (02/08/2019)
 > - Added more unit tests 
 > - Added sonar cloud code analysis

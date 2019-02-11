@@ -14,24 +14,31 @@ namespace CleanArchitectureTemplate.Infrastructure.Shared
         public EfRepository(AppDbContext appDbContext) =>
             this.dbContext = appDbContext;
 
-        public async Task<IEnumerable<TEntity>> GetItemsAsync(ISpecification<TEntity> specification) =>
+        public async Task<IEnumerable<TEntity>> GetItemsAsync(ICacheableDataSpecification<TEntity> specification) =>
             await dbContext
             .Set<TEntity>()
-            .ExeSpec(specification)
+            .ExeSpec(specification.Specification)
             .ToListAsync()
             .ConfigureAwait(false);
 
-        public async Task<TEntity> GetSingleItemAsync(ISpecification<TEntity> specification) =>
+        public async Task<int> GetItemCountAsync(ICacheableDataSpecification<TEntity> specification) =>
             await dbContext
             .Set<TEntity>()
-            .ExeSpec(specification)
+            .ExeSpec(specification.Specification)
+            .CountAsync()
+            .ConfigureAwait(false);
+
+        public async Task<TEntity> GetSingleItemAsync(ICacheableDataSpecification<TEntity> specification) =>
+            await dbContext
+            .Set<TEntity>()
+            .ExeSpec(specification.Specification)
             .SingleOrDefaultAsync()
             .ConfigureAwait(false);
 
-        public async Task<TEntity> GetFirstItemAsync(ISpecification<TEntity> specification) =>
+        public async Task<TEntity> GetFirstItemAsync(ICacheableDataSpecification<TEntity> specification) =>
             await dbContext
             .Set<TEntity>()
-            .ExeSpec(specification)
+            .ExeSpec(specification.Specification)
             .FirstOrDefaultAsync()
             .ConfigureAwait(false);
 

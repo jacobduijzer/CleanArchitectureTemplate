@@ -1,15 +1,15 @@
 ﻿using Ardalis.GuardClauses;
+using CleanArchitectureTemplate.Domain.Shared;
 using CleanArchitectureTemplate.Domain.ToDoItems;
-using LinqBuilder.Core;
 using MediatR;
 
 namespace CleanArchitectureTemplate.Application.ToDoItems.UseCases
 {
     public class ToDoItemsRequest : IRequest<ToDoItemsResponse>
     {
-        public readonly ISpecification<ToDoItem> Specification;
+        public readonly ICacheableDataSpecification<ToDoItem> Specification;
 
-        public ToDoItemsRequest(ISpecification<ToDoItem> specification)
+        public ToDoItemsRequest(ICacheableDataSpecification<ToDoItem> specification)
         {
             Guard.Against.Null(specification, "Specification");
 

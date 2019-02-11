@@ -17,7 +17,7 @@ namespace CleanArchitectureTemplate.Infrastructure.Shared
 
             if (!dbContext.ToDoItems.Any())
             {
-                dbContext.ToDoItems.AddRange(ToDoItemData.ToDoItems);
+                dbContext.ToDoItems.AddRange(ToDoItemData.GenerateTestData(100));
                 dbContext.SaveChanges();
             }
 

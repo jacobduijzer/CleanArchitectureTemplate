@@ -19,6 +19,11 @@ namespace CleanArchitectureTemplate.UnitTests.Application.ToDoItems.UseCases
                 .Should().BeTrue();
 
         [Fact]
+        public void SetIsSuccessful() =>
+            new ToDoItemsResponse(true).IsSuccessful
+                .Should().BeTrue();
+
+        [Fact]
         public void SetSuccessAndMessage()
         {
             var response = new ToDoItemsResponse(false, "An error occurred");

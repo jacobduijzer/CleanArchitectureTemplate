@@ -1,18 +1,11 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using LinqBuilder.Core;
+﻿using System.Threading.Tasks;
 
 namespace CleanArchitectureTemplate.Domain.Shared
 {
-    public interface IRepository<TEntity>
-        where TEntity : BaseEntity
+    public interface IRepository<TEntity> 
+        : IReadOnlyRepository<TEntity> 
+            where TEntity : BaseEntity
     {
-        Task<IEnumerable<TEntity>> GetItemsAsync(ISpecification<TEntity> specification);
-
-        Task<TEntity> GetSingleItemAsync(ISpecification<TEntity> specification);
-
-        Task<TEntity> GetFirstItemAsync(ISpecification<TEntity> specification);
-
         Task UpdateAsync(TEntity updatedItem);
     }
 }
