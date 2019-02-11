@@ -55,6 +55,7 @@ namespace CleanArchitectureTemplate.UnitTests.Application.ToDoItems.UseCases
 
             mockRepo.Verify(x => x.GetItemsAsync(It.IsAny<ICacheableDataSpecification<ToDoItem>>()), Times.Once);
             result.IsSuccessful.Should().BeFalse();
+            result.Message.Should().Be("Error");
         }
 
         [Fact]

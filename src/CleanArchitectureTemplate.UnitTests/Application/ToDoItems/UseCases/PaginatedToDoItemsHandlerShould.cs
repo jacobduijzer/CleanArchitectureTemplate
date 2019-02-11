@@ -5,6 +5,7 @@ using CleanArchitectureTemplate.Domain.ToDoItems;
 using FluentAssertions;
 using LinqBuilder.Core;
 using Moq;
+using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -88,6 +89,22 @@ namespace CleanArchitectureTemplate.UnitTests.Application.ToDoItems.UseCases
             result.ToDoItems.Should().NotBeNullOrEmpty();
             result.HasPreviousPage.Should().BeTrue();
             result.HasNextPage.Should().BeFalse();
+        }
+
+        [Fact]
+        public async Task ReturnFalseWhenExceptionOccurs()
+        {
+            mockToDoItemRepo
+                .Setup(x => x.GetItemCountAsync(It.IsAny<ICacheableDataSpecification<ToDoItem>>()))
+                .Throws(new Exception("Test exception"));
+
+            var handler = new PaginatedToDoItemsHandler(mockToDoItemRepo.Object);
+            var result = await handler
+                .Handle(new PaginatedToDoItemsRequest(new AllToDoItems(), 9, 10), new CancellationToken())
+                .ConfigureAwait(false);
+
+            result.IsSuccessful.Should().BeFalse();
+            result.Message.Should().Be("Test exception");
         }
     }
 }
