@@ -8,6 +8,8 @@ namespace CleanArchitectureTemplate.Application.Shared
         : ICacheableDataSpecification<TEntity>
             where TEntity : BaseEntity
     {
+        private readonly string cacheKey;
+
         internal SpecialSpecification(ISpecification<TEntity> specification, string cacheKey)
         {
             Guard.Against.Null(specification, "Specification");
@@ -16,8 +18,7 @@ namespace CleanArchitectureTemplate.Application.Shared
             this.cacheKey = cacheKey;
             Specification = specification;
         }
-
-        private string cacheKey;
+        
         public string CacheKey => cacheKey;
 
         public ISpecification<TEntity> Specification { get; private set; }

@@ -15,5 +15,18 @@ namespace CleanArchitectureTemplate.UnitTests.Application.Shared
             basePagedResponse.HasPreviousPage.Should().BeTrue();
             basePagedResponse.CurrentPageNumber.Should().Be(3);
         }
+
+        [Fact]
+        public void ConstructWithSuccess() =>
+            new BasePagedResponse(true).IsSuccessful
+                .Should().BeTrue();
+
+        [Fact]
+        public void ConstructWithSuccessAndMessage()
+        {
+            var basePagedResponse = new BasePagedResponse(true, "testmessage");
+            basePagedResponse.IsSuccessful.Should().BeTrue();
+            basePagedResponse.Message.Should().Be("testmessage");
+        }
     }
 }

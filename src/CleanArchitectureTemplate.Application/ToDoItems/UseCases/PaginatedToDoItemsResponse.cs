@@ -16,12 +16,12 @@ namespace CleanArchitectureTemplate.Application.ToDoItems.UseCases
             : base(hasPreviousPage, hasNextPage, currentPageNumber) =>
                 ToDoItems = toDoItems;
 
-        public PaginatedToDoItemsResponse(bool isSucess)
-            : base(false)
+        public PaginatedToDoItemsResponse(bool isSucessful)
+            : base(isSucessful)
         { }
 
-        public PaginatedToDoItemsResponse(bool isSucess, string message)
-            : base(false, message)
+        public PaginatedToDoItemsResponse(bool isSucessful, string message)
+            : base(isSucessful, message)
         { }
     }
 }
