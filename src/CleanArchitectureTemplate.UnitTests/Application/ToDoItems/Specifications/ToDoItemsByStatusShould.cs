@@ -10,5 +10,10 @@ namespace CleanArchitectureTemplate.UnitTests.Application.ToDoItems.Specificatio
         public void Construct() =>
             new ToDoItemsByStatus(true)
                 .Should().BeOfType<ToDoItemsByStatus>();
+
+        [Fact]
+        public void HaveCacheKey() =>
+            new ToDoItemsByStatus(true).CacheKey
+                .Should().Be("ToDoItemsByStatus-status-True");
     }
 }
