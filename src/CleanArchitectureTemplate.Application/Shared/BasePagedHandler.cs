@@ -32,8 +32,8 @@ namespace CleanArchitectureTemplate.Application.Shared
         }
 
         public async Task<bool> HasPreviousPage(
-            ICacheableDataSpecification<TEntity> specification, 
-            int pageNumber, 
+            ICacheableDataSpecification<TEntity> specification,
+            int pageNumber,
             int pageSize)
         {
             if (pageNumber == 1)
@@ -41,7 +41,7 @@ namespace CleanArchitectureTemplate.Application.Shared
 
             var spec2 = new TestSpecification<TEntity>(
                 specification.Specification.Paginate(pageNumber - 1, pageSize),
-                specification.CacheKey + $"-{pageNumber-1}-{pageSize}");
+                specification.CacheKey + $"-{pageNumber - 1}-{pageSize}-HasPreviousPage");
 
             var count = await Repository
                 .GetItemCountAsync(spec2)
@@ -57,7 +57,7 @@ namespace CleanArchitectureTemplate.Application.Shared
         {
             var spec3 = new TestSpecification<TEntity>(
                 specification.Specification.Paginate(pageNumber + 1, pageSize),
-                specification.CacheKey + $"-{pageNumber+1}-{pageSize}");
+                specification.CacheKey + $"-{pageNumber + 1}-{pageSize}-HasNextPage");
 
             var count = await Repository
                 .GetItemCountAsync(spec3)

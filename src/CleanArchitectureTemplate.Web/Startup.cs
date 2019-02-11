@@ -2,7 +2,6 @@ using CleanArchitectureTemplate.Application.ToDoItems.UseCases;
 using CleanArchitectureTemplate.Domain.Shared;
 using CleanArchitectureTemplate.Domain.ToDoItems;
 using CleanArchitectureTemplate.Infrastructure.Shared;
-using CleanArchitectureTemplate.Infrastructure.ToDoItems;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -36,7 +35,7 @@ namespace CleanArchitectureTemplate.Web
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             services.AddScoped<AppDbContext>(x => new AppDbContextFactory().CreateDbContext(null));
-            services.AddScoped<IReadOnlyRepository<ToDoItem>, CachedToDoItemRepositoryDecorator>();
+            services.AddScoped<IReadOnlyRepository<ToDoItem>, CachedRepositoryDecorator<ToDoItem>>();
             services.AddScoped<IRepository<ToDoItem>, EfRepository<ToDoItem>>();
             services.AddMediatR(cfg => cfg.AsScoped(), typeof(ToDoItemsHandler).GetTypeInfo().Assembly);
         }
