@@ -1,15 +1,15 @@
-﻿using CleanArchitectureTemplate.Domain.Shared;
+﻿using CleanArchitectureTemplate.Application.ToDoItems.UseCases;
+using CleanArchitectureTemplate.Domain.Shared;
 using CleanArchitectureTemplate.Domain.ToDoItems;
 using CleanArchitectureTemplate.Infrastructure.Shared;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using CleanArchitectureTemplate.Application.ToDoItems.UseCases;
-using System.Reflection;
-using MediatR;
 using Microsoft.Extensions.Logging;
+using System.Reflection;
 
 namespace CleanArchitectureTemplate.Api
 {
@@ -30,7 +30,7 @@ namespace CleanArchitectureTemplate.Api
             services.AddLogging(builder => builder.AddConsole());
 
             services.AddScoped<AppDbContext>(x => new AppDbContextFactory().CreateDbContext(null));
-            services.AddScoped<IReadOnlyRepository<ToDoItem>, CachedRepositoryDecorator<ToDoItem>>()
+            services.AddScoped<IReadOnlyRepository<ToDoItem>, CachedRepositoryDecorator<ToDoItem>>();
             services.AddScoped<IRepository<ToDoItem>, EfRepository<ToDoItem>>();
             services.AddMediatR(cfg => cfg.AsScoped(), typeof(ToDoItemsHandler).GetTypeInfo().Assembly);
         }

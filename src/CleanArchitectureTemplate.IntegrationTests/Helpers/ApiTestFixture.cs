@@ -1,6 +1,4 @@
-﻿using System;
-using System.Net.Http;
-using CleanArchitectureTemplate.Api;
+﻿using CleanArchitectureTemplate.Api;
 using CleanArchitectureTemplate.Domain.Shared;
 using CleanArchitectureTemplate.Domain.ToDoItems;
 using CleanArchitectureTemplate.FakeData.ToDoItems;
@@ -10,7 +8,10 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Refit;
+using System;
+using System.Net.Http;
 
 namespace CleanArchitectureTemplate.IntegrationTests.Helpers
 {
@@ -33,6 +34,8 @@ namespace CleanArchitectureTemplate.IntegrationTests.Helpers
             .UseEnvironment(EnvironmentName.Development)
             .ConfigureTestServices((IServiceCollection serviceCollection) =>
             {
+                serviceCollection.AddLogging(builder => builder.AddConsole());
+
                 // Use stubbed database for integration tests
                 serviceCollection.AddSingleton<AppDbContext>(x => appDbContext);
                 serviceCollection.AddSingleton<IRepository<ToDoItem>, EfRepository<ToDoItem>>();
