@@ -10,12 +10,12 @@ namespace CleanArchitectureTemplate.Infrastructure.Shared
         : IReadOnlyRepository<TEntity>
             where TEntity : BaseEntity
     {
+        // TODO: move to settings
+        private const int DefaultCacheSeconds = 15;
+
         private readonly IRepository<TEntity> repository;
         private readonly IMemoryCache cache;
         private readonly MemoryCacheEntryOptions cacheOptions;
-
-        // TODO: move to settings
-        private const int DefaultCacheSeconds = 15;
 
         public CachedRepositoryDecorator(
             IRepository<TEntity> repository,

@@ -13,6 +13,8 @@ build_script:
   - dotnet test src/CleanArchitectureTemplate.sln /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
   - nuget pack JacobsApps.CleanArchitectureProjectTemplate.CSharp.nuspec
   - SonarScanner.MSBuild.exe end /d:sonar.login="%SONARTOKEN%"
+#dotnet new -i "D:\downloads\Microsoft.AzureFunctions.ProjectTemplates.2.0.0-beta-10177.nupkg"
+
  
 artifacts:
 - path: '**\*.nupkg'  

@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using CleanArchitectureTemplate.Application.ToDoItems.UseCases;
 using System.Reflection;
 using MediatR;
+using Microsoft.Extensions.Logging;
 
 namespace CleanArchitectureTemplate.Api
 {
@@ -26,7 +27,10 @@ namespace CleanArchitectureTemplate.Api
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
+            services.AddLogging(builder => builder.AddConsole());
+
             services.AddScoped<AppDbContext>(x => new AppDbContextFactory().CreateDbContext(null));
+            services.AddScoped<IReadOnlyRepository<ToDoItem>, CachedRepositoryDecorator<ToDoItem>>()
             services.AddScoped<IRepository<ToDoItem>, EfRepository<ToDoItem>>();
             services.AddMediatR(cfg => cfg.AsScoped(), typeof(ToDoItemsHandler).GetTypeInfo().Assembly);
         }
