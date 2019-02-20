@@ -1,4 +1,5 @@
-﻿using CleanArchitectureTemplate.Application.ToDoItems.UseCases;
+﻿using CleanArchitectureTemplate.Application.Shared;
+using CleanArchitectureTemplate.Application.ToDoItems.UseCases;
 using CleanArchitectureTemplate.Domain.Shared;
 using CleanArchitectureTemplate.Domain.ToDoItems;
 using CleanArchitectureTemplate.Infrastructure.Shared;
@@ -9,6 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using System;
 using System.Reflection;
 
 namespace CleanArchitectureTemplate.Api
@@ -28,6 +30,13 @@ namespace CleanArchitectureTemplate.Api
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             services.AddLogging(builder => builder.AddConsole());
+
+            // TODO: read from appsettings.json
+            var applicationSettings = ApplicationSettings.Builder
+                .WithCacheDuration(TimeSpan.FromSeconds(10))
+                .Build();
+
+            services.AddSingleton<IApplicationSettings>(x => applicationSettings);
 
             services.AddScoped<AppDbContext>(x => new AppDbContextFactory().CreateDbContext(null));
             services.AddScoped<IReadOnlyRepository<ToDoItem>, CachedRepositoryDecorator<ToDoItem>>();

@@ -1,4 +1,5 @@
-﻿using CleanArchitectureTemplate.Domain.Shared;
+﻿using CleanArchitectureTemplate.Application.Shared;
+using CleanArchitectureTemplate.Domain.Shared;
 using Microsoft.Extensions.Caching.Memory;
 using System;
 using System.Collections.Generic;
@@ -10,22 +11,20 @@ namespace CleanArchitectureTemplate.Infrastructure.Shared
         : IReadOnlyRepository<TEntity>
             where TEntity : BaseEntity
     {
-        // TODO: move to settings
-        private const int DefaultCacheSeconds = 15;
-
         private readonly IRepository<TEntity> repository;
         private readonly IMemoryCache cache;
         private readonly MemoryCacheEntryOptions cacheOptions;
 
         public CachedRepositoryDecorator(
             IRepository<TEntity> repository,
-            IMemoryCache cache)
+            IMemoryCache cache,
+            IApplicationSettings applicationSettings)
         {
             this.repository = repository;
             this.cache = cache;
 
             cacheOptions = new MemoryCacheEntryOptions()
-                .SetAbsoluteExpiration(relative: TimeSpan.FromSeconds(DefaultCacheSeconds));
+                .SetAbsoluteExpiration(relative: applicationSettings.CacheDuration);
         }
 
         public async Task<TEntity> GetFirstItemAsync(ICacheableDataSpecification<TEntity> specification) =>
