@@ -2,11 +2,11 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
     <id>JacobsApps.CleanArchitectureProjectTemplate.CSharp</id>
-    <version>1.3.3</version>
+    <version>1.3.4</version>
     <description>
       Creates a "clean architecture" project setup for a MVC / WebApi project.
     </description>
-    <releaseNotes>Added a solition to quickly add pagination. Added a generic cached repository decorator for memory cache. Also added more unit tests to sample project.</releaseNotes>
+    <releaseNotes>Added logging with ILoggingFactory, added application settings + builder</releaseNotes>
     <authors>Jacob Duijzer</authors>
     <projectUrl>https://github.com/jacobduijzer/CleanArchitectureTemplate</projectUrl>
     <licenseUrl>https://github.com/jacobduijzer/CleanArchitectureTemplate/blob/master/LICENSE</licenseUrl>

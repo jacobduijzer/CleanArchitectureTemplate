@@ -32,7 +32,7 @@ dotnet new  cleanarchitectureproject -n SomeFancyNamespace
 
 # Release Notes
 
-> ## v.1.3.4 (?)
+> ## v.1.3.4 (02/26/2019)
 > - Added logging (ILoggingFactory)
 > - Added application settings + builder
 
