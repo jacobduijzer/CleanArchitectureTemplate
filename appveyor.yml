@@ -7,7 +7,7 @@ before_build:
   - echo %APPVEYOR_REPO_BRANCH%
 
 build_script:  
-  - SonarScanner.MSBuild.exe begin /k:"CleanArchitectureTemplate" /d:sonar.cs.opencover.reportsPaths="src/**/coverage.opencover.xml" /d:sonar.organization="jacobduijzer-github" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.login="%SONARTOKEN%" /d:sonar.branch.name=%APPVEYOR_REPO_BRANCH%
+  - SonarScanner.MSBuild.exe begin /k:"CleanArchitectureTemplate" /d:sonar.cs.opencover.reportsPaths="src/**/coverage.opencover.xml" /o:jacobduijzer-github /d:sonar.host.url="https://sonarcloud.io" /d:sonar.login="%SONARTOKEN%" /d:sonar.branch.name=%APPVEYOR_REPO_BRANCH%
   - nuget restore src/CleanArchitectureTemplate.sln
   - dotnet build src/CleanArchitectureTemplate.sln
   - dotnet test src/CleanArchitectureTemplate.sln /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
