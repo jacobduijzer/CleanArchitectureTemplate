@@ -1,14 +1,17 @@
-﻿using CleanArchitectureTemplate.Domain.Shared;
+﻿using CleanArchitectureTemplate.Application.Shared;
+using CleanArchitectureTemplate.Application.ToDoItems.UseCases;
+using CleanArchitectureTemplate.Domain.Shared;
 using CleanArchitectureTemplate.Domain.ToDoItems;
 using CleanArchitectureTemplate.Infrastructure.Shared;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using CleanArchitectureTemplate.Application.ToDoItems.UseCases;
+using Microsoft.Extensions.Logging;
+using System;
 using System.Reflection;
-using MediatR;
 
 namespace CleanArchitectureTemplate.Api
 {
@@ -26,7 +29,17 @@ namespace CleanArchitectureTemplate.Api
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
+            services.AddLogging(builder => builder.AddConsole());
+
+            // TODO: read from appsettings.json
+            var applicationSettings = ApplicationSettings.Builder
+                .WithCacheDuration(TimeSpan.FromSeconds(10))
+                .Build();
+
+            services.AddSingleton<IApplicationSettings>(x => applicationSettings);
+
             services.AddScoped<AppDbContext>(x => new AppDbContextFactory().CreateDbContext(null));
+            services.AddScoped<IReadOnlyRepository<ToDoItem>, CachedRepositoryDecorator<ToDoItem>>();
             services.AddScoped<IRepository<ToDoItem>, EfRepository<ToDoItem>>();
             services.AddMediatR(cfg => cfg.AsScoped(), typeof(ToDoItemsHandler).GetTypeInfo().Assembly);
         }

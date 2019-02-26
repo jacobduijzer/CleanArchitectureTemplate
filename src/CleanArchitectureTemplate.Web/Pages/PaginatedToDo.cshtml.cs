@@ -2,6 +2,7 @@
 using CleanArchitectureTemplate.Application.ToDoItems.UseCases;
 using MediatR;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
 
 namespace CleanArchitectureTemplate.Web.Pages
@@ -10,15 +11,15 @@ namespace CleanArchitectureTemplate.Web.Pages
     {
         private readonly IMediator mediator;
 
-        public PaginatedToDoModel(IMediator mediator)
-            => this.mediator = mediator;
+        public PaginatedToDoModel(IMediator mediator) =>
+            this.mediator = mediator;
 
         public PaginatedToDoItemsResponse Result { get; private set; }
 
         public int PreviousPageNumber =>
             Result.CurrentPageNumber > 1 ? Result.CurrentPageNumber - 1 : 1;
 
-        public int NextPageNumber => 
+        public int NextPageNumber =>
             Result.CurrentPageNumber + 1;
 
         public async Task OnGetAsync(int pageNumber = 1)

@@ -11,16 +11,15 @@ namespace CleanArchitectureTemplate.Web.Pages
 {
     public class ToDoModel : PageModel
     {
-        private readonly IMediator _mediator;
+        private readonly IMediator mediator;
 
-        public ToDoModel(IMediator mediator)
-            => _mediator = mediator;
+        public ToDoModel(IMediator mediator) => this.mediator = mediator;
 
         public IList<ToDoItem> ToDoItems { get; private set; }
 
         public async Task OnGetAsync(int pageNumber = 1)
         {
-            var result = await _mediator
+            var result = await mediator
                 .Send(new ToDoItemsRequest(new AllToDoItems()))
                 .ConfigureAwait(false);
 

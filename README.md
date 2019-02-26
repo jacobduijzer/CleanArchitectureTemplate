@@ -32,6 +32,10 @@ dotnet new  cleanarchitectureproject -n SomeFancyNamespace
 
 # Release Notes
 
+> ## v.1.3.4 (02/26/2019)
+> - Added logging (ILoggingFactory)
+> - Added application settings + builder
+
 > ## v1.3.3 (02/11/2019)
 > - Added reusable paged data handler for pagination with sample
 > - Added a generic CachedRepositoryDecorator to create cached repositories.

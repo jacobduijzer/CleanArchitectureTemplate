@@ -1,3 +1,4 @@
+using CleanArchitectureTemplate.Application.Shared;
 using CleanArchitectureTemplate.Application.ToDoItems.UseCases;
 using CleanArchitectureTemplate.Domain.Shared;
 using CleanArchitectureTemplate.Domain.ToDoItems;
@@ -9,6 +10,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using System;
 using System.Reflection;
 
 namespace CleanArchitectureTemplate.Web
@@ -33,6 +36,15 @@ namespace CleanArchitectureTemplate.Web
             });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            services.AddLogging(builder => builder.AddConsole());
+
+            // TODO: read from appsettings.json
+            var applicationSettings = ApplicationSettings.Builder
+                .WithCacheDuration(TimeSpan.FromSeconds(10))
+                .Build();
+
+            services.AddSingleton<IApplicationSettings>(x => applicationSettings);
 
             services.AddScoped<AppDbContext>(x => new AppDbContextFactory().CreateDbContext(null));
             services.AddScoped<IReadOnlyRepository<ToDoItem>, CachedRepositoryDecorator<ToDoItem>>();
