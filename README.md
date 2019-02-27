@@ -32,6 +32,9 @@ dotnet new  cleanarchitectureproject -n SomeFancyNamespace
 
 # Release Notes
 
+> ## v2.0.0 (02/27/2019)
+> Upgrade to .NET Core 3.0 (Which is still in preview!)
+
 > ## v.1.3.4 (02/26/2019)
 > - Added logging (ILoggingFactory)
 > - Added application settings + builder
