@@ -34,8 +34,6 @@ namespace CleanArchitectureTemplate.IntegrationTests.Helpers
             .UseEnvironment(EnvironmentName.Development)
             .ConfigureTestServices((IServiceCollection serviceCollection) =>
             {
-                serviceCollection.AddLogging(builder => builder.AddConsole());
-
                 // Use stubbed database for integration tests
                 serviceCollection.AddSingleton<AppDbContext>(x => appDbContext);
                 serviceCollection.AddSingleton<IRepository<ToDoItem>, EfRepository<ToDoItem>>();
