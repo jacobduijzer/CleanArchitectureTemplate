@@ -11,14 +11,14 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' " />
   <ItemGroup>
-    <PackageReference Include="coverlet.msbuild" Version="2.5.1">
+    <PackageReference Include="coverlet.msbuild" Version="2.6.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
     <PackageReference Include="FluentAssertions" Version="5.6.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.RazorPages" Version="3.0.0-preview-10393" />
     <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="3.0.0-preview.19074.2" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.9.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.0.1" />
     <PackageReference Include="Moq" Version="4.10.1" />
     <PackageReference Include="runtime.win-x64.Microsoft.NETCore.DotNetAppHost" Version="3.0.0-preview-27324-5" />
     <PackageReference Include="xunit" Version="2.4.1" />

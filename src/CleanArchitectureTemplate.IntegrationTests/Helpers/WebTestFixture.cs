@@ -1,48 +1,40 @@
-﻿using System;
-using System.Net.Http;
-using CleanArchitectureTemplate.Domain.Shared;
+﻿using CleanArchitectureTemplate.Domain.Shared;
 using CleanArchitectureTemplate.Domain.ToDoItems;
 using CleanArchitectureTemplate.FakeData.ToDoItems;
-using CleanArchitectureTemplate.Infrastructure.Shared;
 using CleanArchitectureTemplate.Web;
-using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.AspNetCore.TestHost;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Xunit.Abstractions;
+using Moq;
+using System.Net.Http;
 
 namespace CleanArchitectureTemplate.IntegrationTests.Helpers
 {
-    public class WebTestFixture : IDisposable
+    public class WebTestFixture
+        : WebApplicationFactory<Startup>
     {
-        public readonly HttpClient HttpClient;
-
         public WebTestFixture()
         {
-            var options = new DbContextOptionsBuilder<AppDbContext>()
-                 .UseInMemoryDatabase(databaseName: "in-mem-web-test-database")
-                 .Options;
-
-            var appDbContext = new AppDbContext(options);
-            appDbContext.ToDoItems.AddRange(ToDoItemData.ToDoItemsForTesting);
-            appDbContext.SaveChanges();
-
-            var server = new TestServer(new WebHostBuilder()
-            .UseEnvironment(EnvironmentName.Development)
-            .ConfigureTestServices((IServiceCollection serviceCollection) =>
+            HttpClient = WithWebHostBuilder(builder =>
             {
-                // Use stubbed database for integration tests
-                serviceCollection.AddSingleton<AppDbContext>(x => appDbContext);
-                serviceCollection.AddSingleton<IRepository<ToDoItem>, EfRepository<ToDoItem>>();
-            })
-            .UseStartup<Startup>());
+                builder.ConfigureTestServices(services =>
+                {
+                    var mockReadonlyToDoRepository = new Mock<IReadOnlyRepository<ToDoItem>>(MockBehavior.Strict);
+                    mockReadonlyToDoRepository
+                    .Setup(x => x.GetItemsAsync(It.IsAny<ICacheableDataSpecification<ToDoItem>>()))
+                    .ReturnsAsync(ToDoItemData.ToDoItemsForTesting);
 
-            HttpClient = server.CreateClient();
+                    var mockToDoRepository = new Mock<IRepository<ToDoItem>>(MockBehavior.Strict);
+                    mockToDoRepository
+                    .Setup(x => x.GetItemsAsync(It.IsAny<ICacheableDataSpecification<ToDoItem>>()))
+                    .ReturnsAsync(ToDoItemData.ToDoItemsForTesting);
+
+                    services.AddSingleton<IReadOnlyRepository<ToDoItem>>(factory => mockReadonlyToDoRepository.Object);
+                    services.AddSingleton<IRepository<ToDoItem>>(factory => mockToDoRepository.Object);
+                });
+            }).CreateClient();
         }
 
-        public void Dispose()
-        {
-        }
+        public HttpClient HttpClient { get; private set; }
     }
 }

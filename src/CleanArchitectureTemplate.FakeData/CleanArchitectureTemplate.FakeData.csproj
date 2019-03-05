@@ -9,7 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Bogus" Version="25.0.4" />
+    <PackageReference Include="Bogus" Version="26.0.1" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CleanArchitectureTemplate.Domain\CleanArchitectureTemplate.Domain.csproj" />
