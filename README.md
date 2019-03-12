@@ -33,7 +33,8 @@ dotnet new  cleanarchitectureproject -n SomeFancyNamespace
 # Release Notes
 
 > ## v2.0.0 (02/27/2019)
-> Upgrade to .NET Core 3.0 (Which is still in preview!)
+> - Upgrade to .NET Core 3.0 (Which is still in preview!)
+> - Renamed handlers, queries and commands
 
 > ## v.1.3.4 (02/26/2019)
 > - Added logging (ILoggingFactory)
@@ -75,6 +76,10 @@ dotnet new  cleanarchitectureproject -n SomeFancyNamespace
 - [A starting point for Clean Architecture with ASP.NET Core (Steve Smith/Ardalis)](https://github.com/ardalis/CleanArchitecture)
 
 - [Clean Architecture: Patterns, Practices, and Principles (Pluralsight)](https://www.pluralsight.com/courses/clean-architecture-patterns-practices-principles)
+
+## DDD
+
+- [CQRS with DDD (Kamil Grzybek)](http://www.kamilgrzybek.com/design/simple-cqrs-implementation-with-raw-sql-and-ddd/)
 
 ## Used packages
 

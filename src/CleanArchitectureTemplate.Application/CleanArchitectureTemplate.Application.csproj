@@ -13,6 +13,6 @@
     <PackageReference Include="LinqBuilder" Version="0.15.0" />
     <PackageReference Include="LinqBuilder.OrderBy" Version="0.15.0" />
     <PackageReference Include="MediatR" Version="6.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Logging" Version="3.0.0-preview.19074.2" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="3.0.0-preview3.19153.1" />
   </ItemGroup>
 </Project>
