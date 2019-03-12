@@ -1,7 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
 using Bogus;
 using CleanArchitectureTemplate.Domain.ToDoItems;
+using System;
+using System.Collections.Generic;
 
 namespace CleanArchitectureTemplate.FakeData.ToDoItems
 {

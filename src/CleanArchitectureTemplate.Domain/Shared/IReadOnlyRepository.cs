@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 namespace CleanArchitectureTemplate.Domain.Shared
 {
     public interface IReadOnlyRepository<TEntity>
-        where TEntity : EntityBase
+        where TEntity : Entity
     {
         Task<IEnumerable<TEntity>> GetItemsAsync(ICacheableDataSpecification<TEntity> specification);
 

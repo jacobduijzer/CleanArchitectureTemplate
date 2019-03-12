@@ -5,11 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="ToDoItems\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="LinqBuilder" Version="0.15.0" />
     <PackageReference Include="LinqBuilder.OrderBy" Version="0.15.0" />
+    <PackageReference Include="MediatR" Version="6.0.0" />
   </ItemGroup>
 </Project>

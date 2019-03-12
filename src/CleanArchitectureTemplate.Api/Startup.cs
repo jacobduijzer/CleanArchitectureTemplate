@@ -1,4 +1,4 @@
-﻿using CleanArchitectureTemplate.Application.Shared;
+using CleanArchitectureTemplate.Application.Shared;
 using CleanArchitectureTemplate.Application.ToDoItems.UseCases;
 using CleanArchitectureTemplate.Domain.Shared;
 using CleanArchitectureTemplate.Domain.ToDoItems;
@@ -7,6 +7,7 @@ using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -27,7 +28,7 @@ namespace CleanArchitectureTemplate.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc()
-                .AddNewtonsoftJson()
+                .AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore)
                 .SetCompatibilityVersion(CompatibilityVersion.Latest);
 
             // TODO: read from appsettings.json
@@ -36,8 +37,12 @@ namespace CleanArchitectureTemplate.Api
                 .Build();
 
             services.AddSingleton<IApplicationSettings>(x => applicationSettings);
-
-            services.AddScoped<AppDbContext>(x => new AppDbContextFactory().CreateDbContext(null));
+            services.AddDbContext<AppDbContext>(options =>
+            {
+                options.UseInMemoryDatabase("in-mem-prod-database");
+                options.EnableSensitiveDataLogging(true);
+            });
+            services.AddScoped<IDomainEventsDispatcher, DomainEventsDispatcher>();
             services.AddScoped<IReadOnlyRepository<ToDoItem>, CachedRepositoryDecorator<ToDoItem>>();
             services.AddScoped<IRepository<ToDoItem>, EfRepository<ToDoItem>>();
             services.AddMediatR(cfg => cfg.AsScoped(), typeof(ToDoItemsQueryHandler).GetTypeInfo().Assembly);

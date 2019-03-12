@@ -6,7 +6,7 @@ namespace CleanArchitectureTemplate.Application.Shared
 {
     internal class SpecialSpecification<TEntity>
         : ICacheableDataSpecification<TEntity>
-            where TEntity : EntityBase
+            where TEntity : Entity
     {
         private readonly string cacheKey;
 

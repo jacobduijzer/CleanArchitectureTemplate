@@ -6,13 +6,14 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 
-namespace CleanArchitectureTemplate.Api.Controllers
+namespace CleanArchitectureTemplate.Api.ToDoItems
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ToDoController
+    public class ToDoController : Controller
     {
         private const int ITEMSPERPAGE = 10;
 
@@ -58,6 +59,15 @@ namespace CleanArchitectureTemplate.Api.Controllers
                 return result.ToList();
 
             throw new InvalidOperationException("TODO: error handling");
+        }
+
+        [HttpPost]
+        [ProducesResponseType(typeof(int), (int)HttpStatusCode.Created)]
+        public async Task<IActionResult> CreateToDoItem([FromBody]CreateToDoItemRequest newTodoItem)
+        {
+            var newToDoItemId = await _mediator.Send(new CreateToDoItemCommand(newTodoItem));
+
+            return Created(string.Empty, newToDoItemId);
         }
     }
 }

@@ -3,7 +3,7 @@
 namespace CleanArchitectureTemplate.Domain.Shared
 {
     public interface ICacheableDataSpecification<TEntity> 
-        where TEntity : EntityBase
+        where TEntity : Entity
     { 
         string CacheKey { get; }
 

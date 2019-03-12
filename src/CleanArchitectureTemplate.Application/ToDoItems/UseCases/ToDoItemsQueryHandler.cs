@@ -14,7 +14,7 @@ namespace CleanArchitectureTemplate.Application.ToDoItems.UseCases
         private readonly IRepository<ToDoItem> _repository;
 
         public ToDoItemsQueryHandler(IRepository<ToDoItem> repository) =>
-            this._repository = repository;
+            _repository = repository;
 
         public async Task<IEnumerable<ToDoItem>> Handle(ToDoItemsQuery request, CancellationToken cancellationToken)
         {
