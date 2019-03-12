@@ -10,12 +10,12 @@ namespace CleanArchitectureTemplate.UnitTests.Application.ToDoItems.UseCases
     {
         [Fact]
         public void Construct() =>
-            new ToDoItemsRequest(new AllToDoItems())
-                .Should().BeOfType<ToDoItemsRequest>();
+            new ToDoItemsQuery(new AllToDoItems())
+                .Should().BeOfType<ToDoItemsQuery>();
 
         [Fact]
         public void ThrowWhenSpecificationIsNull() =>
-            new Action(() => new ToDoItemsRequest(null))
+            new Action(() => new ToDoItemsQuery(null))
                 .Should().Throw<ArgumentNullException>()
                     .WithMessage("*Specification*");
 

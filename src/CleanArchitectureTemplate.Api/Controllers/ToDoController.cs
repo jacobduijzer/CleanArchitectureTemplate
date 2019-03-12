@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+using CleanArchitectureTemplate.Application.ToDoItems.Specifications;
+using CleanArchitectureTemplate.Application.ToDoItems.UseCases;
 using CleanArchitectureTemplate.Domain.ToDoItems;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using CleanArchitectureTemplate.Application.ToDoItems.UseCases;
-using CleanArchitectureTemplate.Application.ToDoItems.Specifications;
+using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace CleanArchitectureTemplate.Api.Controllers
 {
@@ -14,20 +14,20 @@ namespace CleanArchitectureTemplate.Api.Controllers
     [ApiController]
     public class ToDoController
     {
-        private const int ItemsPerPage = 10;
+        private const int ITEMSPERPAGE = 10;
 
-        private readonly IMediator mediator;
+        private readonly IMediator _mediator;
 
         public ToDoController(IMediator mediator) =>
-            this.mediator = mediator;
+            _mediator = mediator;
 
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ToDoItem>>> Get()
         {
-            var result = await mediator.Send(new ToDoItemsRequest(new AllToDoItems())).ConfigureAwait(false);
+            var result = await _mediator.Send(new ToDoItemsQuery(new AllToDoItems())).ConfigureAwait(false);
 
-            if (result != null && result.IsSuccessful)
-                return result.ToDoItems.ToList();
+            if (result != null && result.Any())
+                return result.ToList();
 
             throw new InvalidOperationException("TODO: error handling");
         }
@@ -36,11 +36,11 @@ namespace CleanArchitectureTemplate.Api.Controllers
         [Route("{pageNumber:int}")]
         public async Task<ActionResult<IEnumerable<ToDoItem>>> GetPaged(int pageNumber)
         {
-            var result = await mediator
-                .Send(new PaginatedToDoItemsRequest(new AllToDoItems(), pageNumber, ItemsPerPage))
+            var result = await _mediator
+                .Send(new PaginatedToDoItemsQuery(new AllToDoItems(), pageNumber, ITEMSPERPAGE))
                 .ConfigureAwait(false);
 
-            if (result != null && result.IsSuccessful)
+            if (result != null && result.ToDoItems.Any())
                 return result.ToDoItems.ToList();
 
             throw new InvalidOperationException("TODO: error handling");
@@ -50,12 +50,12 @@ namespace CleanArchitectureTemplate.Api.Controllers
         [Route("{status:bool}")]
         public async Task<ActionResult<IEnumerable<ToDoItem>>> GetByStatus(bool status)
         {
-            var result = await mediator
-                .Send(new ToDoItemsRequest(new ToDoItemsByStatus(status)))
+            var result = await _mediator
+                .Send(new ToDoItemsQuery(new ToDoItemsByStatus(status)))
                 .ConfigureAwait(false);
 
-            if (result != null && result.IsSuccessful)
-                return result.ToDoItems.ToList();
+            if (result != null && result.Any())
+                return result.ToList();
 
             throw new InvalidOperationException("TODO: error handling");
         }

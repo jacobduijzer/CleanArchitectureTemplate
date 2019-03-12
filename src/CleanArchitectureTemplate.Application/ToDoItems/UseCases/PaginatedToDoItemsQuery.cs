@@ -4,7 +4,7 @@ using MediatR;
 
 namespace CleanArchitectureTemplate.Application.ToDoItems.UseCases
 {
-    public class PaginatedToDoItemsRequest : IRequest<PaginatedToDoItemsResponse>
+    public class PaginatedToDoItemsQuery : IRequest<PaginatedToDoItems>
     {
         public readonly ICacheableDataSpecification<ToDoItem> Specification;
 
@@ -12,9 +12,9 @@ namespace CleanArchitectureTemplate.Application.ToDoItems.UseCases
 
         public readonly int PageSize;
 
-        public PaginatedToDoItemsRequest(
-            ICacheableDataSpecification<ToDoItem> specification, 
-            int pageNumber, 
+        public PaginatedToDoItemsQuery(
+            ICacheableDataSpecification<ToDoItem> specification,
+            int pageNumber,
             int pageSize)
         {
             if (pageNumber == 0)

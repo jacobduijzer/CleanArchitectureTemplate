@@ -8,15 +8,15 @@ using System.Threading.Tasks;
 
 namespace CleanArchitectureTemplate.Application.ToDoItems.UseCases
 {
-    public class PaginatedToDoItemsHandler 
-        : BasePagedHandler<ToDoItem>, IRequestHandler<PaginatedToDoItemsRequest, PaginatedToDoItemsResponse>
+    public class PaginatedToDoItemsQueryHandler
+        : BasePagedHandler<ToDoItem>, IRequestHandler<PaginatedToDoItemsQuery, PaginatedToDoItems>
     {
-        public PaginatedToDoItemsHandler(IReadOnlyRepository<ToDoItem> repository) 
+        public PaginatedToDoItemsQueryHandler(IReadOnlyRepository<ToDoItem> repository)
             : base(repository)
         { }
 
-        public async Task<PaginatedToDoItemsResponse> Handle(
-            PaginatedToDoItemsRequest request, 
+        public async Task<PaginatedToDoItems> Handle(
+            PaginatedToDoItemsQuery request,
             CancellationToken cancellationToken)
         {
             try
@@ -36,7 +36,7 @@ namespace CleanArchitectureTemplate.Application.ToDoItems.UseCases
                     request.PageNumber,
                     request.PageSize).ConfigureAwait(false);
 
-                return new PaginatedToDoItemsResponse(
+                return new PaginatedToDoItems(
                     data,
                     hasPreviousRecords,
                     hasNextRecords,
@@ -45,8 +45,9 @@ namespace CleanArchitectureTemplate.Application.ToDoItems.UseCases
             catch (Exception ex)
             {
                 // TODO: Error handling
-                return new PaginatedToDoItemsResponse(false, ex.Message);
             }
+
+            return null;
         }
     }
 }
