@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 namespace CleanArchitectureTemplate.Infrastructure.Shared
 {
     public class EfRepository<TEntity> : IRepository<TEntity>
-         where TEntity : BaseEntity
+         where TEntity : EntityBase
     {
         private readonly AppDbContext dbContext;
 

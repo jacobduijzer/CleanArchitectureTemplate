@@ -3,7 +3,7 @@ using CleanArchitectureTemplate.Domain.Shared;
 
 namespace CleanArchitectureTemplate.Domain.ToDoItems
 {
-    public class ToDoItem : BaseEntity
+    public class ToDoItem : EntityBase
     {
         public string Description { get; set; }
 

@@ -4,7 +4,7 @@ namespace CleanArchitectureTemplate.Domain.Shared
 {
     public interface IRepository<TEntity> 
         : IReadOnlyRepository<TEntity> 
-            where TEntity : BaseEntity
+            where TEntity : EntityBase
     {
         Task UpdateAsync(TEntity updatedItem);
     }

@@ -9,7 +9,7 @@ namespace CleanArchitectureTemplate.Infrastructure.Shared
 {
     public class CachedRepositoryDecorator<TEntity>
         : IReadOnlyRepository<TEntity>
-            where TEntity : BaseEntity
+            where TEntity : EntityBase
     {
         private readonly IRepository<TEntity> repository;
         private readonly IMemoryCache cache;
