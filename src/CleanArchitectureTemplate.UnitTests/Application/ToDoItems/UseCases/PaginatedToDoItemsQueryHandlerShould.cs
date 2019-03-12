@@ -98,7 +98,8 @@ namespace CleanArchitectureTemplate.UnitTests.Application.ToDoItems.UseCases
             var result = await handler
                 .Handle(new PaginatedToDoItemsQuery(new AllToDoItems(), 9, 10), new CancellationToken())
                 .ConfigureAwait(false);
-            result.ToDoItems.Should().BeNull();
+
+            result.Should().BeNull();
         }
     }
 }
