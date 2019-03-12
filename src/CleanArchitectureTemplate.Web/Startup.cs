@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -43,7 +44,12 @@ namespace CleanArchitectureTemplate.Web
 
             services.AddSingleton<IApplicationSettings>(x => applicationSettings);
 
-            services.AddScoped<AppDbContext>(x => new AppDbContextFactory().CreateDbContext(null));
+            services.AddDbContext<AppDbContext>(options =>
+            {
+                options.UseInMemoryDatabase("in-mem-prod-database");
+                options.EnableSensitiveDataLogging(true);
+            });
+            services.AddScoped<IDomainEventsDispatcher, DomainEventsDispatcher>();
             services.AddScoped<IReadOnlyRepository<ToDoItem>, CachedRepositoryDecorator<ToDoItem>>();
             services.AddScoped<IRepository<ToDoItem>, EfRepository<ToDoItem>>();
             services.AddMediatR(cfg => cfg.AsScoped(), typeof(ToDoItemsQueryHandler).GetTypeInfo().Assembly);
