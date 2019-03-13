@@ -14,8 +14,9 @@ build_script:
   - nuget pack JacobsApps.CleanArchitectureProjectTemplate.CSharp.nuspec
   - SonarScanner.MSBuild.exe end /d:sonar.login="%SONARTOKEN%"
 
-after_build:
-  - FOR %f in (*Clean*.nupkg) DO dotnet new --install %f
+# after_build:  
+#   - FOR %f in (*Clean*.nupkg) DO dotnet new --install %f  # Test if installing nupkg is possible
+#   - dotnet new cleanarchitectureproject -n SomeFancyNamespace # Create a new project
  
 artifacts:
 - path: '**\*.nupkg'  
