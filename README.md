@@ -12,6 +12,10 @@ My interpretation of a clean architecture project setup for asp.net an MVC & API
 
 Please read the [Wiki](https://github.com/jacobduijzer/CleanArchitectureTemplate/wiki) to learn more about Clean Architecture and the project setup of this package.
 
+## DISCLAIMER
+
+This package is using dotnet core 3.0 in preview! All packages are preview packages. I even had to disable some tests. Although I am using it myself for some production code I would not advise to do so :)
+
 ## TODO: 
 
 * Extend ToDo sample with full CRUD
@@ -32,7 +36,7 @@ dotnet new  cleanarchitectureproject -n SomeFancyNamespace
 
 # Release Notes
 
-> ## v2.0.0 (03/12/2019)
+> ## v2.0.0 (03/13/2019)
 > - Upgrade to .NET Core 3.0 (Which is still in preview!)
 > - Renamed handlers, queries and commands
 > - Added event / event handler
