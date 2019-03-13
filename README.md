@@ -32,9 +32,10 @@ dotnet new  cleanarchitectureproject -n SomeFancyNamespace
 
 # Release Notes
 
-> ## v2.0.0 (02/27/2019)
+> ## v2.0.0 (03/12/2019)
 > - Upgrade to .NET Core 3.0 (Which is still in preview!)
 > - Renamed handlers, queries and commands
+> - Added event / event handler
 
 > ## v.1.3.4 (02/26/2019)
 > - Added logging (ILoggingFactory)
