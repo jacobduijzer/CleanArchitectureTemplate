@@ -1,20 +1,20 @@
-﻿using CleanArchitectureTemplate.Application.ToDoItems.Specifications;
+using CleanArchitectureTemplate.Application.ToDoItems.Specifications;
 using CleanArchitectureTemplate.Application.ToDoItems.UseCases;
 using MediatR;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.Logging;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace CleanArchitectureTemplate.Web.Pages
 {
     public class PaginatedToDoModel : PageModel
     {
-        private readonly IMediator mediator;
+        private readonly IMediator _mediator;
 
         public PaginatedToDoModel(IMediator mediator) =>
-            this.mediator = mediator;
+            _mediator = mediator;
 
-        public PaginatedToDoItemsResponse Result { get; private set; }
+        public PaginatedToDoItems Result { get; private set; }
 
         public int PreviousPageNumber =>
             Result.CurrentPageNumber > 1 ? Result.CurrentPageNumber - 1 : 1;
@@ -24,11 +24,11 @@ namespace CleanArchitectureTemplate.Web.Pages
 
         public async Task OnGetAsync(int pageNumber = 1)
         {
-            var response = await mediator
-                .Send(new PaginatedToDoItemsRequest(new AllToDoItems(), pageNumber, 10))
+            var response = await _mediator
+                .Send(new PaginatedToDoItemsQuery(new AllToDoItems(), pageNumber, 10))
                 .ConfigureAwait(false);
 
-            if (response.IsSuccessful)
+            if (response != null && response.ToDoItems.Any())
                 Result = response;
         }
     }

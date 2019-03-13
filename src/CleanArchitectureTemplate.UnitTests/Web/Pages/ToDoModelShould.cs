@@ -18,7 +18,7 @@ namespace CleanArchitectureTemplate.UnitTests.Web.Pages
             var viewModel = new ToDoModel(mockMediator.Object);
             await viewModel.OnGetAsync();
 
-            mockMediator.Verify(x => x.Send(It.IsAny<ToDoItemsRequest>(), It.IsAny<CancellationToken>()), Times.Once);
+            mockMediator.Verify(x => x.Send(It.IsAny<ToDoItemsQuery>(), It.IsAny<CancellationToken>()), Times.Once);
         }
     }
 }

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace CleanArchitectureTemplate.Application.Shared
 {
-    public class BasePagedHandler<TEntity> where TEntity : BaseEntity
+    public class BasePagedHandler<TEntity> where TEntity : Entity
     {
         protected readonly IReadOnlyRepository<TEntity> Repository;
 

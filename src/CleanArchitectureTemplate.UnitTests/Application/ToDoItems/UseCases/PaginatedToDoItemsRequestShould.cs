@@ -10,7 +10,7 @@ namespace CleanArchitectureTemplate.UnitTests.Application.ToDoItems.UseCases
         [Fact]
         public void ConstructWithParameters()
         {
-            var request = new PaginatedToDoItemsRequest(new AllToDoItems(), 1, 10);
+            var request = new PaginatedToDoItemsQuery(new AllToDoItems(), 1, 10);
             request.Specification.Should().BeOfType<AllToDoItems>();
             request.PageNumber.Should().Be(1);
             request.PageSize.Should().Be(10);
@@ -18,7 +18,7 @@ namespace CleanArchitectureTemplate.UnitTests.Application.ToDoItems.UseCases
 
         [Fact]
         public void SetPageNumberTo1When0() =>
-            new PaginatedToDoItemsRequest(new AllToDoItems(), 0, 10)
+            new PaginatedToDoItemsQuery(new AllToDoItems(), 0, 10)
                 .PageNumber.Should().Be(1);
     }
 }

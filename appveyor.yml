@@ -1,4 +1,4 @@
-image: Visual Studio 2017
+image: Visual Studio 2019 Preview
 configuration: Release
 platform: Any CPU
 
@@ -10,11 +10,13 @@ build_script:
   - SonarScanner.MSBuild.exe begin /k:"CleanArchitectureTemplate" /d:sonar.cs.opencover.reportsPaths="src/**/coverage.opencover.xml" /o:jacobduijzer-github /d:sonar.host.url="https://sonarcloud.io" /d:sonar.login="%SONARTOKEN%" /d:sonar.branch.name=%APPVEYOR_REPO_BRANCH%
   - nuget restore src/CleanArchitectureTemplate.sln
   - dotnet build src/CleanArchitectureTemplate.sln
-  - dotnet test src/CleanArchitectureTemplate.sln /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
+  - dotnet test src/CleanArchitectureTemplate.sln /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:Include="[Build]*"
   - nuget pack JacobsApps.CleanArchitectureProjectTemplate.CSharp.nuspec
   - SonarScanner.MSBuild.exe end /d:sonar.login="%SONARTOKEN%"
-#dotnet new -i "D:\downloads\Microsoft.AzureFunctions.ProjectTemplates.2.0.0-beta-10177.nupkg"
 
+# after_build:  
+#   - FOR %f in (*Clean*.nupkg) DO dotnet new --install %f  # Test if installing nupkg is possible
+#   - dotnet new cleanarchitectureproject -n SomeFancyNamespace # Create a new project
  
 artifacts:
 - path: '**\*.nupkg'  

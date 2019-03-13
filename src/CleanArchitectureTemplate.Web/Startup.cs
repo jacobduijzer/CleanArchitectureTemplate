@@ -8,9 +8,9 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 using System;
 using System.Reflection;
 
@@ -35,9 +35,7 @@ namespace CleanArchitectureTemplate.Web
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-
-            services.AddLogging(builder => builder.AddConsole());
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Latest);
 
             // TODO: read from appsettings.json
             var applicationSettings = ApplicationSettings.Builder
@@ -46,10 +44,15 @@ namespace CleanArchitectureTemplate.Web
 
             services.AddSingleton<IApplicationSettings>(x => applicationSettings);
 
-            services.AddScoped<AppDbContext>(x => new AppDbContextFactory().CreateDbContext(null));
+            services.AddDbContext<AppDbContext>(options =>
+            {
+                options.UseInMemoryDatabase("in-mem-prod-database");
+                options.EnableSensitiveDataLogging(true);
+            });
+            services.AddScoped<IDomainEventsDispatcher, DomainEventsDispatcher>();
             services.AddScoped<IReadOnlyRepository<ToDoItem>, CachedRepositoryDecorator<ToDoItem>>();
             services.AddScoped<IRepository<ToDoItem>, EfRepository<ToDoItem>>();
-            services.AddMediatR(cfg => cfg.AsScoped(), typeof(ToDoItemsHandler).GetTypeInfo().Assembly);
+            services.AddMediatR(cfg => cfg.AsScoped(), typeof(ToDoItemsQueryHandler).GetTypeInfo().Assembly);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

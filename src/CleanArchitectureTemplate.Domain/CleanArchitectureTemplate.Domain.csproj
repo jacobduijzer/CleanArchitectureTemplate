@@ -1,15 +1,14 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <LangVersion>8.0</LangVersion>
+    <NullableContextOptions>enable</NullableContextOptions>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Folder Include="ToDoItems\" />
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="LinqBuilder" Version="0.15.0" />
     <PackageReference Include="LinqBuilder.OrderBy" Version="0.15.0" />
+    <PackageReference Include="MediatR" Version="6.0.0" />
   </ItemGroup>
 </Project>

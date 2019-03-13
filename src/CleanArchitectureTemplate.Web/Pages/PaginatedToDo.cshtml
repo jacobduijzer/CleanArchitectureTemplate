@@ -29,9 +29,9 @@
 </table>
 @if (Model.Result.HasPreviousPage)
 {
-    <a href="/PaginatedToDo/@Model.PreviousPageNumber"><</a>
+    <a href="/PaginatedToDo/@Model.PreviousPageNumber">previous</a>
 }
-@if(Model.Result.HasNextPage)
+@if (Model.Result.HasNextPage)
 {
-<a href="/PaginatedToDo/@Model.NextPageNumber" >></a>
+    <a href="/PaginatedToDo/@Model.NextPageNumber">next</a>
 }

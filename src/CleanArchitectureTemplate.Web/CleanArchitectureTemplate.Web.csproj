@@ -1,22 +1,20 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <LangVersion>8.0</LangVersion>
+    <NullableContextOptions>enable</NullableContextOptions>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="6.0.1" />
-    <PackageReference Include="Microsoft.AspNetCore.App" />
-    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
-    <PackageReference Include="Microsoft.Extensions.Logging" Version="2.2.0" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="3.0.0-preview3.19153.1" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CleanArchitectureTemplate.Application\CleanArchitectureTemplate.Application.csproj" />
     <ProjectReference Include="..\CleanArchitectureTemplate.Domain\CleanArchitectureTemplate.Domain.csproj" />
     <ProjectReference Include="..\CleanArchitectureTemplate.Infrastructure\CleanArchitectureTemplate.Infrastructure.csproj" />
   </ItemGroup>
-
 </Project>
