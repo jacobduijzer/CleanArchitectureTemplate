@@ -28,7 +28,6 @@ namespace CleanArchitectureTemplate.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc()
-                .AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore)
                 .SetCompatibilityVersion(CompatibilityVersion.Latest);
 
             // TODO: read from appsettings.json
