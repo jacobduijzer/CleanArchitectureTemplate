@@ -14,7 +14,7 @@ Please read the [Wiki](https://github.com/jacobduijzer/CleanArchitectureTemplate
 
 ## DISCLAIMER
 
-This package is using dotnet core 3.0 in preview! All packages are preview packages. I even had to disable some tests. Although I am using it myself for some production code I would not advise to do so :)
+I am switching back to .NET Core 2.2 due to the belated final release of .NET Core 3.0. I am using this package in production and have to keep adding some new projects based on this template.
 
 ## TODO: 
 
@@ -35,6 +35,10 @@ dotnet new  cleanarchitectureproject -n SomeFancyNamespace
 ```
 
 # Release Notes
+
+> ## v2.1.0 ()
+> - Switched back to .NET Core 2.2
+> - 
 
 > ## v2.0.0 (03/13/2019)
 > - Upgrade to .NET Core 3.0 (Which is still in preview!)
