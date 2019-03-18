@@ -36,9 +36,9 @@ dotnet new  cleanarchitectureproject -n SomeFancyNamespace
 
 # Release Notes
 
-> ## v2.1.0 ()
+> ## v2.1.0 (03/18/2019)
 > - Switched back to .NET Core 2.2
-> - 
+> - Downgraded coverlet due to build issues with latest version
 
 > ## v2.0.0 (03/13/2019)
 > - Upgrade to .NET Core 3.0 (Which is still in preview!)
