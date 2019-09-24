@@ -22,13 +22,18 @@ steps:
   inputs:
     packageType: 'sdk'
     version: '3.0.100'
-    
+   
 - task: DotNetCoreCLI@2
   inputs:
     command: 'build'
     projects: 'src/CleanArchitectureTemplate.sln'
-
 - task: DotNetCoreCLI@2
   inputs:
     command: 'test'
     projects: 'src/CleanArchitectureTemplate.sln'
+
+- task: NuGetCommand@2
+  inputs:
+    command: 'pack'
+    packagesToPack: 'JacobsApps.CleanArchitectureProjectTemplate.CSharp.nuspec'
+    versioningScheme: 'off'
