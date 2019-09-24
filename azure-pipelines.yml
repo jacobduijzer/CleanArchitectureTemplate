@@ -20,3 +20,8 @@ steps:
   inputs:
     command: 'build'
     projects: 'src/CleanArchitectureTemplate.sln'
+
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'test'
+    projects: 'src/CleanArchitectureTemplate.sln'
