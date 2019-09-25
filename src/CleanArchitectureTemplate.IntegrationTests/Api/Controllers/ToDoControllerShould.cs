@@ -14,7 +14,7 @@ namespace CleanArchitectureTemplate.IntegrationTests.Api.Controllers
         public ToDoControllerShould(ApiTestFixture fixture) =>
             _fixture = fixture;
 
-        [Fact(Skip = "Skipped due to AppVeyor / netcore 3 issue")]
+        [Fact]
         public async Task ReturnOk()
         {
             var result = await _fixture.HttpClient.GetAsync("/api/todo").ConfigureAwait(false);
@@ -22,7 +22,7 @@ namespace CleanArchitectureTemplate.IntegrationTests.Api.Controllers
             result.StatusCode.Should().Be(HttpStatusCode.OK);
         }
 
-        [Fact(Skip = "Skipped due to AppVeyor / netcore 3 issue")]
+        [Fact]
         public async Task ReturnItems()
         {
             var result = await _fixture.Api.GetAllToDoItems().ConfigureAwait(false);

@@ -1,24 +1,23 @@
 ﻿using CleanArchitectureTemplate.IntegrationTests.Helpers;
-using FluentAssertions;
 using System.Net;
 using System.Threading.Tasks;
+using CleanArchitectureTemplate.Web;
+using FluentAssertions;
 using Xunit;
 
 namespace CleanArchitectureTemplate.IntegrationTests.Web.Pages
 {
-    [Collection(Constants.WEB_TEST_FIXTURE_COLLECTION)]
-    public class IndexShould
+    public class IndexShould : BasePageTest<Startup>
     {
-        private readonly WebTestFixture fixture;
+        public IndexShould(CustomWebApplicationFactory<Startup> factory) : base(factory)
+        {
+        }
 
-        public IndexShould(WebTestFixture fixture) =>
-            this.fixture = fixture;
-
-        [Fact(Skip = "To Fix")]
+        [Fact]
         public async Task ReturnOk()
         {
-            var response = await fixture.HttpClient.GetAsync("/").ConfigureAwait(false);
-            response.Should().NotBeNull();
+            var response = await HttpClient.GetAsync("/");
+            response.EnsureSuccessStatusCode();
             response.StatusCode.Should().Be(HttpStatusCode.OK);
         }
     }

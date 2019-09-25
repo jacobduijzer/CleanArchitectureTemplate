@@ -32,7 +32,7 @@ namespace CleanArchitectureTemplate.Web
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Latest);
+            services.AddRazorPages();
 
             // TODO: read from appsettings.json
             var applicationSettings = ApplicationSettings.Builder
@@ -58,10 +58,18 @@ namespace CleanArchitectureTemplate.Web
             {
                 app.UseDeveloperExceptionPage();
             }
+            else
+            {
+                app.UseExceptionHandler("/Error");
+                app.UseHsts();
+            }
 
             app.UseHttpsRedirection();
+            app.UseStaticFiles();
+
             app.UseRouting();
-            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+
+            app.UseEndpoints(endpoints => { endpoints.MapRazorPages(); });
         }
     }
 }

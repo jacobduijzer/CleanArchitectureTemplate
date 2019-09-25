@@ -41,11 +41,5 @@ namespace CleanArchitectureTemplate.Infrastructure.Shared
 
             return saveResult;
         }
-
-        //protected override void OnModelCreating(ModelBuilder modelBuilder)
-        //{
-        //    modelBuilder.ApplyConfiguration(new CustomerEntityTypeConfiguration());
-        //    modelBuilder.ApplyConfiguration(new ProductEntityTypeConfiguration());
-        //}
     }
 }

@@ -36,6 +36,11 @@ dotnet new  cleanarchitectureproject -n SomeFancyNamespace
 
 # Release Notes
 
+> ## v2.2.2 (09/25/2019)
+> - Fixing issues with razor + core 3.0
+> - Fixing issues with integration tests (added custom web factory)
+> - Added test data for Integration tests
+
 > ## v2.2.1 (09/24/2019)
 > - Updgrade to .NET Core 3.0
 > - Upgraded all packages
