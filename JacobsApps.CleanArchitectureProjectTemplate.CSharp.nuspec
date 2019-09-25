@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
     <id>JacobsApps.CleanArchitectureProjectTemplate.CSharp</id>
-    <version>2.2.2</version>
+    <version>2.2.3</version>
     <description>
       Creates a "clean architecture" project setup for a MVC / WebApi project.
     </description>
