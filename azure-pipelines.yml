@@ -39,7 +39,7 @@ steps:
   inputs:
     command: 'pack'
     packagesToPack: 'JacobsApps.CleanArchitectureProjectTemplate.CSharp.nuspec'
-    versioningScheme: 'off'
+    versioningScheme: 'byBuildNumber'
 
 - task: NuGetCommand@2
   displayName: "Push"
