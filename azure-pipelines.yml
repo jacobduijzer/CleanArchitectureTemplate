@@ -1,5 +1,3 @@
-name: $(majorMinorVersion).$(semanticVersion) # $(rev:r)
-
 trigger:
   branches:
     include:
@@ -35,7 +33,7 @@ steps:
   inputs:
     command: 'pack'
     packagesToPack: 'JacobsApps.CleanArchitectureProjectTemplate.CSharp.nuspec'
-    versioningScheme: 'byBuildNumber'
+    versioningScheme: 'off'
 
 - task: NuGetCommand@2
   displayName: "Push"
