@@ -36,6 +36,11 @@ dotnet new  cleanarchitectureproject -n SomeFancyNamespace
 
 # Release Notes
 
+> ## v2.3.0 (09/27/2019)
+> - More changes and improvements for .NET Core 3.0
+> - Removed pagination, never using it
+> - Restructured project locations
+
 > ## v2.2.3 (09/25/2019)
 > - Disabled nullable (new C# 8 feature)
 
