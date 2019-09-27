@@ -2,22 +2,23 @@ using CleanArchitectureTemplate.IntegrationTests.Helpers;
 using FluentAssertions;
 using System.Net;
 using System.Threading.Tasks;
+using CleanArchitectureTemplate.Api;
+using Refit;
 using Xunit;
 
 namespace CleanArchitectureTemplate.IntegrationTests.Api.Controllers
 {
-    [Collection(Constants.API_TEST_FIXTURE_COLLECTION)]
-    public class ToDoControllerShould
+    public class ToDoControllerShould : BaseIntegrationTest<Startup>
     {
-        private readonly ApiTestFixture _fixture;
+        private readonly IApiDefinition _api;
 
-        public ToDoControllerShould(ApiTestFixture fixture) =>
-            _fixture = fixture;
+        public ToDoControllerShould(CustomWebApplicationFactory<Startup> factory) : base(factory) =>
+            _api = RestService.For<IApiDefinition>(HttpClient);
 
         [Fact]
         public async Task ReturnOk()
         {
-            var result = await _fixture.HttpClient.GetAsync("/api/todo").ConfigureAwait(false);
+            var result = await HttpClient.GetAsync("/api/todo");
             result.Should().NotBeNull();
             result.StatusCode.Should().Be(HttpStatusCode.OK);
         }
@@ -25,7 +26,7 @@ namespace CleanArchitectureTemplate.IntegrationTests.Api.Controllers
         [Fact]
         public async Task ReturnItems()
         {
-            var result = await _fixture.Api.GetAllToDoItems().ConfigureAwait(false);
+            var result = await _api.GetAllToDoItems();
             result.Should().NotBeNullOrEmpty().And.HaveCount(6);
         }
     }

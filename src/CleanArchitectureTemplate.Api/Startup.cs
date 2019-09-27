@@ -12,54 +12,47 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Reflection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
 
 namespace CleanArchitectureTemplate.Api
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
+        private readonly IConfiguration _configuration;
+        public Startup(IConfiguration configuration) => _configuration = configuration;
 
-        public IConfiguration Configuration { get; }
-
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc()
-                .SetCompatibilityVersion(CompatibilityVersion.Latest);
+            // TODO: Logging
 
-            // TODO: read from appsettings.json
-            var applicationSettings = ApplicationSettings.Builder
-                .WithCacheDuration(TimeSpan.FromSeconds(10))
-                .Build();
-
-            services.AddSingleton<IApplicationSettings>(x => applicationSettings);
-            services.AddDbContext<AppDbContext>(options =>
-            {
-                options.UseInMemoryDatabase("in-mem-prod-database");
-                options.EnableSensitiveDataLogging(true);
-            });
-            services.AddScoped<IDomainEventsDispatcher, DomainEventsDispatcher>();
-            services.AddScoped<IReadOnlyRepository<ToDoItem>, CachedRepositoryDecorator<ToDoItem>>();
-            services.AddScoped<IRepository<ToDoItem>, EfRepository<ToDoItem>>();
-            services.AddMediatR(cfg => cfg.AsScoped(), typeof(ToDoItemsQueryHandler).GetTypeInfo().Assembly);
+            services
+                .AddDbContext<AppDbContext>(options =>
+                {
+                    options.UseInMemoryDatabase("in-mem-prod-database");
+                    options.EnableSensitiveDataLogging(true);
+                })
+                .AddScoped<IDomainEventsDispatcher, DomainEventsDispatcher>()
+                .AddScoped<IReadOnlyRepository<ToDoItem>, CachedRepositoryDecorator<ToDoItem>>()
+                .AddScoped<IRepository<ToDoItem>, EfRepository<ToDoItem>>()
+                .AddMediatR(cfg => cfg.AsScoped(), typeof(ToDoItemsQueryHandler).GetTypeInfo().Assembly)
+                .AddSwaggerGen(config => config.SwaggerDoc("v1", new OpenApiInfo {Title = "API", Version = "v1"}))
+                .AddControllers();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseHttpsRedirection();
-
-            app.UseRouting();
-
-            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+            app
+                .UseHttpsRedirection()
+                .UseRouting()
+                .UseEndpoints(config => config.MapControllers())
+                .UseSwagger()
+                .UseSwaggerUI(config => config.SwaggerEndpoint("v1/swagger.json", "API - V1"));
         }
     }
 }
