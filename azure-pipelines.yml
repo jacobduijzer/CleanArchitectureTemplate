@@ -35,7 +35,7 @@ steps:
   inputs:
     command: 'test'
     projects: 'src/CleanArchitectureTemplate.sln'
-    arguments: '/p:CollectCoverage=true /p:CoverletOutputFormat=opencover --logger trx --results-directory test-results'
+    arguments: '/p:CollectCoverage=true /p:CoverletOutputFormat=opencover'
 
 - task: SonarCloudAnalyze@1
 
