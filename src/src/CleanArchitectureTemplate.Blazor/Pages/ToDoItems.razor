@@ -1,0 +1,55 @@
+﻿@page "/todoitems"
+
+@using CleanArchitectureTemplate.Application.ToDoItems.Specifications;
+@using CleanArchitectureTemplate.Application.ToDoItems.UseCases;
+@using CleanArchitectureTemplate.Domain.ToDoItems
+@using MediatR
+@inject IMediator Mediator
+
+<h1>ToDo Items</h1>
+
+<p>This component demonstrates fetching data from a database using Mediatr.</p>
+
+@if (_todoItems == null)
+{
+    <p>
+        <em>Loading...</em>
+    </p>
+}
+else
+{
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Description</th>
+            <th>Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in _todoItems)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Description</td>
+                <td>@item.IsDone</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+
+@code {
+    private ToDoItem[] _todoItems;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var result = await Mediator
+            .Send(new ToDoItemsQuery(new AllToDoItems()))
+            .ConfigureAwait(false);
+
+        if (result != null && result.Any())
+            _todoItems = result.ToArray();
+    }
+
+}
