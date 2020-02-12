@@ -330,3 +330,4 @@ ASALocalRun/
 .mfractor/
 src/CleanArchitectureTemplate.IntegrationTests/coverage.opencover.xml
 src/CleanArchitectureTemplate.UnitTests/coverage.opencover.xml
+*.blob
