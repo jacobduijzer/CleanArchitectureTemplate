@@ -29,12 +29,13 @@ steps:
   inputs:
     command: 'build'
     projects: 'src/CleanArchitectureTemplate.sln'
+
 - task: DotNetCoreCLI@2
   displayName: "Test"
   inputs:
     command: 'test'
     projects: 'src/CleanArchitectureTemplate.sln'
-    arguments: '/p:CollectCoverage=true /p:CoverletOutputFormat=opencover'
+    arguments: '/p:CollectCoverage=true /p:CoverletOutputFormat=opencover --logger trx --results-directory test-results'
 
 - task: SonarCloudAnalyze@1
 
