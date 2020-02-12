@@ -17,6 +17,15 @@ steps:
     packageType: 'sdk'
     version: '3.1.x'
    
+- task: SonarCloudPrepare@1
+  inputs:
+    SonarCloud: 'SonarCloud-CleanArchitectureTemplate'
+    organization: 'jacobduijzer-github'
+    scannerMode: 'CLI'
+    configMode: 'manual'
+    cliProjectKey: 'CleanArchitectureTemplate'
+    cliSources: '.'
+
 - task: DotNetCoreCLI@2
   displayName: "Build"
   inputs:
@@ -27,6 +36,8 @@ steps:
   inputs:
     command: 'test'
     projects: 'src/CleanArchitectureTemplate.sln'
+
+- task: SonarCloudAnalyze@1
 
 - task: NuGetCommand@2
   displayName: "Pack"
