@@ -22,9 +22,7 @@ steps:
     SonarCloud: 'SonarCloud-CleanArchitectureTemplate'
     organization: 'jacobduijzer-github'
     scannerMode: 'CLI'
-    configMode: 'manual'
-    cliProjectKey: 'CleanArchitectureTemplate'
-    cliSources: '.'
+    configMode: 'file'
 
 - task: DotNetCoreCLI@2
   displayName: "Build"
