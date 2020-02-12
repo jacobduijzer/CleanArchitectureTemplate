@@ -4,21 +4,22 @@
 }
 
 <table class="table">
+     <caption>ToDo Items</caption>
     <thead>
-        <tr>
-            <th>Description</th>
-            <th>Due date</th>
-            <th>Is done</th>
-        </tr>
+    <tr>
+        <th scope="col">Description</th>
+        <th scope="col">Due date</th>
+        <th scope="col">Is done</th>
+    </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model.ToDoItems)
-        {
-            <tr>
-                <td>@item.Description</td>
-                <td>@item.DueDate</td>
-                <td>@item.IsDone</td>
-            </tr>
-        }
+    @foreach (var item in Model.ToDoItems)
+    {
+        <tr>
+            <td>@item.Description</td>
+            <td>@item.DueDate</td>
+            <td>@item.IsDone</td>
+        </tr>
+    }
     </tbody>
 </table>
