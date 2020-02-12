@@ -36,7 +36,7 @@ dotnet new  cleanarchitectureproject -n SomeFancyNamespace
 
 # Release Notes
 
-> ## v2.4.0 (xx/xx/xxxx)
+> ## v2.4.0 (02/12/2020)
 > - Updated to .NET Core 3.1
 > - Added Blazor UI
 
