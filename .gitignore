@@ -331,3 +331,5 @@ ASALocalRun/
 src/CleanArchitectureTemplate.IntegrationTests/coverage.opencover.xml
 src/CleanArchitectureTemplate.UnitTests/coverage.opencover.xml
 *.blob
+coverage.opencover.xml
+
