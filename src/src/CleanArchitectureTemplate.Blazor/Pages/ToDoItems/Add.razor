@@ -1,0 +1,46 @@
+﻿@page "/todoitems/add"
+
+@using CleanArchitectureTemplate.Application.ToDoItems.UseCases;
+@using CleanArchitectureTemplate.Domain.ToDoItems
+@using MediatR
+@inject IMediator Mediator
+@inject NavigationManager Navigation
+
+<h1>Add ToDo Item</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form>
+            <div class="form-group">
+                <label for="Description" class="control-label">Description</label>
+                <input for="Description" class="form-control" @bind="@_toDoItem.Description" />
+            </div>
+            <div class="form-group">
+                <label asp-for="DueDate" class="control-label">Due data</label>
+                <input for="DueDate" class="form-control" @bind="@_toDoItem.DueDate" />
+            </div>
+            <div class="form-group">
+                <button type="button" class="btn btn-default" @onclick="@(async () => await CreateToDoItem())">Save</button>
+                <button class="btn" @onclick="@Cancel">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@code {
+
+    ToDoItem _toDoItem = new ToDoItem();
+
+    private async Task CreateToDoItem()
+    {
+        await Mediator.Send(new CreateToDoItemCommand(new CreateToDoItemRequest
+        {
+            Description = _toDoItem.Description,
+            DueDate = _toDoItem.DueDate
+        })).ConfigureAwait(false);
+        Navigation.NavigateTo("/todoitems");
+    }
+
+    void Cancel() => Navigation.NavigateTo("/todoitems");
+}

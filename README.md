@@ -36,6 +36,10 @@ dotnet new  cleanarchitectureproject -n SomeFancyNamespace
 
 # Release Notes
 
+> ## v2.4.0 (xx/xx/xxxx)
+> - Updated to .NET Core 3.1
+> - Added Blazor UI
+
 > ## v2.3.0 (09/27/2019)
 > - More changes and improvements for .NET Core 3.0
 > - Removed pagination, never using it

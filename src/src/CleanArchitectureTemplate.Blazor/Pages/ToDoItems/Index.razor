@@ -8,7 +8,9 @@
 
 <h1>ToDo Items</h1>
 
-<p>This component demonstrates fetching data from a database using Mediatr.</p>
+<p>
+    <a href="/todoitems/add">Create</a>
+</p>
 
 @if (_todoItems == null)
 {
@@ -24,6 +26,7 @@ else
             <th>Id</th>
             <th>Description</th>
             <th>Status</th>
+            <th>Due date></th>
         </tr>
         </thead>
         <tbody>
@@ -33,6 +36,7 @@ else
                 <td>@item.Id</td>
                 <td>@item.Description</td>
                 <td>@item.IsDone</td>
+                <td>@item.DueDate</td>
             </tr>
         }
         </tbody>
@@ -49,7 +53,7 @@ else
             .ConfigureAwait(false);
 
         if (result != null && result.Any())
-            _todoItems = result.ToArray();
+            _todoItems = result.OrderByDescending(x => x.DueDate).ThenBy(x => x.IsDone).ToArray();
     }
 
 }
