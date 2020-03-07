@@ -20,6 +20,15 @@ I am switching back to .NET Core 2.2 due to the belated final release of .NET Co
 
 * Extend ToDo sample with full CRUD
 * Change Mvc site to show ToDo samples only
+* Better templating
+  * full
+  * empty
+  * api
+  * razor
+  * web
+  * docker
+  * docker-compose
+  * postgresql
 
 # Usage
 
