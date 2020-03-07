@@ -41,7 +41,8 @@ steps:
 
 - task: CmdLine@2
   inputs:
-    script: 'nuget pack JacobsApps.CleanArchitectureProjectTemplate.CSharp.nuspec -NoDefaultExcludes'
+    command: 'custom'
+    arguments: 'pack JacobsApps.CleanArchitectureProjectTemplate.CSharp.nuspec -NoDefaultExcludes'
 
 # - task: NuGetCommand@2
 #   displayName: "Pack"
