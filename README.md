@@ -53,7 +53,7 @@ to run the Website in docker.
 
 > ## v2.5.0 (03/08/2020)
 > - Included a default .editorconfig
-> - Better templating (exluding sample code by default)
+> - Better templating (excluding sample code by default)
 > - Latest package versions
 > - Added Docker & docker-compose files
 
