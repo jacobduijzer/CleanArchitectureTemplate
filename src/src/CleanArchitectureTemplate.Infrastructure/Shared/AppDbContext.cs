@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-#if (IncludeSampleCode)
+#if IncludeSampleCode
 using CleanArchitectureTemplate.Domain.ToDoItems;
 #endif
 
@@ -26,7 +26,7 @@ namespace CleanArchitectureTemplate.Infrastructure.Shared
             _mediator = mediator;
         }
 
-#if (IncludeSampleCode)
+#if IncludeSampleCode
         public DbSet<ToDoItem> ToDoItems { get; set; }
 #endif
 

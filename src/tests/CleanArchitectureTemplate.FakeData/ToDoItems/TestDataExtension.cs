@@ -7,11 +7,13 @@ namespace CleanArchitectureTemplate.FakeData.ToDoItems
     {
         public static void Seed(this AppDbContext dbContext)
         {
+#if IncludeSampleCode
             if (!dbContext.ToDoItems.Any())
             {
                 dbContext.ToDoItems.AddRange(ToDoItemData.GenerateTestData(100));
                 dbContext.SaveChanges();
             }
+#endif
         }
     }
 }
