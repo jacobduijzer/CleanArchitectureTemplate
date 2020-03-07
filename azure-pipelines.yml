@@ -56,6 +56,6 @@ steps:
   condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
   inputs:
     command: 'push'
-    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
+    packagesToPush: '$(Build.ArtifactStagingDirectory)/JacobsApps.CleanArchitectureProjectTemplate.CSharp.*.nupkg'
     nuGetFeedType: 'external'
     publishFeedCredentials: 'NuGet'
