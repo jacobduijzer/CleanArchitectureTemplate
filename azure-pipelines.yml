@@ -39,11 +39,11 @@ steps:
 
 - task: SonarCloudAnalyze@1
 
-- task: CmdLine@2
+- task: NuGetCommand@2
   inputs:
     command: 'custom'
     arguments: 'pack JacobsApps.CleanArchitectureProjectTemplate.CSharp.nuspec -NoDefaultExcludes'
-
+    
 # - task: NuGetCommand@2
 #   displayName: "Pack"
 #   inputs:
