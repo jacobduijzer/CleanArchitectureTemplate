@@ -45,6 +45,13 @@ dotnet new  cleanarchitectureproject -n SomeFancyNamespace
 
 # Release Notes
 
+
+> ## v2.5.0 (?)
+> - Included a default .editorconfig
+> - Better templating (exluding sample code by default)
+> - Latest package versions
+> - 
+
 > ## v2.4.1 (02/12/2020)
 > - fixed some minor SonarQube issues
 
