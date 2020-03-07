@@ -1,0 +1,10 @@
+version: '3.7'
+
+services:
+  cleanarchitecturecontainer.blazor:
+    build:
+      context: ../../
+      dockerfile: Dockerfile
+      args:
+        PROJECT_FILE: src/CleanArchitectureTemplate.Blazor/CleanArchitectureTemplate.Blazor.csproj
+        PROJECT_DLL: CleanArchitectureTemplate.Blazor.dll

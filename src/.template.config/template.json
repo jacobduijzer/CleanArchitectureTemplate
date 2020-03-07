@@ -24,7 +24,7 @@
           "condition": "(!IncludeSampleCode)",
           "exclude": [
             "src/CleanArchitectureTemplate.Api/ToDoItems/*",
-            "src/CleanArchitectureTemplate.Application/ToDoItems/*",
+            "src/CleanArchitectureTemplate.Application/ToDoItems/**/*",
             "src/CleanArchitectureTemplate.Blazor/Pages/TodoItems/*",
             "src/CleanArchitectureTemplate.Domain/ToDoItems/*",
             "src/CleanArchitectureTemplate.Web/Pages/Todo.*",
