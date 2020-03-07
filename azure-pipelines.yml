@@ -29,13 +29,14 @@ steps:
   inputs:
     command: 'build'
     projects: 'src/CleanArchitectureTemplate.sln'
+    arguments: '/p:DefineConstants=IncludeSampleCode'
 
 - task: DotNetCoreCLI@2
   displayName: "Test"
   inputs:
     command: 'test'
     projects: 'src/CleanArchitectureTemplate.sln'
-    arguments: '/p:CollectCoverage=true /p:CoverletOutputFormat=opencover'
+    arguments: '/p:DefineConstants=IncludeSampleCode /p:CollectCoverage=true /p:CoverletOutputFormat=opencover'
 
 - task: SonarCloudAnalyze@1
 
