@@ -1,6 +1,4 @@
-using CleanArchitectureTemplate.Application.ToDoItems.UseCases;
 using CleanArchitectureTemplate.Domain.Shared;
-using CleanArchitectureTemplate.Domain.ToDoItems;
 using CleanArchitectureTemplate.Infrastructure.Shared;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
@@ -11,6 +9,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 using Microsoft.Extensions.Hosting;
+#if (IncludeSampleCode)
+using CleanArchitectureTemplate.Application.ToDoItems.UseCases;
+using CleanArchitectureTemplate.Domain.ToDoItems;
+#endif
 
 namespace CleanArchitectureTemplate.Web
 {
@@ -35,8 +37,10 @@ namespace CleanArchitectureTemplate.Web
 
                 })
                 .AddScoped<IDomainEventsDispatcher, DomainEventsDispatcher>()
+#if (IncludeSampleCode)
                 .AddScoped<IRepository<ToDoItem>, EfRepository<ToDoItem>>()
                 .AddMediatR(cfg => cfg.AsScoped(), typeof(ToDoItemsQueryHandler).GetTypeInfo().Assembly)
+#endif
                 .AddRazorPages();
         }
 

@@ -1,0 +1,9 @@
+version: '3.7'
+
+services:
+  cleanarchitecturecontainer.web:
+    image: cleanarchitecturecontainer.web
+    restart: always
+    ports:
+      - 80:80
+      - 443:443

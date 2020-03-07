@@ -12,15 +12,6 @@ My interpretation of a clean architecture project setup for asp.net an MVC & API
 
 Please read the [Wiki](https://github.com/jacobduijzer/CleanArchitectureTemplate/wiki) to learn more about Clean Architecture and the project setup of this package.
 
-## DISCLAIMER
-
-I am switching back to .NET Core 2.2 due to the belated final release of .NET Core 3.0. I am using this package in production and have to keep adding some new projects based on this template.
-
-## TODO: 
-
-* Extend ToDo sample with full CRUD
-* Change Mvc site to show ToDo samples only
-
 # Usage
 
 To install the template so you can use it with `dotnet new`:
@@ -29,12 +20,42 @@ To install the template so you can use it with `dotnet new`:
 dotnet new --install JacobsApps.CleanArchitectureProjectTemplate.CSharp 
 ```
 
-To create a new project:
+To create a new project with sample code:
+```
+dotnet new  cleanarchitectureproject -n SomeFancyNamespace -I
+```
+
+To create a new, empty project:
 ```
 dotnet new  cleanarchitectureproject -n SomeFancyNamespace
 ```
 
+To create a new, empty project with the name of the current folder:
+```
+dotnet new  cleanarchitectureproject
+```
+
+# Docker / docker-compose
+
+Go to the 'projectname.Api' folder and execute the following command:
+
+```docker-compose -f docker-compose.yml -f docker-compose.override.yml up --build```
+
+to run the Api in docker.
+
+Go to the 'projectname.Web' folder and execute the following command:
+
+```docker-compose -f docker-compose.yml -f docker-compose.override.yml up --build```
+
+to run the Website in docker.
+
 # Release Notes
+
+> ## v2.5.0 (03/08/2020)
+> - Included a default .editorconfig
+> - Better templating (exluding sample code by default)
+> - Latest package versions
+> - Added Docker & docker-compose files
 
 > ## v2.4.1 (02/12/2020)
 > - fixed some minor SonarQube issues
@@ -97,6 +118,11 @@ dotnet new  cleanarchitectureproject -n SomeFancyNamespace
 > - Added repository + mediator to Web project
 > - Added ToDo page to Web project
 > - Added Due date to fake data
+
+# ToDo
+
+* Run tests inside docker build
+
 
 # Links
 

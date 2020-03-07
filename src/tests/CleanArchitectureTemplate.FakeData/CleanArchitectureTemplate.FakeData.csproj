@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Bogus" Version="28.3.1" />
+    <PackageReference Include="Bogus" Version="29.0.1" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\CleanArchitectureTemplate.Domain\CleanArchitectureTemplate.Domain.csproj" />

@@ -1,11 +1,13 @@
 using System;
 using CleanArchitectureTemplate.Domain.Shared;
-using CleanArchitectureTemplate.Domain.ToDoItems;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+#if (IncludeSampleCode)
+using CleanArchitectureTemplate.Domain.ToDoItems;
+#endif
 
 namespace CleanArchitectureTemplate.Infrastructure.Shared
 {
@@ -24,7 +26,9 @@ namespace CleanArchitectureTemplate.Infrastructure.Shared
             _mediator = mediator;
         }
 
+#if (IncludeSampleCode)
         public DbSet<ToDoItem> ToDoItems { get; set; }
+#endif
 
         public override async Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess,
             CancellationToken cancellationToken = new CancellationToken())

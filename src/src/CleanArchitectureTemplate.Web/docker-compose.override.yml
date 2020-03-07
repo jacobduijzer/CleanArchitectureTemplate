@@ -1,0 +1,10 @@
+version: '3.7'
+
+services:
+  cleanarchitecturecontainer.web:
+    build:
+      context: ../../
+      dockerfile: Dockerfile
+      args:
+        PROJECT_FILE: src/CleanArchitectureTemplate.Web/CleanArchitectureTemplate.Web.csproj
+        PROJECT_DLL: CleanArchitectureTemplate.Web.dll

@@ -39,15 +39,20 @@ steps:
 
 - task: SonarCloudAnalyze@1
 
-- task: NuGetCommand@2
-  displayName: "Pack"
+- task: NuGetToolInstaller@1
+  displayName: "Install latest nuget"
   inputs:
-    command: 'pack'
-    packagesToPack: 'JacobsApps.CleanArchitectureProjectTemplate.CSharp.nuspec'
-    versioningScheme: 'off'
+    versionSpec: '>= 5.4.0-0'
 
 - task: NuGetCommand@2
-  displayName: "Push"
+  displayName: "NuGet Pack"
+  inputs:
+    command: 'custom'
+    arguments: 'pack JacobsApps.CleanArchitectureProjectTemplate.CSharp.nuspec -NoDefaultExcludes'
+
+- task: NuGetCommand@2
+  displayName: "NuGet Push"
+  condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
   inputs:
     command: 'push'
     packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
