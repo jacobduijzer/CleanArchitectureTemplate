@@ -1,6 +1,4 @@
-using CleanArchitectureTemplate.Application.ToDoItems.UseCases;
 using CleanArchitectureTemplate.Domain.Shared;
-using CleanArchitectureTemplate.Domain.ToDoItems;
 using CleanArchitectureTemplate.Infrastructure.Shared;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
@@ -11,6 +9,10 @@ using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+#if (IncludeSampleCode)
+using CleanArchitectureTemplate.Domain.ToDoItems;
+using CleanArchitectureTemplate.Application.ToDoItems.UseCases;
+#endif
 
 namespace CleanArchitectureTemplate.Api
 {
@@ -30,8 +32,10 @@ namespace CleanArchitectureTemplate.Api
                     options.EnableSensitiveDataLogging(true);
                 })
                 .AddScoped<IDomainEventsDispatcher, DomainEventsDispatcher>()
+#if (IncludeSampleCode)
                 .AddScoped<IRepository<ToDoItem>, EfRepository<ToDoItem>>()
                 .AddMediatR(cfg => cfg.AsScoped(), typeof(ToDoItemsQueryHandler).GetTypeInfo().Assembly)
+#endif
                 .AddSwaggerGen(config => config.SwaggerDoc("v1", new OpenApiInfo {Title = "API", Version = "v1"}))
                 .AddControllers();
         }
