@@ -9,7 +9,7 @@
     <releaseNotes>Upgraded to .NET Core 3.1. Added a Blazor UI.</releaseNotes>
     <authors>Jacob Duijzer</authors>
     <projectUrl>https://github.com/jacobduijzer/CleanArchitectureTemplate</projectUrl>
-    <licenseUrl>https://github.com/jacobduijzer/CleanArchitectureTemplate/blob/master/LICENSE</licenseUrl>
+    <license type="expression">MIT</license>
     <packageTypes>
       <packageType name="Template" />
     </packageTypes>
