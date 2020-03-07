@@ -1,7 +1,7 @@
 {
   "$schema": "http://json.schemastore.org/template",
   "author": "Jacob Duijzer",
-  "classifications": ["Web", "etc", "Clean Architecture Project Solution"],
+  "classifications": ["Web", "Clean Architecture Project"],
   "identity": "JacobsApps.CleanArchitectureProjectTemplate.CSharp",
   "name": "Clean Architecture Project Template",
   "tags": {
@@ -25,9 +25,18 @@
           "exclude": [
             "src/CleanArchitectureTemplate.Api/ToDoItems/*",
             "src/CleanArchitectureTemplate.Application/ToDoItems/*",
+            "src/CleanArchitectureTemplate.Blazor/Pages/TodoItems/*",
             "src/CleanArchitectureTemplate.Domain/ToDoItems/*",
-            "src/CleanArchitectureTemplate.Application/ToDoItems/*"
-          ]}
+            "src/CleanArchitectureTemplate.Web/Pages/Todo.*",
+            "tests/CleanArchitectureTemplate.FakeData/ToDoItems/*",
+            "tests/CleanArchitectureTemplate.IntegrationTests/Api/Controllers/ToDoControllerShould.cs",
+            "tests/CleanArchitectureTemplate.IntegrationTests/Api/Controllers/IApiDefinition.cs",
+            "tests/CleanArchitectureTemplate.IntegrationTests/Web/Pages/ToDoShould.cs",
+            "tests/CleanArchitectureTemplate.UnitTests/Application/ToDoItems/*",
+            "tests/CleanArchitectureTemplate.UnitTests/Domain/ToDoItems/*",
+            "tests/CleanArchitectureTemplate.UnitTests/Web/Pages/ToDoModelShould.cs"
+          ]
+        }
       ]
     }
   ]

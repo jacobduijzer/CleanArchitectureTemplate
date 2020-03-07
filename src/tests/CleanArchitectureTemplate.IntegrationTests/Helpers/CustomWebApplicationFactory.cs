@@ -1,8 +1,6 @@
 using System;
 using System.Reflection;
-using CleanArchitectureTemplate.Application.ToDoItems.UseCases;
 using CleanArchitectureTemplate.Domain.Shared;
-using CleanArchitectureTemplate.Domain.ToDoItems;
 using CleanArchitectureTemplate.Infrastructure.Shared;
 using MediatR;
 using Microsoft.AspNetCore.Hosting;
@@ -11,6 +9,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Moq;
+#if (IncludeSampleCode)
+using CleanArchitectureTemplate.Application.ToDoItems.UseCases;
+using CleanArchitectureTemplate.Domain.ToDoItems;
+#endif
+
 
 namespace CleanArchitectureTemplate.IntegrationTests.Helpers
 {
@@ -31,8 +34,13 @@ namespace CleanArchitectureTemplate.IntegrationTests.Helpers
                 });
 
                 services.AddSingleton<IDomainEventsDispatcher>(provider => new Mock<IDomainEventsDispatcher>().Object);
+#if (IncludeSampleCode)
                 services.AddScoped<IRepository<ToDoItem>, EfRepository<ToDoItem>>();
                 services.AddMediatR(cfg => cfg.AsScoped(), typeof(ToDoItemsQueryHandler).GetTypeInfo().Assembly);
+#else
+                //services.AddScoped<IRepository<SomeModel>, EfRepository<SomeModel>>();
+                //services.AddMediatR(cfg => cfg.AsScoped(), typeof(SomeHandler).GetTypeInfo().Assembly);
+#endif
 
                 var sp = services.BuildServiceProvider();
                 using (var scope = sp.CreateScope())
@@ -45,7 +53,11 @@ namespace CleanArchitectureTemplate.IntegrationTests.Helpers
 
                     try
                     {
+#if (IncludeSampleCode)
                         db.SeedToDoItemsTestData();
+#else
+                        //db.SeedItemsTestData();
+#endif
                     }
                     catch (Exception ex)
                     {

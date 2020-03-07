@@ -1,16 +1,18 @@
 using System.Reflection;
-using CleanArchitectureTemplate.Application.ToDoItems.UseCases;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using CleanArchitectureTemplate.Domain.Shared;
-using CleanArchitectureTemplate.Domain.ToDoItems;
-using CleanArchitectureTemplate.FakeData.ToDoItems;
 using CleanArchitectureTemplate.Infrastructure.Shared;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+#if (IncludeSampleCode)
+using CleanArchitectureTemplate.Application.ToDoItems.UseCases;
+using CleanArchitectureTemplate.Domain.ToDoItems;
+using CleanArchitectureTemplate.FakeData.ToDoItems;
+#endif
 
 namespace CleanArchitectureTemplate.Blazor
 {
@@ -29,8 +31,13 @@ namespace CleanArchitectureTemplate.Blazor
                     options.EnableSensitiveDataLogging(true);
                 })
                 .AddScoped<IDomainEventsDispatcher, DomainEventsDispatcher>()
+#if (IncludeSampleCode)
                 .AddScoped<IRepository<ToDoItem>, EfRepository<ToDoItem>>()
                 .AddMediatR(cfg => cfg.AsScoped(), typeof(ToDoItemsQueryHandler).GetTypeInfo().Assembly)
+#else
+                //.AddScoped<IRepository<SomeModel>, EfRepository<SomeModel>>()
+                //.AddMediatR(cfg => cfg.AsScoped(), typeof(SomeHandler).GetTypeInfo().Assembly)
+#endif
                 .AddRazorPages();
 
             services.AddServerSideBlazor();

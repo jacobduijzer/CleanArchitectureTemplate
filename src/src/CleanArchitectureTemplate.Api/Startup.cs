@@ -35,6 +35,9 @@ namespace CleanArchitectureTemplate.Api
 #if (IncludeSampleCode)
                 .AddScoped<IRepository<ToDoItem>, EfRepository<ToDoItem>>()
                 .AddMediatR(cfg => cfg.AsScoped(), typeof(ToDoItemsQueryHandler).GetTypeInfo().Assembly)
+#else
+                //.AddScoped<IRepository<SomeModel>, EfRepository<SomeModel>>()
+                //.AddMediatR(cfg => cfg.AsScoped(), typeof(SomeHandler).GetTypeInfo().Assembly)
 #endif
                 .AddSwaggerGen(config => config.SwaggerDoc("v1", new OpenApiInfo {Title = "API", Version = "v1"}))
                 .AddControllers();
