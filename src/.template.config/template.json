@@ -12,16 +12,16 @@
   "sourceName": "CleanArchitectureTemplate",
   "preferNameDirectory": true,
   "symbols": {
-    "Empty": {
+    "IncludeSampleCode": {
       "type": "parameter",
       "dataType": "bool",
-      "defaultValue": "true"
+      "defaultValue": "false"
     }
   },
   "sources": [
     {
       "modifiers": [ {
-          "condition": "(Empty)",
+          "condition": "(!IncludeSampleCode)",
           "exclude": [
             "src/CleanArchitectureTemplate.Api/ToDoItems/*",
             "src/CleanArchitectureTemplate.Application/ToDoItems/*",
