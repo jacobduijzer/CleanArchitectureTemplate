@@ -41,12 +41,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\CleanArchitectureTemplate.Api\CleanArchitectureTemplate.Api.csproj" />
+    <ProjectReference Include="..\..\src\CleanArchitectureTemplate.Api\CleanArchitectureTemplate.Api.csproj"
+      Condition="$(DefineConstants.Contains('Api'))"/>
     <ProjectReference Include="..\..\src\CleanArchitectureTemplate.Application\CleanArchitectureTemplate.Application.csproj" />
     <ProjectReference Include="..\..\src\CleanArchitectureTemplate.Domain\CleanArchitectureTemplate.Domain.csproj" />
     <ProjectReference Include="..\..\src\CleanArchitectureTemplate.Infrastructure\CleanArchitectureTemplate.Infrastructure.csproj" />
     <ProjectReference Include="..\..\src\CleanArchitectureTemplate.Web\CleanArchitectureTemplate.Web.csproj"
-      Condition="$(DefineConstants.Contains('Full'))" />
+      Condition="$(DefineConstants.Contains('Web'))" />
     <ProjectReference Include="..\CleanArchitectureTemplate.FakeData\CleanArchitectureTemplate.FakeData.csproj" />
   </ItemGroup>
 
