@@ -45,7 +45,8 @@
     <ProjectReference Include="..\..\src\CleanArchitectureTemplate.Application\CleanArchitectureTemplate.Application.csproj" />
     <ProjectReference Include="..\..\src\CleanArchitectureTemplate.Domain\CleanArchitectureTemplate.Domain.csproj" />
     <ProjectReference Include="..\..\src\CleanArchitectureTemplate.Infrastructure\CleanArchitectureTemplate.Infrastructure.csproj" />
-    <ProjectReference Include="..\..\src\CleanArchitectureTemplate.Web\CleanArchitectureTemplate.Web.csproj" />
+    <ProjectReference Include="..\..\src\CleanArchitectureTemplate.Web\CleanArchitectureTemplate.Web.csproj"
+      Condition="$(DefineConstants.Contains('Full'))" />
     <ProjectReference Include="..\CleanArchitectureTemplate.FakeData\CleanArchitectureTemplate.FakeData.csproj" />
   </ItemGroup>
 

@@ -12,29 +12,90 @@
   "sourceName": "CleanArchitectureTemplate",
   "preferNameDirectory": true,
   "symbols": {
-    "IncludeSampleCode": {
+    "use-cases": {
       "type": "parameter",
-      "dataType": "bool",
-      "defaultValue": "false"
+      "datatype": "choice",
+      "defaultValue": "emptyapi",
+      "choices": [
+        {
+          "choice": "emptyapi",
+          "description": "Empty solution with API only"
+        },
+        {
+          "choice": "fullapi",
+          "description": "Api solution with sample code"
+        },
+        {
+          "choice": "full",
+          "description": "The whole solution with sample code"
+        }
+      ],
+      "replaces": "use-cases",
+      "onlyIf": [
+        {
+          "after": "\"use-cases\": \""
+        }
+      ]
+    },
+    "EmptyApi": {
+      "type": "computed",
+      "value": "(use-cases == \"emptyapi\")"
+    },
+    "FullApi": {
+      "type": "computed",
+      "value": "(use-cases == \"fullapi\")"
+    },
+    "Api": {
+      "type": "computed",
+      "value": "(EmptyApi || FullApi)"
+    },
+    "Full": {
+      "type": "computed",
+      "value": "(use-cases == \"full\")"
     }
   },
-  "sources": [
-    {
+  "sources": [ {
+      "source": "./",
       "modifiers": [ {
-          "condition": "(!IncludeSampleCode)",
+          "condition": "(EmptyApi)",
           "exclude": [
             "src/CleanArchitectureTemplate.Api/ToDoItems/*",
             "src/CleanArchitectureTemplate.Application/ToDoItems/**/*",
-            "src/CleanArchitectureTemplate.Blazor/Pages/TodoItems/*",
+            "src/CleanArchitectureTemplate.Blazor/**/*",
             "src/CleanArchitectureTemplate.Domain/ToDoItems/*",
-            "src/CleanArchitectureTemplate.Web/Pages/Todo.*",
+            "src/CleanArchitectureTemplate.Web/**/*",
             "tests/CleanArchitectureTemplate.FakeData/ToDoItems/*",
             "tests/CleanArchitectureTemplate.IntegrationTests/Api/Controllers/ToDoControllerShould.cs",
-            "tests/CleanArchitectureTemplate.IntegrationTests/Api/Controllers/IApiDefinition.cs",
-            "tests/CleanArchitectureTemplate.IntegrationTests/Web/Pages/ToDoShould.cs",
-            "tests/CleanArchitectureTemplate.UnitTests/Application/ToDoItems/*",
-            "tests/CleanArchitectureTemplate.UnitTests/Domain/ToDoItems/*",
-            "tests/CleanArchitectureTemplate.UnitTests/Web/Pages/ToDoModelShould.cs"
+            "tests/CleanArchitectureTemplate.IntegrationTests/Api/IApiDefinition.cs",
+            "tests/CleanArchitectureTemplate.IntegrationTests/Web/**/*",
+            "tests/CleanArchitectureTemplate.UnitTests/Application/ToDoItems/**/*",
+            "tests/CleanArchitectureTemplate.UnitTests/Domain/ToDoItems/**/*",
+            "tests/CleanArchitectureTemplate.UnitTests/Web/**/*"
+          ]
+        }, {
+        "condition": "(FullApi)",
+          "exclude": [
+            "src/CleanArchitectureTemplate.Blazor/**/*",
+            "src/CleanArchitectureTemplate.Web/**/*",
+            "tests/CleanArchitectureTemplate.IntegrationTests/Web/**/*",
+            "tests/CleanArchitectureTemplate.UnitTests/Web/**/*"
+          ]
+        },
+        {
+          "condition": "(Full)",
+          "exclude": [
+              "src/CleanArchitectureTemplate.Api/ToDoItems/*",
+              "src/CleanArchitectureTemplate.Application/ToDoItems/**/*",
+              "src/CleanArchitectureTemplate.Blazor/Pages/TodoItems/*",
+              "src/CleanArchitectureTemplate.Domain/ToDoItems/*",
+              "src/CleanArchitectureTemplate.Web/Pages/Todo.*",
+              "tests/CleanArchitectureTemplate.FakeData/ToDoItems/*",
+              "tests/CleanArchitectureTemplate.IntegrationTests/Api/Controllers/ToDoControllerShould.cs",
+              "tests/CleanArchitectureTemplate.IntegrationTests/Api/Controllers/IApiDefinition.cs",
+              "tests/CleanArchitectureTemplate.IntegrationTests/Web/Pages/ToDoShould.cs",
+              "tests/CleanArchitectureTemplate.UnitTests/Application/ToDoItems/*",
+              "tests/CleanArchitectureTemplate.UnitTests/Domain/ToDoItems/*",
+              "tests/CleanArchitectureTemplate.UnitTests/Web/Pages/ToDoModelShould.cs"
           ]
         }
       ]
