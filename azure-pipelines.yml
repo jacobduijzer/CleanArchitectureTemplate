@@ -1,7 +1,4 @@
-trigger:
-  branches:
-    include:
-    - master
+trigger:  
   paths:
     include:
     - '*' 
@@ -61,6 +58,8 @@ steps:
     publishFeedCredentials: 'NuGet'
 
 - task: GitHubRelease@1
+  displayName: "Create GitHub Release"
+  condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
   inputs:
     gitHubConnection: 'github.com_jacobduijzer'
     repositoryName: 'jacobduijzer/CleanArchitectureTemplate'
