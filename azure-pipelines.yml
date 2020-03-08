@@ -51,18 +51,6 @@ steps:
     command: 'custom'
     arguments: 'pack JacobsApps.CleanArchitectureProjectTemplate.CSharp.nuspec -NoDefaultExcludes'
 
-# - task: CopyFiles@2
-#   inputs:
-#     SourceFolder: '$(Build.SourcesDirectory)'
-#     Contents: 'JacobsApps.CleanArchitectureProjectTemplate.CSharp.*.nupkg'
-#     TargetFolder: '$(Build.ArtifactStagingDirectory)'
-
-# - task: PublishBuildArtifacts@1
-#   inputs:
-#     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-#     ArtifactName: 'drop'
-#     publishLocation: 'Container'
-
 - task: NuGetCommand@2
   displayName: "NuGet Push"
   condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
@@ -71,3 +59,15 @@ steps:
     packagesToPush: '$(Build.SourcesDirectory)/JacobsApps.CleanArchitectureProjectTemplate.CSharp.*.nupkg'
     nuGetFeedType: 'external'
     publishFeedCredentials: 'NuGet'
+
+- task: GitHubRelease@1
+  inputs:
+    gitHubConnection: 'github.com_jacobduijzer'
+    repositoryName: 'jacobduijzer/CleanArchitectureTemplate'
+    action: 'create'
+    target: '$(Build.SourceVersion)'
+    tagSource: 'gitTag'
+    title: 'CleanArchitectureTemplate'
+    assets: '$(Build.SourcesDirectory)/JacobsApps.CleanArchitectureProjectTemplate.CSharp.*.nupkg'
+    changeLogCompareToRelease: 'lastFullRelease'
+    changeLogType: 'commitBased'  
