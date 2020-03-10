@@ -51,6 +51,10 @@ steps:
     command: 'custom'
     arguments: 'pack JacobsApps.CleanArchitectureProjectTemplate.CSharp.nuspec -NoDefaultExcludes'
 
+- task: Bash@3
+  inputs:
+    filePath: 'test-project.sh'
+
 - task: NuGetCommand@2
   displayName: "NuGet Push"
   condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
