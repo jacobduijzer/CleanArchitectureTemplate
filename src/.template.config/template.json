@@ -122,9 +122,9 @@
         "condition": "(FullWeb)",
           "exclude": [
             "src/CleanArchitectureTemplate.Blazor/**/*",
-            "src/CleanArchitectureTemplate.Web/**/*",
-            "tests/CleanArchitectureTemplate.IntegrationTests/Web/**/*",
-            "tests/CleanArchitectureTemplate.UnitTests/Web/**/*"
+            "src/CleanArchitectureTemplate.Api/**/*",
+            "tests/CleanArchitectureTemplate.IntegrationTests/Api/**/*",
+            "tests/CleanArchitectureTemplate.UnitTests/Api/**/*"
           ]
         },
         {
