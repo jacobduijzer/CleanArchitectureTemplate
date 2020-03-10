@@ -8,7 +8,7 @@
     "language": "C#",
     "type": "project"
   },
-  "shortName": "cleanarchitectureproject",
+  "shortName": "cleanarchitecture",
   "sourceName": "CleanArchitectureTemplate",
   "preferNameDirectory": true,
   "symbols": {
