@@ -6,6 +6,6 @@ dotnet new -i /home/vsts/work/1/s/JacobsApps.CleanArchitectureProjectTemplate.CS
 
 mkdir FullWeb 
 cd FullWeb 
-dotnet new cleanarchitectureproject -uc fullweb
+dotnet new cleanarchitecture -uc fullweb
 dotnet build
 dotnet test
