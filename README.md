@@ -22,17 +22,17 @@ dotnet new --install JacobsApps.CleanArchitectureProjectTemplate.CSharp
 
 To create a new project with sample code:
 ```
-dotnet new  cleanarchitectureproject -n SomeFancyNamespace -I
+dotnet new  cleanarchitecture -n SomeFancyNamespace -I
 ```
 
 To create a new, empty project:
 ```
-dotnet new  cleanarchitectureproject -n SomeFancyNamespace
+dotnet new  cleanarchitecture -n SomeFancyNamespace
 ```
 
 To create a new, empty project with the name of the current folder:
 ```
-dotnet new  cleanarchitectureproject
+dotnet new  cleanarchitecture
 ```
 
 # Docker / docker-compose
