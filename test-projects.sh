@@ -32,8 +32,8 @@ GetNugetPackage
 
 InstallNugetPackage
 
-CreateBuildAndTestProject Full
-# CreateBuildAndTestProject FullWeb
+CreateBuildAndTestProject EmptyApi 
+#CreateBuildAndTestProject FullWeb
 
 # echo $nugetFile
 # dotnet new -i /home/vsts/work/1/s/JacobsApps.CleanArchitectureProjectTemplate.CSharp.2.5.0.nupkg

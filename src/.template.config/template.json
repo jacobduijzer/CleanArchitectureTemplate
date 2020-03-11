@@ -61,13 +61,13 @@
       "type": "computed",
       "value": "(use-cases == \"emptyweb\")"
     },
-    "FullAWeb": {
+    "FullWeb": {
       "type": "computed",
       "value": "(use-cases == \"fullweb\")"
     },
     "Web": {
       "type": "computed",
-      "value": "(EmptyWeb || FullAWeb)"
+      "value": "(EmptyWeb || FullWeb)"
     },
     "Full": {
       "type": "computed",
@@ -80,12 +80,12 @@
         {
           "condition": "(EmptyApi)",
           "exclude": [
-            "src/CleanArchitectureTemplate.Api/ToDoItems/*",
+            "src/CleanArchitectureTemplate.Api/ToDoItems/**/*",
             "src/CleanArchitectureTemplate.Application/ToDoItems/**/*",
             "src/CleanArchitectureTemplate.Blazor/**/*",
-            "src/CleanArchitectureTemplate.Domain/ToDoItems/*",
+            "src/CleanArchitectureTemplate.Domain/ToDoItems/**/*",
             "src/CleanArchitectureTemplate.Web/**/*",
-            "tests/CleanArchitectureTemplate.FakeData/ToDoItems/*",
+            "tests/CleanArchitectureTemplate.FakeData/ToDoItems/**/*",
             "tests/CleanArchitectureTemplate.IntegrationTests/Api/Controllers/ToDoControllerShould.cs",
             "tests/CleanArchitectureTemplate.IntegrationTests/Api/IApiDefinition.cs",
             "tests/CleanArchitectureTemplate.IntegrationTests/Web/**/*",
