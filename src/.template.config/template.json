@@ -72,6 +72,10 @@
     "Full": {
       "type": "computed",
       "value": "(use-cases == \"full\")"
+    },
+    "IncludeSampleCode": {
+      "type": "computed",
+      "value": "FullWeb || FullApi"
     }
   },
   "sources": [ {

@@ -39,7 +39,7 @@ namespace CleanArchitectureTemplate.IntegrationTests.Helpers
                 services.AddMediatR(cfg => cfg.AsScoped(), typeof(ToDoItemsQueryHandler).GetTypeInfo().Assembly);
 #else
                 //services.AddScoped<IRepository<SomeModel>, EfRepository<SomeModel>>();
-                //services.AddMediatR(cfg => cfg.AsScoped(), typeof(SomeHandler).GetTypeInfo().Assembly);
+                services.AddMediatR(typeof(TStartup).GetTypeInfo().Assembly);
 #endif
 
                 var sp = services.BuildServiceProvider();

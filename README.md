@@ -1,9 +1,4 @@
-| Project status | 
-| --- | 
-| [![Build Status](https://dev.azure.com/JacobsApps/CleanArchitectureTemplate/_apis/build/status/jacobduijzer.CleanArchitectureTemplate?branchName=master)](https://dev.azure.com/JacobsApps/CleanArchitectureTemplate/_build/latest?definitionId=1&branchName=master) | 
-| [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?branch=master&project=CleanArchitectureTemplate&metric=alert_status)](https://sonarcloud.io/dashboard?id=CleanArchitectureTemplate&branch=master) |
-| [![Coverage](https://sonarcloud.io/api/project_badges/measure?branch=master&project=CleanArchitectureTemplate&metric=coverage)](https://sonarcloud.io/dashboard?id=CleanArchitectureTemplate&branch=master) |
-| [![Nuget status](https://buildstats.info/nuget/JacobsApps.CleanArchitectureProjectTemplate.CSharp?includePreReleases=false)](https://www.nuget.org/packages/JacobsApps.CleanArchitectureProjectTemplate.CSharp/) |
+[![Build Status](https://dev.azure.com/JacobsApps/CleanArchitectureTemplate/_apis/build/status/jacobduijzer.CleanArchitectureTemplate?branchName=master)](https://dev.azure.com/JacobsApps/CleanArchitectureTemplate/_build/latest?definitionId=1&branchName=master) [![Nuget status](https://buildstats.info/nuget/JacobsApps.CleanArchitectureProjectTemplate.CSharp?includePreReleases=false)](https://www.nuget.org/packages/JacobsApps.CleanArchitectureProjectTemplate.CSharp/)
 
 
 # Clean Architecture Template

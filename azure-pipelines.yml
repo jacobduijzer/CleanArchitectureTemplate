@@ -52,14 +52,32 @@ steps:
     filePath: 'test-nuget-package.sh'
     arguments: 'EmptyApi'
 
-# - task: NuGetCommand@2
-#   displayName: "NuGet Push"
-#   condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
-#   inputs:
-#     command: 'push'
-#     packagesToPush: '$(Build.SourcesDirectory)/JacobsApps.CleanArchitectureProjectTemplate.CSharp.*.nupkg'
-#     nuGetFeedType: 'external'
-#     publishFeedCredentials: 'NuGet'
+- task: Bash@3
+  displayName: "Test nuget package with 'FullApi' project type"
+  inputs:
+    filePath: 'test-nuget-package.sh'
+    arguments: 'FullApi'  
+
+- task: Bash@3
+  displayName: "Test nuget package with 'EmptyWeb' project type"
+  inputs:
+    filePath: 'test-nuget-package.sh'
+    arguments: 'EmptyWeb'    
+
+- task: Bash@3
+  displayName: "Test nuget package with 'FullWeb' project type"
+  inputs:
+    filePath: 'test-nuget-package.sh'
+    arguments: 'FullWeb'    
+
+- task: NuGetCommand@2
+  displayName: "NuGet Push"
+  condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
+  inputs:
+    command: 'push'
+    packagesToPush: '$(Build.SourcesDirectory)/JacobsApps.CleanArchitectureProjectTemplate.CSharp.*.nupkg'
+    nuGetFeedType: 'external'
+    publishFeedCredentials: 'NuGet'
 
 # - task: GitHubRelease@1
 #   inputs:
