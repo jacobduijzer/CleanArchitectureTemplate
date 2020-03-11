@@ -2,7 +2,7 @@
 
 set -x
 
-dotnet new dotnet new -i /home/vsts/work/1/s/JacobsApps.CleanArchitectureProjectTemplate.CSharp.2.5.0.nupkg
+dotnet new -i /home/vsts/work/1/s/JacobsApps.CleanArchitectureProjectTemplate.CSharp.2.5.0.nupkg
 
 mkdir FullWeb 
 cd FullWeb 
