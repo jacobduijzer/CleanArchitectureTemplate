@@ -11,12 +11,7 @@ trigger:
 pool:
   vmImage: 'ubuntu-latest'
 
-steps:
-# - task: UseDotNet@2
-#   inputs:
-#     packageType: 'sdk'
-#     version: '3.1.x'
-   
+steps: 
 # - task: SonarCloudPrepare@1
 #   inputs:
 #     SonarCloud: 'SonarCloud-CleanArchitectureTemplate'
@@ -52,8 +47,10 @@ steps:
     arguments: 'pack JacobsApps.CleanArchitectureProjectTemplate.CSharp.nuspec -NoDefaultExcludes'
 
 - task: Bash@3
+  displayName: "Test nuget package with 'EmptyApi' project type"
   inputs:
-    filePath: 'test-projects.sh'
+    filePath: 'test-nuget-package.sh'
+    arguments: 'EmptyApi'
 
 # - task: NuGetCommand@2
 #   displayName: "NuGet Push"
