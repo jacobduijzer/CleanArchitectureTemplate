@@ -3,4 +3,4 @@ parameters:
 
 steps:
   - ${{ each projectType in parameters.param }}
-    - script: 'test-nuget-package.sh ${{ projectType }}'
+    - script: 'echo ${{ projectType }}'
