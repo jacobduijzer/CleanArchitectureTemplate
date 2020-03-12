@@ -9,7 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-#if (Api)
+#if (IncludeSampleCode)
 using CleanArchitectureTemplate.Domain.ToDoItems;
 using CleanArchitectureTemplate.Application.ToDoItems.UseCases;
 #endif
@@ -32,7 +32,7 @@ namespace CleanArchitectureTemplate.Api
                     options.EnableSensitiveDataLogging(true);
                 })
                 .AddScoped<IDomainEventsDispatcher, DomainEventsDispatcher>()
-#if (Api)
+#if (IncludeSampleCode)
                 .AddScoped<IRepository<ToDoItem>, EfRepository<ToDoItem>>()
                 .AddMediatR(cfg => cfg.AsScoped(), typeof(ToDoItemsQueryHandler).GetTypeInfo().Assembly)
 #else
