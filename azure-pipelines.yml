@@ -12,7 +12,8 @@ pool:
   vmImage: 'ubuntu-latest'
 
 parameters:
-  param : ["EmptyApi","FullApi"]
+- name: ProjectType
+  value : ["EmptyApi","FullApi"]
 
 steps: 
 - task: NuGetToolInstaller@1
@@ -30,10 +31,10 @@ steps:
 #     parameters:
 #       projectTypes: ["EmptyApi","FullApi"]
 
-- script: echo Building
-  displayName: 'Base: Build'
-  - ${{each project in parameters.param}}
-    - scripts: 'echo ${{ project  }}'
+# - script: echo Building
+#   displayName: 'Base: Build'
+#   - ${{each project in parameters.param}}
+#     - scripts: 'echo ${{ project  }}'
 
 # - template: create_build_test.yml
 #   parameters: 
