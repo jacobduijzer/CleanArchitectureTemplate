@@ -1,6 +1,0 @@
-parameters:
-  projecTypes: []
-
-steps:
-  - ${{each projectType in parameters.projecTypes}}
-    - scripts: 'echo ${{ projectType  }}'

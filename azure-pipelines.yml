@@ -11,11 +11,6 @@ trigger:
 pool:
   vmImage: 'ubuntu-latest'
 
-parameters:
-  projects:
-  - EmptyApi
-  - FullApi
-
 steps: 
 - task: NuGetToolInstaller@1
   displayName: "Install latest nuget"
@@ -28,42 +23,41 @@ steps:
     command: 'custom'
     arguments: 'pack JacobsApps.CleanArchitectureProjectTemplate.CSharp.nuspec -NoDefaultExcludes'
 
-# - template: create_build_test.yaml
-#     parameters:
-#       projectTypes: ["EmptyApi","FullApi"]
+- task: Bash@3
+  displayName: "Test nuget package with 'EmptyApi' project type"
+  inputs:
+    filePath: 'test-nuget-package.sh'
+    arguments: 'EmptyApi'
 
-# - script: echo Building
-#   displayName: 'Base: Build'
-#   - ${{each project in parameters.param}}
-#     - scripts: 'echo ${{ project  }}'
+- task: Bash@3
+  displayName: "Test nuget package with 'FullApi' project type"
+  inputs:
+    filePath: 'test-nuget-package.sh'
+    arguments: 'FullApi'  
 
-# - template: create_build_test.yml
-#   parameters: 
-#     param: 
+- task: Bash@3
+  displayName: "Test nuget package with 'EmptyBlazor' project type"
+  inputs:
+    filePath: 'test-nuget-package.sh'
+    arguments: 'EmptyBlazor'    
+  
+- task: Bash@3
+  displayName: "Test nuget package with 'FullBlazor' project type"
+  inputs:
+    filePath: 'test-nuget-package.sh'
+    arguments: 'FullBlazor' 
 
-# - task: Bash@3
-#   displayName: "Test nuget package with 'EmptyApi' project type"
-#   inputs:
-#     filePath: 'test-nuget-package.sh'
-#     arguments: 'EmptyApi'
+- task: Bash@3
+  displayName: "Test nuget package with 'EmptyWeb' project type"
+  inputs:
+    filePath: 'test-nuget-package.sh'
+    arguments: 'EmptyWeb'    
 
-# - task: Bash@3
-#   displayName: "Test nuget package with 'FullApi' project type"
-#   inputs:
-#     filePath: 'test-nuget-package.sh'
-#     arguments: 'FullApi'  
-
-# - task: Bash@3
-#   displayName: "Test nuget package with 'EmptyWeb' project type"
-#   inputs:
-#     filePath: 'test-nuget-package.sh'
-#     arguments: 'EmptyWeb'    
-
-# - task: Bash@3
-#   displayName: "Test nuget package with 'FullWeb' project type"
-#   inputs:
-#     filePath: 'test-nuget-package.sh'
-#     arguments: 'FullWeb'    
+- task: Bash@3
+  displayName: "Test nuget package with 'FullWeb' project type"
+  inputs:
+    filePath: 'test-nuget-package.sh'
+    arguments: 'FullWeb'    
 
 - task: NuGetCommand@2
   displayName: "NuGet Push"
