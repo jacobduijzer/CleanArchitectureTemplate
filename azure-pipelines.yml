@@ -60,10 +60,10 @@ steps:
     arguments: 'FullWeb'    
 
 - task: Bash@3
-  displayName: "Test nuget package with 'FulFulllWeb' project type"
+  displayName: "Test nuget package with 'All' project type"
   inputs:
     filePath: 'test-nuget-package.sh'
-    arguments: 'Full'   
+    arguments: 'All'   
 
 - task: NuGetCommand@2
   displayName: "NuGet Push"
