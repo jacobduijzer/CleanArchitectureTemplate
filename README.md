@@ -127,6 +127,7 @@ to run the Website in docker.
 
 # ToDo
 
+* Create a runnable start project (runnable before creating the package)
 * Run tests inside docker build
 
 
