@@ -6,7 +6,7 @@
     <description>
       Creates a "clean architecture" project setup for a MVC / WebApi / Blazor project.
     </description>
-    <releaseNotes>Upgraded to .NET Core 3.1. Added a Blazor UI.</releaseNotes>
+    <releaseNotes>Created options to choose which project type to install</releaseNotes>
     <authors>Jacob Duijzer</authors>
     <projectUrl>https://github.com/jacobduijzer/CleanArchitectureTemplate</projectUrl>
     <license type="expression">MIT</license>

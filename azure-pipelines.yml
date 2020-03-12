@@ -12,28 +12,6 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps: 
-# - task: SonarCloudPrepare@1
-#   inputs:
-#     SonarCloud: 'SonarCloud-CleanArchitectureTemplate'
-#     organization: 'jacobduijzer-github'
-#     scannerMode: 'CLI'
-#     configMode: 'file'
-
-# - task: DotNetCoreCLI@2
-#   displayName: "Build"
-#   inputs:
-#     command: 'build'
-#     projects: 'src/CleanArchitectureTemplate.sln'
-#     arguments: '/p:DefineConstants=IncludeSampleCode'
-
-# - task: DotNetCoreCLI@2
-#   displayName: "Test"
-#   inputs:
-#     command: 'test'
-#     projects: 'src/CleanArchitectureTemplate.sln'
-#     arguments: '/p:DefineConstants=IncludeSampleCode /p:CollectCoverage=true /p:CoverletOutputFormat=opencover'
-
-# - task: SonarCloudAnalyze@1
 
 - task: NuGetToolInstaller@1
   displayName: "Install latest nuget"
@@ -78,15 +56,3 @@ steps:
     packagesToPush: '$(Build.SourcesDirectory)/JacobsApps.CleanArchitectureProjectTemplate.CSharp.*.nupkg'
     nuGetFeedType: 'external'
     publishFeedCredentials: 'NuGet'
-
-# - task: GitHubRelease@1
-#   inputs:
-#     gitHubConnection: 'github.com_jacobduijzer'
-#     repositoryName: 'jacobduijzer/CleanArchitectureTemplate'
-#     action: 'create'
-#     target: '$(Build.SourceVersion)'
-#     tagSource: 'gitTag'
-#     title: 'CleanArchitectureTemplate'
-#     assets: '$(Build.SourcesDirectory)/JacobsApps.CleanArchitectureProjectTemplate.CSharp.*.nupkg'
-#     changeLogCompareToRelease: 'lastFullRelease'
-#     changeLogType: 'commitBased'  

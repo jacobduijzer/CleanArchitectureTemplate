@@ -33,4 +33,3 @@ GetNugetPackage
 InstallNugetPackage
 
 CreateBuildAndTestProject $1 
-#CreateBuildAndTestProject FullWeb
