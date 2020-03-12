@@ -59,6 +59,12 @@ steps:
     filePath: 'test-nuget-package.sh'
     arguments: 'FullWeb'    
 
+- task: Bash@3
+  displayName: "Test nuget package with 'FulFulllWeb' project type"
+  inputs:
+    filePath: 'test-nuget-package.sh'
+    arguments: 'Full'   
+
 - task: NuGetCommand@2
   displayName: "NuGet Push"
   condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')

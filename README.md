@@ -15,14 +15,11 @@ To install the template so you can use it with `dotnet new`:
 dotnet new --install JacobsApps.CleanArchitectureProjectTemplate.CSharp 
 ```
 
-Now choose which project type you want to create:
+Execute the following command with the correct parameter to create the solution you want:
 
-Type | Command
---- | ---
-Api (default) | dotnet new  cleanarchitecture
-Api with TODO sample code | dotnet new cleanarchitecture --use-case fullapi
-Web | dotnet new cleanarchitecture --use-case emptyweb
-Web with TODO sample code | dotnet new cleanarchitecture --use-case fullweb
+```
+dotnet new cleanarchitecture --use-case {project type}
+```
 
 ### CLI options
 
@@ -41,7 +38,7 @@ fullweb | A full Web project with sample code
 emptyblazor | A clean Blazor project
 fullblazor | A full Blazor project with sample code
 emptyfull | A clean project with an Api, Blazor and Web project
-full | A full project with an Api, Blazor and a Web project, including TODO sample code
+all | A full project with an Api, Blazor and a Web project, including TODO sample code
 
 
 # Docker / docker-compose

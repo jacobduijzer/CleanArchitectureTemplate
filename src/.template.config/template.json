@@ -42,7 +42,7 @@
           "description": "Api solution with sample code"
         },
         {
-          "choice": "full",
+          "choice": "all",
           "description": "The whole solution with sample code"
         }
       ],
@@ -91,11 +91,11 @@
     },
     "Full": {
       "type": "computed",
-      "value": "(use-case == \"full\")"
+      "value": "(use-case == \"all\")"
     },
     "IncludeSampleCode": {
       "type": "computed",
-      "value": "FullApi || FullBlazor || FullWeb"
+      "value": "FullApi || FullBlazor || FullWeb || Full"
     }
   },
   "sources": [ {
@@ -181,18 +181,6 @@
         {
           "condition": "(Full)",
           "exclude": [
-              "src/CleanArchitectureTemplate.Api/ToDoItems/*",
-              "src/CleanArchitectureTemplate.Application/ToDoItems/**/*",
-              "src/CleanArchitectureTemplate.Blazor/Pages/TodoItems/*",
-              "src/CleanArchitectureTemplate.Domain/ToDoItems/*",
-              "src/CleanArchitectureTemplate.Web/Pages/Todo.*",
-              "tests/CleanArchitectureTemplate.FakeData/ToDoItems/*",
-              "tests/CleanArchitectureTemplate.IntegrationTests/Api/Controllers/ToDoControllerShould.cs",
-              "tests/CleanArchitectureTemplate.IntegrationTests/Api/Controllers/IApiDefinition.cs",
-              "tests/CleanArchitectureTemplate.IntegrationTests/Web/Pages/ToDoShould.cs",
-              "tests/CleanArchitectureTemplate.UnitTests/Application/ToDoItems/*",
-              "tests/CleanArchitectureTemplate.UnitTests/Domain/ToDoItems/*",
-              "tests/CleanArchitectureTemplate.UnitTests/Web/Pages/ToDoModelShould.cs"
           ]
         }
       ]
