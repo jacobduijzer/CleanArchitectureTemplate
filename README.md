@@ -57,6 +57,10 @@ to run the Website in docker.
 
 # Release Notes
 
+> ## v2.6.0 (03/12/2020)
+> - Better templating (different options to choose from)
+> - Create, Build & Test all project types in devops before publishing
+
 > ## v2.5.0 (03/08/2020)
 > - Included a default .editorconfig
 > - Better templating (different options to choose from)
