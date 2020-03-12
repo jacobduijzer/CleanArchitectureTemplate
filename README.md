@@ -1,9 +1,4 @@
-| Project status | 
-| --- | 
-| [![Build Status](https://dev.azure.com/JacobsApps/CleanArchitectureTemplate/_apis/build/status/jacobduijzer.CleanArchitectureTemplate?branchName=master)](https://dev.azure.com/JacobsApps/CleanArchitectureTemplate/_build/latest?definitionId=1&branchName=master) | 
-| [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?branch=master&project=CleanArchitectureTemplate&metric=alert_status)](https://sonarcloud.io/dashboard?id=CleanArchitectureTemplate&branch=master) |
-| [![Coverage](https://sonarcloud.io/api/project_badges/measure?branch=master&project=CleanArchitectureTemplate&metric=coverage)](https://sonarcloud.io/dashboard?id=CleanArchitectureTemplate&branch=master) |
-| [![Nuget status](https://buildstats.info/nuget/JacobsApps.CleanArchitectureProjectTemplate.CSharp?includePreReleases=false)](https://www.nuget.org/packages/JacobsApps.CleanArchitectureProjectTemplate.CSharp/) |
+[![Build Status](https://dev.azure.com/JacobsApps/CleanArchitectureTemplate/_apis/build/status/jacobduijzer.CleanArchitectureTemplate?branchName=master)](https://dev.azure.com/JacobsApps/CleanArchitectureTemplate/_build/latest?definitionId=1&branchName=master) [![Nuget status](https://buildstats.info/nuget/JacobsApps.CleanArchitectureProjectTemplate.CSharp?includePreReleases=false)](https://www.nuget.org/packages/JacobsApps.CleanArchitectureProjectTemplate.CSharp/)
 
 
 # Clean Architecture Template
@@ -20,20 +15,31 @@ To install the template so you can use it with `dotnet new`:
 dotnet new --install JacobsApps.CleanArchitectureProjectTemplate.CSharp 
 ```
 
-To create a new project with sample code:
+Execute the following command with the correct parameter to create the solution you want:
+
 ```
-dotnet new  cleanarchitectureproject -n SomeFancyNamespace -I
+dotnet new cleanarchitecture --use-case {project type}
 ```
 
-To create a new, empty project:
-```
-dotnet new  cleanarchitectureproject -n SomeFancyNamespace
-```
+### CLI options
 
-To create a new, empty project with the name of the current folder:
-```
-dotnet new  cleanarchitectureproject
-```
+Option | Description
+--- | ---
+-uc / --use-case | which project type(s) to install
+
+### Project types
+
+Type | Description
+--- | ---
+emptyapi | A clean Api project
+fullapi | A full Api project with sample code
+emptyweb | A clean Web project
+fullweb | A full Web project with sample code
+emptyblazor | A clean Blazor project
+fullblazor | A full Blazor project with sample code
+emptyfull | A clean project with an Api, Blazor and Web project
+all | A full project with an Api, Blazor and a Web project, including TODO sample code
+
 
 # Docker / docker-compose
 
@@ -53,7 +59,7 @@ to run the Website in docker.
 
 > ## v2.5.0 (03/08/2020)
 > - Included a default .editorconfig
-> - Better templating (excluding sample code by default)
+> - Better templating (different options to choose from)
 > - Latest package versions
 > - Added Docker & docker-compose files
 
@@ -121,6 +127,7 @@ to run the Website in docker.
 
 # ToDo
 
+* Create a runnable start project (runnable before creating the package)
 * Run tests inside docker build
 
 

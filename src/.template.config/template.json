@@ -8,33 +8,179 @@
     "language": "C#",
     "type": "project"
   },
-  "shortName": "cleanarchitectureproject",
+  "shortName": "cleanarchitecture",
   "sourceName": "CleanArchitectureTemplate",
   "preferNameDirectory": true,
   "symbols": {
-    "IncludeSampleCode": {
+    "use-case": {
       "type": "parameter",
-      "dataType": "bool",
-      "defaultValue": "false"
+      "datatype": "choice",
+      "defaultValue": "emptyapi",
+      "choices": [
+        {
+          "choice": "emptyapi",
+          "description": "Empty solution with API only"
+        },
+        {
+          "choice": "fullapi",
+          "description": "Web solution with sample code"
+        },
+        {
+          "choice": "emptyblazor",
+          "description": "Empty solution with Blazor only"
+        },
+        {
+          "choice": "fullblazor",
+          "description": "Blazor solution with sample code"
+        },
+        {
+          "choice": "emptyweb",
+          "description": "Empty web solution"
+        },
+        {
+          "choice": "fullweb",
+          "description": "Api solution with sample code"
+        },
+        {
+          "choice": "all",
+          "description": "The whole solution with sample code"
+        }
+      ],
+      "replaces": "use-case",
+      "onlyIf": [
+        {
+          "after": "\"use-case\": \""
+        }
+      ]
+    },
+    "EmptyApi": {
+      "type": "computed",
+      "value": "(use-case == \"emptyapi\")"
+    },
+    "FullApi": {
+      "type": "computed",
+      "value": "(use-case == \"fullapi\")"
+    },
+    "Api": {
+      "type": "computed",
+      "value": "(EmptyApi || FullApi)"
+    },
+    "EmptyBlazor": {
+      "type": "computed",
+      "value": "(use-case == \"emptyblazor\")"
+    },
+    "FullBlazor": {
+      "type": "computed",
+      "value": "(use-case == \"fullblazor\")"
+    },
+    "Blazor": {
+      "type": "computed",
+      "value": "(EmptyBlazor || FullBlazor)"
+    },
+    "EmptyWeb": {
+      "type": "computed",
+      "value": "(use-case == \"emptyweb\")"
+    },
+    "FullWeb": {
+      "type": "computed",
+      "value": "(use-case == \"fullweb\")"
+    },
+    "Web": {
+      "type": "computed",
+      "value": "(EmptyWeb || FullWeb)"
+    },
+    "Full": {
+      "type": "computed",
+      "value": "(use-case == \"all\")"
+    },
+    "IncludeSampleCode": {
+      "type": "computed",
+      "value": "FullApi || FullBlazor || FullWeb || Full"
     }
   },
-  "sources": [
-    {
-      "modifiers": [ {
-          "condition": "(!IncludeSampleCode)",
+  "sources": [ {
+      "source": "./",
+      "modifiers": [
+        {
+          "condition": "(EmptyApi)",
           "exclude": [
-            "src/CleanArchitectureTemplate.Api/ToDoItems/*",
+            "src/CleanArchitectureTemplate.Api/ToDoItems/**/*",
             "src/CleanArchitectureTemplate.Application/ToDoItems/**/*",
-            "src/CleanArchitectureTemplate.Blazor/Pages/TodoItems/*",
-            "src/CleanArchitectureTemplate.Domain/ToDoItems/*",
-            "src/CleanArchitectureTemplate.Web/Pages/Todo.*",
-            "tests/CleanArchitectureTemplate.FakeData/ToDoItems/*",
+            "src/CleanArchitectureTemplate.Blazor/**/*",
+            "src/CleanArchitectureTemplate.Domain/ToDoItems/**/*",
+            "src/CleanArchitectureTemplate.Web/**/*",
+            "tests/CleanArchitectureTemplate.FakeData/ToDoItems/**/*",
             "tests/CleanArchitectureTemplate.IntegrationTests/Api/Controllers/ToDoControllerShould.cs",
-            "tests/CleanArchitectureTemplate.IntegrationTests/Api/Controllers/IApiDefinition.cs",
-            "tests/CleanArchitectureTemplate.IntegrationTests/Web/Pages/ToDoShould.cs",
-            "tests/CleanArchitectureTemplate.UnitTests/Application/ToDoItems/*",
-            "tests/CleanArchitectureTemplate.UnitTests/Domain/ToDoItems/*",
-            "tests/CleanArchitectureTemplate.UnitTests/Web/Pages/ToDoModelShould.cs"
+            "tests/CleanArchitectureTemplate.IntegrationTests/Api/IApiDefinition.cs",
+            "tests/CleanArchitectureTemplate.IntegrationTests/Web/**/*",
+            "tests/CleanArchitectureTemplate.UnitTests/Application/ToDoItems/**/*",
+            "tests/CleanArchitectureTemplate.UnitTests/Domain/ToDoItems/**/*",
+            "tests/CleanArchitectureTemplate.UnitTests/Web/**/*"
+          ]
+        }, {
+        "condition": "(FullApi)",
+          "exclude": [
+            "src/CleanArchitectureTemplate.Blazor/**/*",
+            "src/CleanArchitectureTemplate.Web/**/*",
+            "tests/CleanArchitectureTemplate.IntegrationTests/Web/**/*",
+            "tests/CleanArchitectureTemplate.UnitTests/Web/**/*"
+          ]
+        },
+        {
+          "condition": "(EmptyBlazor)",
+          "exclude": [
+            "src/CleanArchitectureTemplate.Api/**/*",
+            "src/CleanArchitectureTemplate.Application/ToDoItems/**/*",
+            "src/CleanArchitectureTemplate.Blazor/Pages/ToDoItems/**/*",
+            "src/CleanArchitectureTemplate.Domain/ToDoItems/**/*",
+            "src/CleanArchitectureTemplate.Web/**/*",
+            "tests/CleanArchitectureTemplate.FakeData/ToDoItems/**/*",
+            "tests/CleanArchitectureTemplate.IntegrationTests/Api/Controllers/ToDoControllerShould.cs",
+            "tests/CleanArchitectureTemplate.IntegrationTests/Api/IApiDefinition.cs",
+            "tests/CleanArchitectureTemplate.IntegrationTests/Web/**/*",
+            "tests/CleanArchitectureTemplate.UnitTests/Application/ToDoItems/**/*",
+            "tests/CleanArchitectureTemplate.UnitTests/Domain/ToDoItems/**/*",
+            "tests/CleanArchitectureTemplate.UnitTests/Web/**/*"
+          ]
+        }, {
+        "condition": "(FullBlazor)",
+          "exclude": [
+            "src/CleanArchitectureTemplate.Api/**/*",
+            "src/CleanArchitectureTemplate.Web/**/*",
+            "tests/CleanArchitectureTemplate.IntegrationTests/Api/**/*",
+            "tests/CleanArchitectureTemplate.UnitTests/Api/**/*",
+            "tests/CleanArchitectureTemplate.IntegrationTests/Web/**/*",
+            "tests/CleanArchitectureTemplate.UnitTests/Web/**/*"
+          ]
+        },
+        {
+          "condition": "(EmptyWeb)",
+          "exclude": [
+            "src/CleanArchitectureTemplate.Api/**/*",
+            "src/CleanArchitectureTemplate.Application/ToDoItems/**/*",
+            "src/CleanArchitectureTemplate.Blazor/**/*",
+            "src/CleanArchitectureTemplate.Domain/ToDoItems/*",
+            "src/CleanArchitectureTemplate.Web/Pages/ToDo*",
+            "tests/CleanArchitectureTemplate.FakeData/ToDoItems/*",
+            "tests/CleanArchitectureTemplate.IntegrationTests/Api/**/*",
+            "tests/CleanArchitectureTemplate.IntegrationTests/Api/IApiDefinition.cs",
+            "tests/CleanArchitectureTemplate.IntegrationTests/Web/Pages/ToDo*.*",
+            "tests/CleanArchitectureTemplate.UnitTests/Application/ToDoItems/**/*",
+            "tests/CleanArchitectureTemplate.UnitTests/Domain/ToDoItems/**/*",
+            "tests/CleanArchitectureTemplate.UnitTests/Web/Pages/ToDo*.*"
+          ]
+        }, {
+        "condition": "(FullWeb)",
+          "exclude": [
+            "src/CleanArchitectureTemplate.Blazor/**/*",
+            "src/CleanArchitectureTemplate.Api/**/*",
+            "tests/CleanArchitectureTemplate.IntegrationTests/Api/**/*",
+            "tests/CleanArchitectureTemplate.UnitTests/Api/**/*"
+          ]
+        },
+        {
+          "condition": "(Full)",
+          "exclude": [
           ]
         }
       ]

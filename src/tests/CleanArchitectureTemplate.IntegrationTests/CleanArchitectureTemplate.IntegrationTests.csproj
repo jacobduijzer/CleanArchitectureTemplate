@@ -20,6 +20,8 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
     <PackageReference Include="FluentAssertions" Version="5.10.2" />
+
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="8.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="3.1.2" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="3.1.2" />
     <PackageReference Include="Microsoft.AspNetCore.TestHost" Version="3.1.2" />
@@ -41,11 +43,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\CleanArchitectureTemplate.Api\CleanArchitectureTemplate.Api.csproj" />
+<!--#if (Api|Full)-->
+    <ProjectReference Include="..\..\src\CleanArchitectureTemplate.Api\CleanArchitectureTemplate.Api.csproj"/>
+<!--#endif-->
     <ProjectReference Include="..\..\src\CleanArchitectureTemplate.Application\CleanArchitectureTemplate.Application.csproj" />
     <ProjectReference Include="..\..\src\CleanArchitectureTemplate.Domain\CleanArchitectureTemplate.Domain.csproj" />
     <ProjectReference Include="..\..\src\CleanArchitectureTemplate.Infrastructure\CleanArchitectureTemplate.Infrastructure.csproj" />
+<!--#if (Web|Full)-->
     <ProjectReference Include="..\..\src\CleanArchitectureTemplate.Web\CleanArchitectureTemplate.Web.csproj" />
+<!--#endif-->
     <ProjectReference Include="..\CleanArchitectureTemplate.FakeData\CleanArchitectureTemplate.FakeData.csproj" />
   </ItemGroup>
 

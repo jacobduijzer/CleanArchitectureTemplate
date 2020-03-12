@@ -1,4 +1,7 @@
-trigger:  
+trigger:
+  branches:
+    include:
+    - master
   paths:
     include:
     - '*' 
@@ -8,35 +11,7 @@ trigger:
 pool:
   vmImage: 'ubuntu-latest'
 
-steps:
-# - task: UseDotNet@2
-#   inputs:
-#     packageType: 'sdk'
-#     version: '3.1.x'
-   
-# - task: SonarCloudPrepare@1
-#   inputs:
-#     SonarCloud: 'SonarCloud-CleanArchitectureTemplate'
-#     organization: 'jacobduijzer-github'
-#     scannerMode: 'CLI'
-#     configMode: 'file'
-
-# - task: DotNetCoreCLI@2
-#   displayName: "Build"
-#   inputs:
-#     command: 'build'
-#     projects: 'src/CleanArchitectureTemplate.sln'
-#     arguments: '/p:DefineConstants=IncludeSampleCode'
-
-# - task: DotNetCoreCLI@2
-#   displayName: "Test"
-#   inputs:
-#     command: 'test'
-#     projects: 'src/CleanArchitectureTemplate.sln'
-#     arguments: '/p:DefineConstants=IncludeSampleCode /p:CollectCoverage=true /p:CoverletOutputFormat=opencover'
-
-# - task: SonarCloudAnalyze@1
-
+steps: 
 - task: NuGetToolInstaller@1
   displayName: "Install latest nuget"
   inputs:
@@ -48,25 +23,53 @@ steps:
     command: 'custom'
     arguments: 'pack JacobsApps.CleanArchitectureProjectTemplate.CSharp.nuspec -NoDefaultExcludes'
 
-# - task: NuGetCommand@2
-#   displayName: "NuGet Push"
-#   condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
-#   inputs:
-#     command: 'push'
-#     packagesToPush: '$(Build.SourcesDirectory)/JacobsApps.CleanArchitectureProjectTemplate.CSharp.*.nupkg'
-#     nuGetFeedType: 'external'
-#     publishFeedCredentials: 'NuGet'
+- task: Bash@3
+  displayName: "Test nuget package with 'EmptyApi' project type"
+  inputs:
+    filePath: 'test-nuget-package.sh'
+    arguments: 'EmptyApi'
 
-# - task: GitHubRelease@1
-#   displayName: "Create GitHub Release"
-#   condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
-#   inputs:
-#     gitHubConnection: 'github.com_jacobduijzer'
-#     repositoryName: 'jacobduijzer/CleanArchitectureTemplate'
-#     action: 'create'
-#     target: '$(Build.SourceVersion)'
-#     tagSource: 'gitTag'
-#     title: 'CleanArchitectureTemplate'
-#     assets: '$(Build.SourcesDirectory)/JacobsApps.CleanArchitectureProjectTemplate.CSharp.*.nupkg'
-#     changeLogCompareToRelease: 'lastFullRelease'
-#     changeLogType: 'commitBased'  
+- task: Bash@3
+  displayName: "Test nuget package with 'FullApi' project type"
+  inputs:
+    filePath: 'test-nuget-package.sh'
+    arguments: 'FullApi'  
+
+- task: Bash@3
+  displayName: "Test nuget package with 'EmptyBlazor' project type"
+  inputs:
+    filePath: 'test-nuget-package.sh'
+    arguments: 'EmptyBlazor'    
+  
+- task: Bash@3
+  displayName: "Test nuget package with 'FullBlazor' project type"
+  inputs:
+    filePath: 'test-nuget-package.sh'
+    arguments: 'FullBlazor' 
+
+- task: Bash@3
+  displayName: "Test nuget package with 'EmptyWeb' project type"
+  inputs:
+    filePath: 'test-nuget-package.sh'
+    arguments: 'EmptyWeb'    
+
+- task: Bash@3
+  displayName: "Test nuget package with 'FullWeb' project type"
+  inputs:
+    filePath: 'test-nuget-package.sh'
+    arguments: 'FullWeb'    
+
+- task: Bash@3
+  displayName: "Test nuget package with 'All' project type"
+  inputs:
+    filePath: 'test-nuget-package.sh'
+    arguments: 'All'   
+
+- task: NuGetCommand@2
+  displayName: "NuGet Push"
+  condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
+  inputs:
+    command: 'push'
+    packagesToPush: '$(Build.SourcesDirectory)/JacobsApps.CleanArchitectureProjectTemplate.CSharp.*.nupkg'
+    nuGetFeedType: 'external'
+    publishFeedCredentials: 'NuGet'
