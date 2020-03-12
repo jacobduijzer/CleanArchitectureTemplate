@@ -11,6 +11,9 @@ trigger:
 pool:
   vmImage: 'ubuntu-latest'
 
+parameters:
+  param: ["EmptyApi","FullApi"]
+
 steps: 
 - task: NuGetToolInstaller@1
   displayName: "Install latest nuget"
@@ -23,14 +26,14 @@ steps:
     command: 'custom'
     arguments: 'pack JacobsApps.CleanArchitectureProjectTemplate.CSharp.nuspec -NoDefaultExcludes'
 
-- template: create_build_test.yaml
-    parameters:
-      projectTypes: ["EmptyApi","FullApi"]
+# - template: create_build_test.yaml
+#     parameters:
+#       projectTypes: ["EmptyApi","FullApi"]
 
-# - script: echo Building
-#   displayName: 'Base: Build'
-#   - ${{each project in parameters.projectTypes}}
-#     - scripts: 'echo ${{ project  }}'
+- script: echo Building
+  displayName: 'Base: Build'
+  - ${{each project in parameters.param}}
+    - scripts: 'echo ${{ project  }}'
 
 # - template: create_build_test.yml
 #   parameters: 
