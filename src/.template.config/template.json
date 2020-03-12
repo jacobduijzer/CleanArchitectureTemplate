@@ -131,7 +131,7 @@
           "exclude": [
             "src/CleanArchitectureTemplate.Api/**/*",
             "src/CleanArchitectureTemplate.Application/ToDoItems/**/*",
-            "src/CleanArchitectureTemplate.Blazor/ToDoItems/**/*",
+            "src/CleanArchitectureTemplate.Blazor/Pages/ToDoItems/**/*",
             "src/CleanArchitectureTemplate.Domain/ToDoItems/**/*",
             "src/CleanArchitectureTemplate.Web/**/*",
             "tests/CleanArchitectureTemplate.FakeData/ToDoItems/**/*",
