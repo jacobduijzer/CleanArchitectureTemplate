@@ -38,32 +38,44 @@
           "description": "The whole solution with sample code"
         }
       ],
-      "replaces": "use-cases",
+      "replaces": "use-case",
       "onlyIf": [
         {
-          "after": "\"use-cases\": \""
+          "after": "\"use-case\": \""
         }
       ]
     },
     "EmptyApi": {
       "type": "computed",
-      "value": "(use-cases == \"emptyapi\")"
+      "value": "(use-case == \"emptyapi\")"
     },
     "FullApi": {
       "type": "computed",
-      "value": "(use-cases == \"fullapi\")"
+      "value": "(use-case == \"fullapi\")"
     },
     "Api": {
       "type": "computed",
       "value": "(EmptyApi || FullApi)"
     },
+    "EmptyBlazor": {
+      "type": "computed",
+      "value": "(use-case == \"emptyblazor\")"
+    },
+    "FullBlazor": {
+      "type": "computed",
+      "value": "(use-case == \"fullblazor\")"
+    },
+    "Blazor": {
+      "type": "computed",
+      "value": "(EmptyBlazor || FullBlazor)"
+    },
     "EmptyWeb": {
       "type": "computed",
-      "value": "(use-cases == \"emptyweb\")"
+      "value": "(use-case == \"emptyweb\")"
     },
     "FullWeb": {
       "type": "computed",
-      "value": "(use-cases == \"fullweb\")"
+      "value": "(use-case == \"fullweb\")"
     },
     "Web": {
       "type": "computed",
@@ -71,11 +83,11 @@
     },
     "Full": {
       "type": "computed",
-      "value": "(use-cases == \"full\")"
+      "value": "(use-case == \"full\")"
     },
     "IncludeSampleCode": {
       "type": "computed",
-      "value": "FullWeb || FullApi"
+      "value": "FullApi || FullBlazor || FullWeb"
     }
   },
   "sources": [ {
@@ -99,6 +111,31 @@
           ]
         }, {
         "condition": "(FullApi)",
+          "exclude": [
+            "src/CleanArchitectureTemplate.Blazor/**/*",
+            "src/CleanArchitectureTemplate.Web/**/*",
+            "tests/CleanArchitectureTemplate.IntegrationTests/Web/**/*",
+            "tests/CleanArchitectureTemplate.UnitTests/Web/**/*"
+          ]
+        },
+        {
+          "condition": "(EmptyBlazor)",
+          "exclude": [
+            "src/CleanArchitectureTemplate.Api/**/*",
+            "src/CleanArchitectureTemplate.Application/ToDoItems/**/*",
+            "src/CleanArchitectureTemplate.Blazor/ToDoItems/**/*",
+            "src/CleanArchitectureTemplate.Domain/ToDoItems/**/*",
+            "src/CleanArchitectureTemplate.Web/**/*",
+            "tests/CleanArchitectureTemplate.FakeData/ToDoItems/**/*",
+            "tests/CleanArchitectureTemplate.IntegrationTests/Api/Controllers/ToDoControllerShould.cs",
+            "tests/CleanArchitectureTemplate.IntegrationTests/Api/IApiDefinition.cs",
+            "tests/CleanArchitectureTemplate.IntegrationTests/Web/**/*",
+            "tests/CleanArchitectureTemplate.UnitTests/Application/ToDoItems/**/*",
+            "tests/CleanArchitectureTemplate.UnitTests/Domain/ToDoItems/**/*",
+            "tests/CleanArchitectureTemplate.UnitTests/Web/**/*"
+          ]
+        }, {
+        "condition": "(FullBlazor)",
           "exclude": [
             "src/CleanArchitectureTemplate.Blazor/**/*",
             "src/CleanArchitectureTemplate.Web/**/*",

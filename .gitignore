@@ -334,3 +334,6 @@ src/CleanArchitectureTemplate.UnitTests/coverage.opencover.xml
 coverage.opencover.xml
 .DS_Store
 EmptyApi/*
+FullApi/*
+EmptyWeb/*
+FullWeb/*

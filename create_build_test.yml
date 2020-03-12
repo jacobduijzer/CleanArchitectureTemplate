@@ -1,0 +1,6 @@
+parameters:
+  param: []
+
+steps:
+  - ${{ each projectType in parameters.param }}
+    - script: 'test-nuget-package.sh ${{ projectType }}'

@@ -24,29 +24,33 @@ steps:
     command: 'custom'
     arguments: 'pack JacobsApps.CleanArchitectureProjectTemplate.CSharp.nuspec -NoDefaultExcludes'
 
-- task: Bash@3
-  displayName: "Test nuget package with 'EmptyApi' project type"
-  inputs:
-    filePath: 'test-nuget-package.sh'
-    arguments: 'EmptyApi'
+- template: create_build_test.yml
+  parameters: 
+    param: ["EmptyApi", "FullApi"]
 
-- task: Bash@3
-  displayName: "Test nuget package with 'FullApi' project type"
-  inputs:
-    filePath: 'test-nuget-package.sh'
-    arguments: 'FullApi'  
+# - task: Bash@3
+#   displayName: "Test nuget package with 'EmptyApi' project type"
+#   inputs:
+#     filePath: 'test-nuget-package.sh'
+#     arguments: 'EmptyApi'
 
-- task: Bash@3
-  displayName: "Test nuget package with 'EmptyWeb' project type"
-  inputs:
-    filePath: 'test-nuget-package.sh'
-    arguments: 'EmptyWeb'    
+# - task: Bash@3
+#   displayName: "Test nuget package with 'FullApi' project type"
+#   inputs:
+#     filePath: 'test-nuget-package.sh'
+#     arguments: 'FullApi'  
 
-- task: Bash@3
-  displayName: "Test nuget package with 'FullWeb' project type"
-  inputs:
-    filePath: 'test-nuget-package.sh'
-    arguments: 'FullWeb'    
+# - task: Bash@3
+#   displayName: "Test nuget package with 'EmptyWeb' project type"
+#   inputs:
+#     filePath: 'test-nuget-package.sh'
+#     arguments: 'EmptyWeb'    
+
+# - task: Bash@3
+#   displayName: "Test nuget package with 'FullWeb' project type"
+#   inputs:
+#     filePath: 'test-nuget-package.sh'
+#     arguments: 'FullWeb'    
 
 - task: NuGetCommand@2
   displayName: "NuGet Push"
