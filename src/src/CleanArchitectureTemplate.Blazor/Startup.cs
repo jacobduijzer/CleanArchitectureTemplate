@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using CleanArchitectureTemplate.Domain.Shared;
+
 using CleanArchitectureTemplate.Infrastructure.Shared;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -50,7 +51,9 @@ namespace CleanArchitectureTemplate.Blazor
             {
                 var services = scope.ServiceProvider;
                 var context = services.GetService<AppDbContext>();
+#if (IncludeSampleCode)
                 context.Seed();
+#endif
             }
 
             if (env.IsDevelopment())

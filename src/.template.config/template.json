@@ -12,7 +12,7 @@
   "sourceName": "CleanArchitectureTemplate",
   "preferNameDirectory": true,
   "symbols": {
-    "use-cases": {
+    "use-case": {
       "type": "parameter",
       "datatype": "choice",
       "defaultValue": "emptyapi",
