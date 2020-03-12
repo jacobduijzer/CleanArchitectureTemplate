@@ -335,5 +335,7 @@ coverage.opencover.xml
 .DS_Store
 EmptyApi/*
 FullApi/*
+EmptyBlazor/*
+FullBlazor/*
 EmptyWeb/*
 FullWeb/*

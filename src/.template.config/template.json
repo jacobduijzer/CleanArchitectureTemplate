@@ -26,6 +26,14 @@
           "description": "Web solution with sample code"
         },
         {
+          "choice": "emptyblazor",
+          "description": "Empty solution with Blazor only"
+        },
+        {
+          "choice": "fullblazor",
+          "description": "Blazor solution with sample code"
+        },
+        {
           "choice": "emptyweb",
           "description": "Empty web solution"
         },
@@ -137,8 +145,10 @@
         }, {
         "condition": "(FullBlazor)",
           "exclude": [
-            "src/CleanArchitectureTemplate.Blazor/**/*",
+            "src/CleanArchitectureTemplate.Api/**/*",
             "src/CleanArchitectureTemplate.Web/**/*",
+            "tests/CleanArchitectureTemplate.IntegrationTests/Api/**/*",
+            "tests/CleanArchitectureTemplate.UnitTests/Api/**/*",
             "tests/CleanArchitectureTemplate.IntegrationTests/Web/**/*",
             "tests/CleanArchitectureTemplate.UnitTests/Web/**/*"
           ]
