@@ -12,8 +12,9 @@ pool:
   vmImage: 'ubuntu-latest'
 
 parameters:
-- name: ProjectType
-  value: ["EmptyApi","FullApi"]
+  - projects:
+    - EmptyApi
+    - FullApi
 
 steps: 
 - task: NuGetToolInstaller@1
