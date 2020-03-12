@@ -13,7 +13,7 @@ pool:
 
 parameters:
 - name: ProjectType
-  value : ["EmptyApi","FullApi"]
+  value: ["EmptyApi","FullApi"]
 
 steps: 
 - task: NuGetToolInstaller@1
