@@ -11,9 +11,6 @@ trigger:
 pool:
   vmImage: 'ubuntu-latest'
 
-variables:
-  projectTypes: ["EmptyApi", "FullApi"]
-
 steps: 
 - task: NuGetToolInstaller@1
   displayName: "Install latest nuget"
