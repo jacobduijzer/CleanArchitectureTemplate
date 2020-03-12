@@ -26,10 +26,14 @@ steps:
     command: 'custom'
     arguments: 'pack JacobsApps.CleanArchitectureProjectTemplate.CSharp.nuspec -NoDefaultExcludes'
 
-- script: echo Building
-  displayName: 'Base: Build'
-  - ${{each project in parameters.projectTypes}}
-    - scripts: 'echo ${{ project  }}'
+- template: create_build_test.yaml
+    parameters:
+      projectTypes: ["EmptyApi","FullApi"]
+
+# - script: echo Building
+#   displayName: 'Base: Build'
+#   - ${{each project in parameters.projectTypes}}
+#     - scripts: 'echo ${{ project  }}'
 
 # - template: create_build_test.yml
 #   parameters: 

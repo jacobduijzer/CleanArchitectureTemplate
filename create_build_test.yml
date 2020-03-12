@@ -1,6 +1,6 @@
 parameters:
-  param: []
+  projecTypes: []
 
 steps:
-  - ${{ each projectType in parameters.param }}
-    - script: 'echo ${{ projectType }}'
+  - ${{each projectType in parameters.projecTypes}}
+    - scripts: 'echo ${{ projectType  }}'
