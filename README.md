@@ -57,6 +57,9 @@ to run the Website in docker.
 
 # Release Notes
 
+> ## v2.6.1 (03/17/2020)
+> - Fixed issue with full web samples.
+
 > ## v2.6.0 (03/12/2020)
 > - Better templating (different options to choose from)
 > - Create, Build & Test all project types in devops before publishing
