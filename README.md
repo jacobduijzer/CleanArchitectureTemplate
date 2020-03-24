@@ -57,6 +57,10 @@ to run the Website in docker.
 
 # Release Notes
 
+> ## v2.6.2 (03/24/2020)
+> - Cleaner integration test code.
+> - Fixed issue with empty web.
+
 > ## v2.6.1 (03/17/2020)
 > - Fixed issue with full web samples.
 
