@@ -1,14 +1,10 @@
-using System;
-using System.Reflection;
-using CleanArchitectureTemplate.Domain.Shared;
 using CleanArchitectureTemplate.Infrastructure.Shared;
 using MediatR;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
+using Microsoft.AspNetCore.TestHost;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Moq;
 #if (IncludeSampleCode)
 using CleanArchitectureTemplate.Application.ToDoItems.UseCases;
 using CleanArchitectureTemplate.Domain.ToDoItems;
@@ -21,49 +17,27 @@ namespace CleanArchitectureTemplate.IntegrationTests.Helpers
         : WebApplicationFactory<TStartup> where TStartup : class
     {
         protected override void ConfigureWebHost(IWebHostBuilder builder) =>
-            builder.ConfigureServices(services =>
+            builder.ConfigureTestServices(services =>
             {
-                var serviceProvider = new ServiceCollection()
-                    .AddEntityFrameworkInMemoryDatabase()
-                    .BuildServiceProvider();
-
-                services.AddDbContext<AppDbContext>(options =>
+                services.AddScoped((sp) =>
                 {
-                    options.UseInMemoryDatabase("InMemoryDbForTesting");
-                    options.UseInternalServiceProvider(serviceProvider);
-                });
-
-                services.AddSingleton<IDomainEventsDispatcher>(provider => new Mock<IDomainEventsDispatcher>().Object);
-#if (IncludeSampleCode)
-                services.AddScoped<IRepository<ToDoItem>, EfRepository<ToDoItem>>();
-                services.AddMediatR(cfg => cfg.AsScoped(), typeof(ToDoItemsQueryHandler).GetTypeInfo().Assembly);
-#else
-                //services.AddScoped<IRepository<SomeModel>, EfRepository<SomeModel>>();
-                services.AddMediatR(typeof(TStartup).GetTypeInfo().Assembly);
-#endif
-
-                var sp = services.BuildServiceProvider();
-                using (var scope = sp.CreateScope())
-                {
-                    var scopedServices = scope.ServiceProvider;
-                    var db = scopedServices.GetRequiredService<AppDbContext>();
-                    var logger = scopedServices.GetRequiredService<ILogger<CustomWebApplicationFactory<TStartup>>>();
+                    var options = new DbContextOptionsBuilder<AppDbContext>()
+                        .UseInMemoryDatabase("InMemoryDbTestName")
+                        .Options;
+                    var domainEventDispather = sp.GetService<IDomainEventsDispatcher>();
+                    var mediator = sp.GetService<IMediator>();
+                    var db = new AppDbContext(options, domainEventDispather, mediator);
 
                     db.Database.EnsureCreated();
 
-                    try
-                    {
 #if (IncludeSampleCode)
-                        db.SeedToDoItemsTestData();
+                    db.SeedToDoItemsTestData();
 #else
-                        //db.SeedItemsTestData();
+                    //db.SeedItemsTestData();
 #endif
-                    }
-                    catch (Exception ex)
-                    {
-                        logger.LogError(ex, $"An error occured seeding the database with test data. Error: {ex.Message}");
-                    }
-                }
+
+                    return db;
+                });
             });
     }
 }
