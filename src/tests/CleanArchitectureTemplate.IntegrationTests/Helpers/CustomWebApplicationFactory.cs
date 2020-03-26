@@ -31,7 +31,13 @@ namespace CleanArchitectureTemplate.IntegrationTests.Helpers
                     db.Database.EnsureCreated();
 
 #if (IncludeSampleCode)
-                    db.SeedToDoItemsTestData();
+                    try {
+                        db.SeedToDoItemsTestData();
+                    }                    
+                    catch (System.ArgumentException)
+                    {
+                        // Somehow the DataInitializer does not detect that ToDo items are already in the DB.
+                    }
 #else
                     //db.SeedItemsTestData();
 #endif
