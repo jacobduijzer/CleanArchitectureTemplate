@@ -40,8 +40,10 @@ namespace CleanArchitectureTemplate.Web
                 .AddScoped<IDomainEventsDispatcher, DomainEventsDispatcher>()
 #if (IncludeSampleCode)
                 .AddScoped<IRepository<ToDoItem>, EfRepository<ToDoItem>>()
-#endif
+                .AddMediatR(cfg => cfg.AsScoped(), typeof(ToDoItemsQueryHandler).GetTypeInfo().Assembly)
+#else
                 .AddMediatR(cfg => cfg.AsScoped(), typeof(Startup).GetTypeInfo().Assembly)
+#endif
                 .AddRazorPages();
         }
 
