@@ -15,10 +15,17 @@ To install the template so you can use it with `dotnet new`:
 dotnet new --install JacobsApps.CleanArchitectureProjectTemplate.CSharp 
 ```
 
+<<<<<<< HEAD
 Now choose which project type you want to create and execute the following command:
 
 ```
 dotnet new cleanarchitecture --use-case [enter use-case here]
+=======
+Execute the following command with the correct parameter to create the solution you want:
+
+```
+dotnet new cleanarchitecture --use-case {project type}
+>>>>>>> 110eb198a827040f5d873fb02d25e8b0045d1e11
 ```
 
 ### CLI options
@@ -38,7 +45,7 @@ fullweb | A full Web project with sample code
 emptyblazor | A clean Blazor project
 fullblazor | A full Blazor project with sample code
 emptyfull | A clean project with an Api, Blazor and Web project
-full | A full project with an Api, Blazor and a Web project, including TODO sample code
+all | A full project with an Api, Blazor and a Web project, including TODO sample code
 
 
 # Docker / docker-compose
@@ -56,6 +63,13 @@ Go to the 'projectname.Web' folder and execute the following command:
 to run the Website in docker.
 
 # Release Notes
+
+> ## v2.6.1 (03/17/2020)
+> - Fixed issue with full web samples.
+
+> ## v2.6.0 (03/12/2020)
+> - Better templating (different options to choose from)
+> - Create, Build & Test all project types in devops before publishing
 
 > ## v2.5.0 (03/08/2020)
 > - Included a default .editorconfig
@@ -127,6 +141,7 @@ to run the Website in docker.
 
 # ToDo
 
+* Create a runnable start project (runnable before creating the package)
 * Run tests inside docker build
 
 

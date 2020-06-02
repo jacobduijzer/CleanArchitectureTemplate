@@ -27,13 +27,13 @@
   </ItemGroup>
 
   <ItemGroup>
-<!--#if (Api)-->
+<!--#if (Api|Full)-->
     <ProjectReference Include="..\..\src\CleanArchitectureTemplate.Api\CleanArchitectureTemplate.Api.csproj"/>
 <!--#endif-->
     <ProjectReference Include="..\..\src\CleanArchitectureTemplate.Application\CleanArchitectureTemplate.Application.csproj" />
     <ProjectReference Include="..\..\src\CleanArchitectureTemplate.Domain\CleanArchitectureTemplate.Domain.csproj" />
     <ProjectReference Include="..\..\src\CleanArchitectureTemplate.Infrastructure\CleanArchitectureTemplate.Infrastructure.csproj" />
-<!--#if (Web)-->
+<!--#if (Web|Full)-->
     <ProjectReference Include="..\..\src\CleanArchitectureTemplate.Web\CleanArchitectureTemplate.Web.csproj"/>
 <!--#endif-->
     <ProjectReference Include="..\CleanArchitectureTemplate.FakeData\CleanArchitectureTemplate.FakeData.csproj" />

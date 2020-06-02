@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 function GetNugetPackage
 {
@@ -18,12 +18,10 @@ function InstallNugetPackage
 function CreateBuildAndTestProject
 {
     echo "Creating test project: " $1
-
     useCase=${1,,}
-
     mkdir $1
     cd $1
-    dotnet new cleanarchitecture -uc $useCase
+    dotnet new cleanarchitecture --use-case $useCase
     dotnet build
     dotnet test
 }

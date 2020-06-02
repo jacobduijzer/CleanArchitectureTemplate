@@ -333,3 +333,10 @@ src/CleanArchitectureTemplate.UnitTests/coverage.opencover.xml
 *.blob
 coverage.opencover.xml
 .DS_Store
+EmptyApi/*
+FullApi/*
+EmptyBlazor/*
+FullBlazor/*
+EmptyWeb/*
+FullWeb/*
+All/*

@@ -12,6 +12,7 @@ using Microsoft.Extensions.Hosting;
 #if (IncludeSampleCode)
 using CleanArchitectureTemplate.Application.ToDoItems.UseCases;
 using CleanArchitectureTemplate.Domain.ToDoItems;
+using CleanArchitectureTemplate.FakeData.ToDoItems;
 #endif
 
 namespace CleanArchitectureTemplate.Web
@@ -46,6 +47,16 @@ namespace CleanArchitectureTemplate.Web
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+// SEED WITH TEST DATA
+            using (var scope = app.ApplicationServices.CreateScope())
+            {
+                var services = scope.ServiceProvider;
+                var context = services.GetService<AppDbContext>();
+#if (IncludeSampleCode)
+                context.Seed();
+#endif
+            }
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
