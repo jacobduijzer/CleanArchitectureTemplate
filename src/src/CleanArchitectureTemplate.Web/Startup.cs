@@ -41,6 +41,8 @@ namespace CleanArchitectureTemplate.Web
 #if (IncludeSampleCode)
                 .AddScoped<IRepository<ToDoItem>, EfRepository<ToDoItem>>()
                 .AddMediatR(cfg => cfg.AsScoped(), typeof(ToDoItemsQueryHandler).GetTypeInfo().Assembly)
+#else
+                .AddMediatR(cfg => cfg.AsScoped(), typeof(Startup).GetTypeInfo().Assembly)
 #endif
                 .AddRazorPages();
         }
