@@ -15,10 +15,17 @@ To install the template so you can use it with `dotnet new`:
 dotnet new --install JacobsApps.CleanArchitectureProjectTemplate.CSharp 
 ```
 
+<<<<<<< HEAD
+Now choose which project type you want to create and execute the following command:
+
+```
+dotnet new cleanarchitecture --use-case [enter use-case here]
+=======
 Execute the following command with the correct parameter to create the solution you want:
 
 ```
 dotnet new cleanarchitecture --use-case {project type}
+>>>>>>> 110eb198a827040f5d873fb02d25e8b0045d1e11
 ```
 
 ### CLI options
