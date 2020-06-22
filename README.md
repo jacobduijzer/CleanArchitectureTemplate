@@ -64,6 +64,10 @@ to run the Website in docker.
 
 # Release Notes
 
+> ## v2.6.3 (06/22/2020)
+> - Added multiple solution files
+> - Every solution should work from GitHub now
+
 > ## v2.6.2 (03/24/2020)
 > - Cleaner integration test code.
 > - Fixed issue with empty web.

@@ -104,9 +104,9 @@
         {
           "condition": "(EmptyApi)",
           "exclude": [
-            "src/CleanArchitectureTemplate.Blazor.sln",
-            "src/CleanArchitectureTemplate.Full.sln",
-            "src/CleanArchitectureTemplate.Web.sln",
+            "CleanArchitectureTemplate.Blazor.sln",
+            "CleanArchitectureTemplate.Full.sln",
+            "CleanArchitectureTemplate.Web.sln",
             "src/CleanArchitectureTemplate.Api/ToDoItems/**/*",
             "src/CleanArchitectureTemplate.Application/ToDoItems/**/*",
             "src/CleanArchitectureTemplate.Blazor/**/*",
@@ -123,9 +123,9 @@
         }, {
         "condition": "(FullApi)",
           "exclude": [
-            "src/CleanArchitectureTemplate.Blazor.sln",
-            "src/CleanArchitectureTemplate.Full.sln",
-            "src/CleanArchitectureTemplate.Web.sln",
+            "CleanArchitectureTemplate.Blazor.sln",
+            "CleanArchitectureTemplate.Full.sln",
+            "CleanArchitectureTemplate.Web.sln",
             "src/CleanArchitectureTemplate.Blazor/**/*",
             "src/CleanArchitectureTemplate.Web/**/*",
             "tests/CleanArchitectureTemplate.IntegrationTests/Web/**/*",
@@ -135,9 +135,9 @@
         {
           "condition": "(EmptyBlazor)",
           "exclude": [
-            "src/CleanArchitectureTemplate.Api.sln",
-            "src/CleanArchitectureTemplate.Full.sln",
-            "src/CleanArchitectureTemplate.Web.sln",
+            "CleanArchitectureTemplate.Api.sln",
+            "CleanArchitectureTemplate.Full.sln",
+            "CleanArchitectureTemplate.Web.sln",
             "src/CleanArchitectureTemplate.Api/**/*",
             "src/CleanArchitectureTemplate.Application/ToDoItems/**/*",
             "src/CleanArchitectureTemplate.Blazor/Pages/ToDoItems/**/*",
@@ -154,9 +154,9 @@
         }, {
         "condition": "(FullBlazor)",
           "exclude": [
-            "src/CleanArchitectureTemplate.Api.sln",
-            "src/CleanArchitectureTemplate.Full.sln",
-            "src/CleanArchitectureTemplate.Web.sln",
+            "CleanArchitectureTemplate.Api.sln",
+            "CleanArchitectureTemplate.Full.sln",
+            "CleanArchitectureTemplate.Web.sln",
             "src/CleanArchitectureTemplate.Api/**/*",
             "src/CleanArchitectureTemplate.Web/**/*",
             "tests/CleanArchitectureTemplate.IntegrationTests/Api/**/*",
@@ -168,9 +168,9 @@
         {
           "condition": "(EmptyWeb)",
           "exclude": [
-           "src/CleanArchitectureTemplate.Blazor.sln",
-            "src/CleanArchitectureTemplate.Full.sln",
-            "src/CleanArchitectureTemplate.Api.sln",
+           "CleanArchitectureTemplate.Blazor.sln",
+            "CleanArchitectureTemplate.Full.sln",
+            "CleanArchitectureTemplate.Api.sln",
            "src/CleanArchitectureTemplate.Api/**/*",
             "src/CleanArchitectureTemplate.Application/ToDoItems/**/*",
             "src/CleanArchitectureTemplate.Blazor/**/*",
@@ -187,9 +187,9 @@
         }, {
         "condition": "(FullWeb)",
           "exclude": [
-           "src/CleanArchitectureTemplate.Blazor.sln",
-            "src/CleanArchitectureTemplate.Full.sln",
-            "src/CleanArchitectureTemplate.Api.sln",
+           "CleanArchitectureTemplate.Blazor.sln",
+            "CleanArchitectureTemplate.Full.sln",
+            "CleanArchitectureTemplate.Api.sln",
   "src/CleanArchitectureTemplate.Blazor/**/*",
             "src/CleanArchitectureTemplate.Api/**/*",
             "tests/CleanArchitectureTemplate.IntegrationTests/Api/**/*",
@@ -199,9 +199,9 @@
         {
           "condition": "(Full)",
           "exclude": [
-            "src/CleanArchitectureTemplate.Blazor.sln",
-            "src/CleanArchitectureTemplate.Web.sln",
-            "src/CleanArchitectureTemplate.Api.sln"
+            "CleanArchitectureTemplate.Blazor.sln",
+            "CleanArchitectureTemplate.Web.sln",
+            "CleanArchitectureTemplate.Api.sln"
           ]
         }
       ]
