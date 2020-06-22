@@ -21,13 +21,13 @@ function CreateBuildAndTestProject
     useCase=${1,,}
     mkdir $1
     cd $1
-    dotnet new cleanarchitecture --use-case $useCase
-    dotnet build
-    dotnet test
+    dotnet new cleanarchitecture --use-case $useCase 
+    dotnet build $2
+    dotnet test $2
 }
 
 GetNugetPackage
 
 InstallNugetPackage
 
-CreateBuildAndTestProject $1 
+CreateBuildAndTestProject $1 $2
