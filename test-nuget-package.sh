@@ -22,8 +22,8 @@ function CreateBuildAndTestProject
     mkdir $1
     cd $1
     dotnet new cleanarchitecture --use-case $useCase 
-    dotnet build $2
-    dotnet test $2
+    dotnet build $1.$2.sln
+    dotnet test $1.$2.sln
 }
 
 GetNugetPackage
