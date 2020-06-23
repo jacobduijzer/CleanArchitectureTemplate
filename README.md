@@ -24,7 +24,6 @@ Execute the following command with the correct parameter to create the solution 
 
 ```
 dotnet new cleanarchitecture --use-case {project type}
->>>>>>> 110eb198a827040f5d873fb02d25e8b0045d1e11
 ```
 
 ### CLI options
