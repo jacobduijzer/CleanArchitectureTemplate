@@ -15,7 +15,6 @@ To install the template so you can use it with `dotnet new`:
 dotnet new --install JacobsApps.CleanArchitectureProjectTemplate.CSharp 
 ```
 
-<<<<<<< HEAD
 Now choose which project type you want to create and execute the following command:
 
 ```
