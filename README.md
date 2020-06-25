@@ -1,4 +1,4 @@
-![Create Nuget Package](https://github.com/jacobduijzer/CleanArchitectureTemplate/workflows/Create%20Nuget%20Package/badge.svg) [![Nuget status](https://buildstats.info/nuget/JacobsApps.CleanArchitectureProjectTemplate.CSharp?includePreReleases=false)](https://www.nuget.org/packages/JacobsApps.CleanArchitectureProjectTemplate.CSharp/)
+[![Create Nuget Package](https://github.com/jacobduijzer/CleanArchitectureTemplate/workflows/Create%20Nuget%20Package/badge.svg)](https://github.com/jacobduijzer/CleanArchitectureTemplate/actions?query=workflow%3A%22Create+Nuget+Package%22) [![Nuget status](https://buildstats.info/nuget/JacobsApps.CleanArchitectureProjectTemplate.CSharp?includePreReleases=false)](https://www.nuget.org/packages/JacobsApps.CleanArchitectureProjectTemplate.CSharp/)
 
 
 # Clean Architecture Template
