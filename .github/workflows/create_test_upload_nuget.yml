@@ -15,7 +15,7 @@ jobs:
     - uses: actions/checkout@master
     - uses: nuget/setup-nuget@v1
       with:
-        nuget-api-key: ${{ secrets.NuGetAPIKey }}
+        nuget-api-key: ${{ secrets.NUGET_API_KEY }}
         nuget-version: '5.x'
     - run: nuget pack JacobsApps.CleanArchitectureProjectTemplate.CSharp.nuspec -NoDefaultExcludes
     
@@ -46,6 +46,10 @@ jobs:
     - name: Test nuget package with 'All' project type
       run: ./test-nuget-package.sh All Full
       shell: bash 
-      
+
+    - name: Push nuget package
+      run: nuget push JacobsApps.CleanArchitectureProjectTemplate.CSharp.*.nupkg --skip-duplicate
+
+
     
       
