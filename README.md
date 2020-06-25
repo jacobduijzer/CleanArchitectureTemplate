@@ -1,4 +1,4 @@
-[![Build Status](https://dev.azure.com/JacobsApps/CleanArchitectureTemplate/_apis/build/status/jacobduijzer.CleanArchitectureTemplate?branchName=master)](https://dev.azure.com/JacobsApps/CleanArchitectureTemplate/_build/latest?definitionId=1&branchName=master) [![Nuget status](https://buildstats.info/nuget/JacobsApps.CleanArchitectureProjectTemplate.CSharp?includePreReleases=false)](https://www.nuget.org/packages/JacobsApps.CleanArchitectureProjectTemplate.CSharp/)
+![Create Nuget Package](https://github.com/jacobduijzer/CleanArchitectureTemplate/workflows/Create%20Nuget%20Package/badge.svg) [![Nuget status](https://buildstats.info/nuget/JacobsApps.CleanArchitectureProjectTemplate.CSharp?includePreReleases=false)](https://www.nuget.org/packages/JacobsApps.CleanArchitectureProjectTemplate.CSharp/)
 
 
 # Clean Architecture Template
