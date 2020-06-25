@@ -49,7 +49,7 @@ jobs:
       shell: bash 
 
     - name: Push nuget package
-      run: dotnet nuget push JacobsApps.CleanArchitectureProjectTemplate.CSharp.*.nupkg --skip-duplicate
+      run: nuget push JacobsApps.CleanArchitectureProjectTemplate.CSharp.*.nupkg
 
 
     
