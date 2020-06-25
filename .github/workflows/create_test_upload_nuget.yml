@@ -13,6 +13,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@master
+      with:
+        fetch-depth: 0
     - uses: nuget/setup-nuget@v1
       with:
         nuget-api-key: ${{ secrets.NUGET_API_KEY }}
@@ -47,6 +49,12 @@ jobs:
     - name: Test nuget package with 'All' project type
       run: ./test-nuget-package.sh All Full
       shell: bash 
+    
+    - name: SonarCloud Scan
+      uses: sonarsource/sonarcloud-github-action@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
     - name: Push nuget package
       run: nuget push JacobsApps.CleanArchitectureProjectTemplate.CSharp.*.nupkg -Source https://api.nuget.org/v3/index.json
