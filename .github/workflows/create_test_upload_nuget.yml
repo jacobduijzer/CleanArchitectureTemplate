@@ -22,7 +22,30 @@ jobs:
     - name: Test nuget package with 'EmptyApi' project type
       run: ./test-nuget-package.sh EmptyApi Api
       shell: bash
+    
+    - name: Test nuget package with 'EmptyApi' project type
+      run: ./test-nuget-package.sh FullApi Api
+      shell: bash
+
+    - name: Test nuget package with 'EmptyApi' project type
+      run: ./test-nuget-package.sh EmptyBlazor Blazor
+      shell: bash
+
+    - name: Test nuget package with 'EmptyApi' project type
+      run: ./test-nuget-package.sh FullBlazor Blazor
+      shell: bash
       
+    - name: Test nuget package with 'EmptyApi' project type
+      run: ./test-nuget-package.sh EmptyWeb Web
+      shell: bash      
+
+    - name: Test nuget package with 'EmptyApi' project type
+      run: ./test-nuget-package.sh FullWeb Web
+      shell: bash 
+
+    - name: Test nuget package with 'EmptyApi' project type
+      run: ./test-nuget-package.sh All Full
+      shell: bash 
       
     
       
