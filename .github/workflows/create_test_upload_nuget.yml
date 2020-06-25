@@ -49,7 +49,7 @@ jobs:
       shell: bash 
 
     - name: Push nuget package
-      run: nuget push JacobsApps.CleanArchitectureProjectTemplate.CSharp.*.nupkg
+      run: nuget push JacobsApps.CleanArchitectureProjectTemplate.CSharp.*.nupkg -Source https://api.nuget.org/v3/index.json
 
 
     
