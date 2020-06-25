@@ -16,6 +16,7 @@ jobs:
     - uses: nuget/setup-nuget@v1
       with:
         nuget-api-key: ${{ secrets.NUGET_API_KEY }}
+        nuget-api-key-source: https://api.nuget.org/v3/index.json
         nuget-version: '5.x'
     - run: nuget pack JacobsApps.CleanArchitectureProjectTemplate.CSharp.nuspec -NoDefaultExcludes
     
