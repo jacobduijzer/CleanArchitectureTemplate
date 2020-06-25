@@ -17,4 +17,5 @@ jobs:
       with:
         nuget-api-key: ${{ secrets.NuGetAPIKey }}
         nuget-version: '5.x'
-    - run: nuget pack JacobsApps.CleanArchitectureProjectTemplate.CSharp.nuspec -NoDefaultExcludes MyProject.sln
+    - run: nuget pack JacobsApps.CleanArchitectureProjectTemplate.CSharp.nuspec -NoDefaultExcludes
+      
