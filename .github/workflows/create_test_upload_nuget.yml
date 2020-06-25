@@ -26,10 +26,6 @@ jobs:
       run: ./test-nuget-package.sh EmptyApi Api
       shell: bash
       
-    - name: Test nuget package with 'EmptyApi' project type
-      run: ls
-      shell: bash      
-    
     - name: Test nuget package with 'FullApi' project type
       run: ./test-nuget-package.sh FullApi Api
       shell: bash
