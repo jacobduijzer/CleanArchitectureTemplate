@@ -20,7 +20,7 @@ jobs:
     - run: nuget pack JacobsApps.CleanArchitectureProjectTemplate.CSharp.nuspec -NoDefaultExcludes
     
     - name: Test nuget package with 'EmptyApi' project type
-      run: test-nuget-package.sh EmptyApi Api
+      run: ls
       shell: bash
       
       
