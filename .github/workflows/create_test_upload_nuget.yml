@@ -18,4 +18,11 @@ jobs:
         nuget-api-key: ${{ secrets.NuGetAPIKey }}
         nuget-version: '5.x'
     - run: nuget pack JacobsApps.CleanArchitectureProjectTemplate.CSharp.nuspec -NoDefaultExcludes
+    
+    - name: Test nuget package with 'EmptyApi' project type
+      run: test-nuget-package.sh EmptyApi Api
+      shell: bash
+      
+      
+    
       
