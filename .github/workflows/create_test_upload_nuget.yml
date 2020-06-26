@@ -56,8 +56,9 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
-#     - name: Push nuget package
-#       run: nuget push JacobsApps.CleanArchitectureProjectTemplate.CSharp.*.nupkg -Source https://api.nuget.org/v3/index.json
+    - name: Push nuget package
+      if: startsWith(github.ref, 'refs/tags/v')
+      run: nuget push JacobsApps.CleanArchitectureProjectTemplate.CSharp.*.nupkg -Source https://api.nuget.org/v3/index.json
 
 
     
