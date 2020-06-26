@@ -32,52 +32,42 @@ jobs:
     - name: Test full project
       run: dotnet test -property:DefineConstants="IncludeSampleCode" src/CleanArchitectureTemplate.Full.sln /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput=coverage.opencover.xml
 
-    - name: Create nuget package
-      run: nuget pack JacobsApps.CleanArchitectureProjectTemplate.CSharp.nuspec -NoDefaultExcludes
-
     - name: SonarCloud Scan
       uses: sonarsource/sonarcloud-github-action@master
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+    - name: Create nuget package
+      run: nuget pack JacobsApps.CleanArchitectureProjectTemplate.CSharp.nuspec -NoDefaultExcludes
     
-#     - name: Test nuget package with 'EmptyApi' project type
-#       run: ./test-nuget-package.sh EmptyApi Api
-#       shell: bash
+    - name: Test nuget package with 'EmptyApi' project type
+      run: ./test-nuget-package.sh EmptyApi Api
+      shell: bash
       
-#     - name: Test nuget package with 'FullApi' project type
-#       run: ./test-nuget-package.sh FullApi Api
-#       shell: bash
+    - name: Test nuget package with 'FullApi' project type
+      run: ./test-nuget-package.sh FullApi Api
+      shell: bash
 
-#     - name: Test nuget package with 'EmptyBlazor' project type
-#       run: ./test-nuget-package.sh EmptyBlazor Blazor
-#       shell: bash
+    - name: Test nuget package with 'EmptyBlazor' project type
+      run: ./test-nuget-package.sh EmptyBlazor Blazor
+      shell: bash
 
-#     - name: Test nuget package with 'FullBlazor' project type
-#       run: ./test-nuget-package.sh FullBlazor Blazor
-#       shell: bash
+    - name: Test nuget package with 'FullBlazor' project type
+      run: ./test-nuget-package.sh FullBlazor Blazor
+      shell: bash
       
-#     - name: Test nuget package with 'EmptyWeb' project type
-#       run: ./test-nuget-package.sh EmptyWeb Web
-#       shell: bash      
+    - name: Test nuget package with 'EmptyWeb' project type
+      run: ./test-nuget-package.sh EmptyWeb Web
+      shell: bash      
 
-#     - name: Test nuget package with 'FullWeb' project type
-#       run: ./test-nuget-package.sh FullWeb Web
-#       shell: bash 
+    - name: Test nuget package with 'FullWeb' project type
+      run: ./test-nuget-package.sh FullWeb Web
+      shell: bash 
 
-#     - name: Test nuget package with 'All' project type
-#       run: ./test-nuget-package.sh All Full
-#       shell: bash 
-    
-#     - name: Direcory
-#       run: pwd
-#       shell: bash
-
-#     - name: Direcory listing
-#       run: ls
-#       shell: bash
-    
-
+    - name: Test nuget package with 'All' project type
+      run: ./test-nuget-package.sh All Full
+      shell: bash 
 
     - name: Push nuget package
       if: startsWith(github.ref, 'refs/tags/v')
