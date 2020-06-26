@@ -15,12 +15,25 @@ jobs:
     - uses: actions/checkout@master
       with:
         fetch-depth: 0
+        key:  
     - uses: nuget/setup-nuget@v1
       with:
         nuget-api-key: ${{ secrets.NUGET_API_KEY }}
         nuget-api-key-source: https://api.nuget.org/v3/index.json
         nuget-version: '5.x'
-    - run: nuget pack JacobsApps.CleanArchitectureProjectTemplate.CSharp.nuspec -NoDefaultExcludes
+
+    - uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '3.1.x'        
+        
+    - name: Build full project
+      run: dotnet build src/CleanArchitectureTemplate.Full.sln
+    
+    - name: Test full project
+      run: dotnet test -property:DefineConstants="IncludeSampleCode" src/CleanArchitectureTemplate.Full.sln
+
+    - name: Create nuget package
+      run: nuget pack JacobsApps.CleanArchitectureProjectTemplate.CSharp.nuspec -NoDefaultExcludes
     
 #     - name: Test nuget package with 'EmptyApi' project type
 #       run: ./test-nuget-package.sh EmptyApi Api
@@ -46,23 +59,23 @@ jobs:
 #       run: ./test-nuget-package.sh FullWeb Web
 #       shell: bash 
 
-    - name: Test nuget package with 'All' project type
-      run: ./test-nuget-package.sh All Full
-      shell: bash 
+#     - name: Test nuget package with 'All' project type
+#       run: ./test-nuget-package.sh All Full
+#       shell: bash 
     
-    - name: Direcory
-      run: pwd
-      shell: bash
+#     - name: Direcory
+#       run: pwd
+#       shell: bash
 
-    - name: Direcory listing
-      run: ls
-      shell: bash
+#     - name: Direcory listing
+#       run: ls
+#       shell: bash
     
-    - name: SonarCloud Scan
-      uses: sonarsource/sonarcloud-github-action@master
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+#     - name: SonarCloud Scan
+#       uses: sonarsource/sonarcloud-github-action@master
+#       env:
+#         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
     - name: Push nuget package
       if: startsWith(github.ref, 'refs/tags/v')
