@@ -15,7 +15,7 @@ jobs:
     - uses: actions/checkout@master
       with:
         fetch-depth: 0
-        key:  
+
     - uses: nuget/setup-nuget@v1
       with:
         nuget-api-key: ${{ secrets.NUGET_API_KEY }}
