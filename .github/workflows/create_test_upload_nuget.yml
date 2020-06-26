@@ -50,6 +50,14 @@ jobs:
       run: ./test-nuget-package.sh All Full
       shell: bash 
     
+    - name: Direcory
+      run: pwd
+      shell: bash
+
+    - name: Direcory listing
+      run: ls
+      shell: bash
+    
     - name: SonarCloud Scan
       uses: sonarsource/sonarcloud-github-action@master
       env:
