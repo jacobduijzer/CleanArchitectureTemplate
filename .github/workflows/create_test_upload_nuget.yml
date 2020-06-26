@@ -34,6 +34,12 @@ jobs:
 
     - name: Create nuget package
       run: nuget pack JacobsApps.CleanArchitectureProjectTemplate.CSharp.nuspec -NoDefaultExcludes
+
+    - name: SonarCloud Scan
+      uses: sonarsource/sonarcloud-github-action@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
     
 #     - name: Test nuget package with 'EmptyApi' project type
 #       run: ./test-nuget-package.sh EmptyApi Api
@@ -71,11 +77,7 @@ jobs:
 #       run: ls
 #       shell: bash
     
-#     - name: SonarCloud Scan
-#       uses: sonarsource/sonarcloud-github-action@master
-#       env:
-#         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
 
     - name: Push nuget package
       if: startsWith(github.ref, 'refs/tags/v')
