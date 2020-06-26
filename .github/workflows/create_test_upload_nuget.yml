@@ -22,29 +22,29 @@ jobs:
         nuget-version: '5.x'
     - run: nuget pack JacobsApps.CleanArchitectureProjectTemplate.CSharp.nuspec -NoDefaultExcludes
     
-    - name: Test nuget package with 'EmptyApi' project type
-      run: ./test-nuget-package.sh EmptyApi Api
-      shell: bash
+#     - name: Test nuget package with 'EmptyApi' project type
+#       run: ./test-nuget-package.sh EmptyApi Api
+#       shell: bash
       
-    - name: Test nuget package with 'FullApi' project type
-      run: ./test-nuget-package.sh FullApi Api
-      shell: bash
+#     - name: Test nuget package with 'FullApi' project type
+#       run: ./test-nuget-package.sh FullApi Api
+#       shell: bash
 
-    - name: Test nuget package with 'EmptyBlazor' project type
-      run: ./test-nuget-package.sh EmptyBlazor Blazor
-      shell: bash
+#     - name: Test nuget package with 'EmptyBlazor' project type
+#       run: ./test-nuget-package.sh EmptyBlazor Blazor
+#       shell: bash
 
-    - name: Test nuget package with 'FullBlazor' project type
-      run: ./test-nuget-package.sh FullBlazor Blazor
-      shell: bash
+#     - name: Test nuget package with 'FullBlazor' project type
+#       run: ./test-nuget-package.sh FullBlazor Blazor
+#       shell: bash
       
-    - name: Test nuget package with 'EmptyWeb' project type
-      run: ./test-nuget-package.sh EmptyWeb Web
-      shell: bash      
+#     - name: Test nuget package with 'EmptyWeb' project type
+#       run: ./test-nuget-package.sh EmptyWeb Web
+#       shell: bash      
 
-    - name: Test nuget package with 'FullWeb' project type
-      run: ./test-nuget-package.sh FullWeb Web
-      shell: bash 
+#     - name: Test nuget package with 'FullWeb' project type
+#       run: ./test-nuget-package.sh FullWeb Web
+#       shell: bash 
 
     - name: Test nuget package with 'All' project type
       run: ./test-nuget-package.sh All Full
@@ -56,8 +56,8 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
-    - name: Push nuget package
-      run: nuget push JacobsApps.CleanArchitectureProjectTemplate.CSharp.*.nupkg -Source https://api.nuget.org/v3/index.json
+#     - name: Push nuget package
+#       run: nuget push JacobsApps.CleanArchitectureProjectTemplate.CSharp.*.nupkg -Source https://api.nuget.org/v3/index.json
 
 
     
