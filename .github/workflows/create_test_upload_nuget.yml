@@ -30,7 +30,7 @@ jobs:
       run: dotnet build src/CleanArchitectureTemplate.Full.sln
     
     - name: Test full project
-      run: dotnet test -property:DefineConstants="IncludeSampleCode" src/CleanArchitectureTemplate.Full.sln /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput=MyBeerInfo.Core.Tests.coverage.xml
+      run: dotnet test -property:DefineConstants="IncludeSampleCode" src/CleanArchitectureTemplate.Full.sln /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput=coverage.opencover.xml
 
     - name: Create nuget package
       run: nuget pack JacobsApps.CleanArchitectureProjectTemplate.CSharp.nuspec -NoDefaultExcludes
