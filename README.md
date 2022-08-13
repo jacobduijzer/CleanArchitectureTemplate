@@ -1,6 +1,6 @@
 [![Create Nuget Package](https://github.com/jacobduijzer/CleanArchitectureTemplate/workflows/Create%20Nuget%20Package/badge.svg)](https://github.com/jacobduijzer/CleanArchitectureTemplate/actions?query=workflow%3A%22Create+Nuget+Package%22) [![Nuget status](https://buildstats.info/nuget/JacobsApps.CleanArchitectureProjectTemplate.CSharp?includePreReleases=false)](https://www.nuget.org/packages/JacobsApps.CleanArchitectureProjectTemplate.CSharp/)
 
-![](https://placehold.it/400x90/ff6600/000?text=WARNING! This project is no longer maintained. It uses an old version of .Net Core and maybe other outdated libraries. Please use it only for learning purposes.)
+![](https://placehold.it/400x90/ff6600/000?text=WARNING!) This project is no longer maintained. It uses an old version of .Net Core and maybe other outdated libraries. Please use it only for learning purposes.)
 
 # Clean Architecture Template
 
